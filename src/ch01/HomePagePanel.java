@@ -95,7 +95,7 @@ public class HomePagePanel extends JFrame {
 
 		// 백그라운드 패널
 		public BackgroundPanel() {
-			backgroundImage = new ImageIcon("img/background.jpg").getImage();
+			//backgroundImage = new ImageIcon("img/background.jpg").getImage();
 			backgroundPanel = new JPanel();
 			add(backgroundPanel);
 		}
