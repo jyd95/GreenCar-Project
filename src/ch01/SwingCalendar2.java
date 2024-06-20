@@ -5,13 +5,15 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class SwingCalendar2 extends JFrame {
+public class SwingCalendar2 extends JFrame implements Runnable {
 	// 다이어리 생성
 	Diary dr;
 
@@ -35,12 +37,15 @@ public class SwingCalendar2 extends JFrame {
 	// 폰트
 	Font font;
 
+	// 날짜 조절
+	int gap;
+
 	public SwingCalendar2() {
 		dr = new Diary();
-//		previousBtn.addActionListener(this);
-//		nextBtn.addActionListener(this);
 		initData();
 		setInitLayout();
+
+		new Thread(this).start();
 	}
 
 	public void initData() {
@@ -123,16 +128,32 @@ public class SwingCalendar2 extends JFrame {
 		setVisible(true);
 	}
 
-//	private void actionPerformed(ActionEvent e) {
-//		int gap = 0;
-//		if (e.getSource() == nextBtn) {
-//			gap = 1;
-//		} else if (e.getSource() == previousBtn) {
-//			gap = -1;
-//		}
-//		dr.initCalData(gap);
-//		yearMonthLabel.setText(dr.getCalText());
-//	}
+	@Override
+	public void run() {
+		previousBtn.addMouseListener(new MouseAdapter() {
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				if (e.getSource() == previousBtn) {
+					gap = -1;
+				}
+				dr.initCalData(gap);
+				yearMonthLabel.setText(dr.getCalText());
+			}
+		});
+		nextBtn.addMouseListener(new MouseAdapter() {
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				if (e.getSource() == nextBtn) {
+					gap = 1;
+				}
+				dr.initCalData(gap);
+				yearMonthLabel.setText(dr.getCalText());
+			}
+		});
+
+	}
 
 	public static void main(String[] args) {
 		new SwingCalendar2();
