@@ -239,19 +239,5 @@ public class HomePagePanel2 extends JFrame implements ActionListener {
 			new CarDetail().DetailKanibal();
 		}
 	}
-	
-	
-//	k3.addMouseListener(new MouseAdapter() {
-//	@Override
-//	public void mouseClicked(MouseEvent e) {
-//		new CarDetail().Detailk3();
-//	}
-//});
-//
-//k5.addMouseListener(new MouseAdapter() {
-//	@Override
-//	public void mouseClicked(MouseEvent e) {
-//		new CarDetail().Detailk5();
-//	}
-//});
+
 }
