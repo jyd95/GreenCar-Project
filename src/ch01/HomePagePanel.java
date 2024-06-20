@@ -23,7 +23,6 @@ public class HomePagePanel extends JFrame {
 	private JButton short_termBtn;
 	private JButton long_termBtn;
 	private JButton usedCarBtn;
-	private JButton customerServiceBtn;
 
 	public HomePagePanel() {
 		initData();
@@ -38,10 +37,9 @@ public class HomePagePanel extends JFrame {
 		logoLabel = new JLabel(new ImageIcon("img/logo1.png"));
 
 		// 상단 메뉴바 버튼
-		short_termBtn = new JButton("단기렌터카");
-		long_termBtn = new JButton("장기렌터카");
-		usedCarBtn = new JButton("중고차 장기렌터카");
-		customerServiceBtn = new JButton("고객센터");
+		short_termBtn = new JButton("<html><body><center>차량으로<br>예약하기</center></body></html>\")");
+		long_termBtn = new JButton("<html><body><center>날짜로<br>에약하기</center></body></html>\")");
+		usedCarBtn = new JButton("<html><body><center>예약조회<br>및 변경하기</center></body></html>");
 	}
 
 	public void setInitLayout() {
@@ -64,27 +62,22 @@ public class HomePagePanel extends JFrame {
 		short_termBtn.setBounds(200, 40, 103, 50);
 		long_termBtn.setBounds(400, 40, 103, 50);
 		usedCarBtn.setBounds(600, 40, 172, 50);
-		customerServiceBtn.setBounds(810, 40, 103, 50);
 
 		short_termBtn.setBorder(null);
 		long_termBtn.setBorder(null);
 		usedCarBtn.setBorder(null);
-		customerServiceBtn.setBorder(null);
 
 		short_termBtn.setContentAreaFilled(false);
 		long_termBtn.setContentAreaFilled(false);
 		usedCarBtn.setContentAreaFilled(false);
-		customerServiceBtn.setContentAreaFilled(false);
 
 		short_termBtn.setFont(new Font("궁서", Font.BOLD, 20));
 		long_termBtn.setFont(new Font("궁서", Font.BOLD, 20));
 		usedCarBtn.setFont(new Font("궁서", Font.BOLD, 20));
-		customerServiceBtn.setFont(new Font("궁서", Font.BOLD, 20));
 
 		backgroundPanel.add(short_termBtn);
 		backgroundPanel.add(long_termBtn);
 		backgroundPanel.add(usedCarBtn);
-		backgroundPanel.add(customerServiceBtn);
 
 		setVisible(true);
 	}
@@ -95,7 +88,7 @@ public class HomePagePanel extends JFrame {
 
 		// 백그라운드 패널
 		public BackgroundPanel() {
-			//backgroundImage = new ImageIcon("img/background.jpg").getImage();
+			// backgroundImage = new ImageIcon("img/background.jpg").getImage();
 			backgroundPanel = new JPanel();
 			add(backgroundPanel);
 		}
