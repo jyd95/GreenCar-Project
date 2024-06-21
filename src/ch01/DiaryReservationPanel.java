@@ -63,7 +63,7 @@ public class DiaryReservationPanel extends JFrame {
 		// 이미지
 		reserveImg = new ImageIcon("img/reserveBtn.png");
 		rentImg = new ImageIcon("img/chooseDate.png");
-		returnImg = new ImageIcon("img/completeSelection.png");
+		returnImg = new ImageIcon("img/선택한 날짜로 예약하기.png");
 
 		// 버튼
 		reserveBtn = new JButton(reserveImg);
@@ -116,8 +116,8 @@ public class DiaryReservationPanel extends JFrame {
 
 		// 버튼
 		reserveBtn.setBounds(330, 700, 370, 50);
-		choiceDateBtn.setBounds(270, 630, 300, 50);
-		completeSelectionBtn.setBounds(460, 630, 300, 50);
+		choiceDateBtn.setBounds(350, 610, 300, 50);
+		completeSelectionBtn.setBounds(310, 830, 400, 50);
 
 		reserveBtn.setBorder(null);
 		choiceDateBtn.setBorder(null);
