@@ -1,6 +1,7 @@
 package ch01;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -12,18 +13,22 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import calendar.Diary;
 import calendar.SwingCalendar3;
 import main.HomePagePanel;
 
 public class DiaryReservationPanel extends JFrame {
-
+	private Diary dr;
 	// 패널
 	private JPanel backgroundPanel;
 
-	// 상단 로고
+	// 상하 레이블
 	private JLabel logoLabel;
+	private JLabel dateLabel;
+	private JLabel returnLabel;
 
 	// 로고
+	private JLabel headerLabel;
 	private JLabel midLabel;
 	private JLabel calendarLabel;
 
@@ -48,14 +53,18 @@ public class DiaryReservationPanel extends JFrame {
 		backgroundPanel = new JPanel();
 
 		// 로고
+		headerLabel = new JLabel("날짜로 예약");
 		logoLabel = new JLabel(new ImageIcon("img/logo2.png"));
 		midLabel = new JLabel(new ImageIcon("img/reserveLogo3.png"));
 		calendarLabel = new JLabel(new ImageIcon("img/calender.png"));
+		dateLabel = new JLabel("대여일 : ");
+		returnLabel = new JLabel("반납일 : ");
 
 		// 이미지
 		reserveImg = new ImageIcon("img/reserveBtn.png");
 		rentImg = new ImageIcon("img/rentDateBtn.png");
 		returnImg = new ImageIcon("img/returnDateBtn.png");
+
 		// 버튼
 		reserveBtn = new JButton(reserveImg);
 		rentDateBtn = new JButton(rentImg);
@@ -77,8 +86,23 @@ public class DiaryReservationPanel extends JFrame {
 
 		// logo 이미지
 		logoLabel.setBounds(30, 0, 105, 200);
+		headerLabel.setBounds(200, 50, 300, 100);
+		dateLabel.setBounds(280, 660, 300, 100);
+		returnLabel.setBounds(280, 690, 300, 100);
+
 		logoLabel.setLayout(null);
+		headerLabel.setLayout(null);
+		dateLabel.setLayout(null);
+		returnLabel.setLayout(null);
+
+		headerLabel.setFont(new Font("궁서", Font.BOLD, 30));
+		dateLabel.setFont(new Font("궁서", Font.BOLD, 25));
+		returnLabel.setFont(new Font("궁서", Font.BOLD, 25));
+
+		backgroundPanel.add(dateLabel);
+		backgroundPanel.add(returnLabel);
 		backgroundPanel.add(logoLabel);
+		backgroundPanel.add(headerLabel);
 
 		// 미드 로고
 		midLabel.setBounds(250, 150, 500, 700);
@@ -110,19 +134,24 @@ public class DiaryReservationPanel extends JFrame {
 		setVisible(true);
 	}
 
+	public void updatedateLabelText(String newText) {
+		dateLabel.setText(newText);
+	}
+
+	public void updateReturnLabelText(String newText) {
+		returnLabel.setText(newText);
+	}
+
 	public void addBtnListener() {
 		rentDateBtn.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
-				new SwingCalendar3();
-
+				new SwingCalendar3(DiaryReservationPanel.this);
 			}
 		});
 		rturnDateBtn.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
-				new SwingCalendar3();
-
 			}
 		});
 		logoLabel.addMouseListener(new MouseAdapter() {
