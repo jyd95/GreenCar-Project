@@ -71,7 +71,7 @@ public class HomePagePanel extends JFrame {
 
 		// 상단 메뉴바 버튼
 		carReserveBtn = new JButton("<html><body><center>차량으로<br>예약하기</center></body></html>\")");
-		dateReserveBtn = new JButton("<html><body><center>날짜로<br>에약하기</center></body></html>\")");
+		dateReserveBtn = new JButton("<html><body><center>날짜로<br>예약하기</center></body></html>\")");
 		usedCarBtn = new JButton("<html><body><center>예약조회<br>및 변경하기</center></body></html>");
 
 		// 검색 기능
@@ -91,6 +91,7 @@ public class HomePagePanel extends JFrame {
 		setSize(1000, 1000);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
+		setResizable(false);
 		setLayout(null);
 
 		// 패널
