@@ -147,13 +147,25 @@ public class SwingCalendar3 extends JFrame implements Runnable {
 						buttons[index].setEnabled(false);
 						firstButtonText = buttons[index].getText();
 
+
+						////////////////// !!!!!!!!!!!!!!!!!///////////////////////////
+						
 						System.out.println(dr.getAllCal(firstButtonText));
 						drp.updatedateLabelText("대여일 : " + dr.getAllCal(firstButtonText));
+						
+						////////////////// !!!!!!!!!!!!!!!!!///////////////////////////
+
 					} else if (clickCount % 2 == 0) {
 						secondButtonText = buttons[index].getText();
 						System.out.println(dr.getAllCal(secondButtonText));
 						buttons[index].setEnabled(true);
+
+
+						//////////////// !!!!!!!!!!!!!!!!!!!!!!////////////////////////////
+						
 						drp.updateReturnLabelText("반납일 : " + dr.getAllCal(secondButtonText));
+						
+						//////////////// !!!!!!!!!!!!!!!!!!!!!!////////////////////////////
 					}
 					clickCount++;
 					if (firstClick) {
