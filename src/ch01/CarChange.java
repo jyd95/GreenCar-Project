@@ -56,15 +56,6 @@ public class CarChange {
 		frame.setLocationRelativeTo(null);
 		frame.setResizable(false);
 		frame.getContentPane().setLayout(null);
-<<<<<<< HEAD
-		
-=======
-
-		JList list = new JList();
-		list.setBounds(200, 40, 591, 339);
-		frame.getContentPane().add(list);
-
->>>>>>> e0f84bddfc7ab379ea04fe6a101b2eb6dbac2c38
 		JLabel lblNewLabel = new JLabel("변경 가능한 차량");
 		lblNewLabel.setForeground(new Color(255, 255, 255));
 		lblNewLabel.setFont(new Font("CookieRunOTF Black", Font.PLAIN, 20));

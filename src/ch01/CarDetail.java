@@ -236,15 +236,9 @@ public class CarDetail extends JFrame implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-<<<<<<< HEAD
 		InputReservationInfo iri = new InputReservationInfo();
 		iri.setVisible(true);
 		setVisible(false);
-=======
-		if (e.getSource() == reservationL) {
-			// 예약 창 띄우기
-		}
->>>>>>> e0f84bddfc7ab379ea04fe6a101b2eb6dbac2c38
 
 	}
 }
