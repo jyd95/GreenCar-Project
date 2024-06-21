@@ -3,6 +3,8 @@ package ch01;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -89,6 +91,7 @@ public class CarDetail extends JFrame implements ActionListener {
 		reservationL.setLayout(null);
 		reservationL.setBorder(null);
 		reservationL.setContentAreaFilled(false);
+		reservationL.addActionListener(new ButtonListener());
 		backgroundPanel.add(reservationL);
 		setVisible(true);
 
@@ -215,13 +218,20 @@ public class CarDetail extends JFrame implements ActionListener {
 		scripKanibal.setLayout(null);
 		backgroundPanel.add(scripKanibal);
 		setVisible(true);
-
+		
 	}
+	
+	
+	
+	class ButtonListener implements ActionListener{
 
-	public void actionPerformed(ActionEvent e) {
-		if(e.getSource() == reservationL) {
-		// 예약 창 띄우기
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			InputReservationInfo iri = new InputReservationInfo();
+			iri.setVisible(true);
+			setVisible(false);
 		}
+		
 		
 	}
 }
