@@ -37,7 +37,7 @@ public class ReservationUpdatePage extends JFrame {
 	private JTextField phoneNumber;
 
 	private JTextField title;
-	
+
 	private JTextField cartype;
 	private JTextField carbrand;
 	private JTextField carpuel;
@@ -62,7 +62,7 @@ public class ReservationUpdatePage extends JFrame {
 
 	private JLabel lineImgLabel;
 	private ImageIcon lineImg;
-	
+
 	private JLabel logoLabel;
 
 	public ReservationUpdatePage() {
@@ -74,12 +74,10 @@ public class ReservationUpdatePage extends JFrame {
 	public void initData() {
 		backgroundPanel = new BackgroundPanel();
 
-		
 		logoLabel = new JLabel(new ImageIcon("img/logo2.png"));
 
-		
 		title = new JTextField("예약 변경하기");
-		
+
 		// 버튼
 		periodImg = new ImageIcon("img/changePeriod.png");
 		changeCarImg = new ImageIcon("img/changeCar.png");
@@ -124,13 +122,8 @@ public class ReservationUpdatePage extends JFrame {
 
 	public void setInitLayout() {
 		// 프레임 설정
-<<<<<<< HEAD
-		setSize(800, 800);
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-=======
 		setSize(800, 900);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
->>>>>>> chiwon
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setLayout(null);
 		setLocationRelativeTo(null);
 		setResizable(false);
@@ -143,14 +136,12 @@ public class ReservationUpdatePage extends JFrame {
 		title.setHorizontalAlignment(JTextField.CENTER);
 		title.setFont(new Font("궁서체", Font.BOLD, 40));
 
-		logoLabel.setBounds(30,0,105,200);
+		logoLabel.setBounds(30, 0, 105, 200);
 		logoLabel.setLayout(null);
 		backgroundPanel.add(logoLabel);
-		
-		
+
 		backgroundPanel.add(title);
-		
-		
+
 		id.setBounds(549, 250, 190, 30);
 		name.setBounds(549, 280, 190, 30);
 		phoneNumber.setBounds(549, 310, 190, 30);
@@ -200,7 +191,7 @@ public class ReservationUpdatePage extends JFrame {
 		// 버튼
 		updateCarBtn.setBounds(70, 630, 300, 95);
 		updateDateBtn.setBounds(430, 630, 300, 95);
-		cancelReservationBtn.setBounds(250,770,276,67);
+		cancelReservationBtn.setBounds(250, 770, 276, 67);
 
 		// 예약자 정보
 		reservationPersonInfo.setBounds(450, 210, 100, 30);
@@ -287,7 +278,7 @@ public class ReservationUpdatePage extends JFrame {
 		backgroundPanel.add(reservationPersonInfo);
 		backgroundPanel.add(updateCarBtn);
 		backgroundPanel.add(updateDateBtn);
-		
+
 		id.setHorizontalAlignment(JTextField.CENTER);
 		name.setHorizontalAlignment(JTextField.CENTER);
 		phoneNumber.setHorizontalAlignment(JTextField.CENTER);
@@ -296,41 +287,39 @@ public class ReservationUpdatePage extends JFrame {
 		carpuel.setHorizontalAlignment(JTextField.CENTER);
 		rentdate.setHorizontalAlignment(JTextField.CENTER);
 		returndate.setHorizontalAlignment(JTextField.CENTER);
-		
+
 		id.setEditable(false); // 입력불가상태 (텍스트 색상변경가능)
 		id.setForeground(Color.BLACK); // 메인보드 텍스트 검정색
 		id.setBackground(Color.white);
-		
+
 		name.setEditable(false); // 입력불가상태 (텍스트 색상변경가능)
 		name.setForeground(Color.BLACK); // 메인보드 텍스트 검정색
 		name.setBackground(Color.white);
-		 
+
 		phoneNumber.setEditable(false); // 입력불가상태 (텍스트 색상변경가능)
 		phoneNumber.setForeground(Color.BLACK); // 메인보드 텍스트 검정색
 		phoneNumber.setBackground(Color.white);
-		
+
 		cartype.setEditable(false); // 입력불가상태 (텍스트 색상변경가능)
 		cartype.setForeground(Color.BLACK); // 메인보드 텍스트 검정색
 		cartype.setBackground(Color.white);
-		
+
 		carbrand.setEditable(false); // 입력불가상태 (텍스트 색상변경가능)
 		carbrand.setForeground(Color.BLACK); // 메인보드 텍스트 검정색
 		carbrand.setBackground(Color.white);
-		
+
 		carpuel.setEditable(false); // 입력불가상태 (텍스트 색상변경가능)
 		carpuel.setForeground(Color.BLACK); // 메인보드 텍스트 검정색
 		carpuel.setBackground(Color.white);
-		
+
 		rentdate.setEditable(false); // 입력불가상태 (텍스트 색상변경가능)
 		rentdate.setForeground(Color.BLACK); // 메인보드 텍스트 검정색
 		rentdate.setBackground(Color.white);
-		
+
 		returndate.setEditable(false); // 입력불가상태 (텍스트 색상변경가능)
 		returndate.setForeground(Color.BLACK); // 메인보드 텍스트 검정색
 		returndate.setBackground(Color.white);
-		
-		
-		
+
 		backgroundPanel.add(cancelReservationBtn);
 		backgroundPanel.add(id);
 		backgroundPanel.add(name);
@@ -372,25 +361,24 @@ public class ReservationUpdatePage extends JFrame {
 			backgroundPanel = new JPanel();
 //			add(backgroundPanel);
 		}
-		
+
 		@Override
 		protected void paintComponent(Graphics g) {
 			super.paintComponent(g);
 			g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), null);
 		}
 	}
-	
+
 	private void addEventListener() {
 		updateCarBtn.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent e) {
 				CarChange cc = new CarChange();
 				cc.main(null);
 				setVisible(false);
-			
-				
+
 			}
 		});
-		
+
 		updateDateBtn.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent e) {
 				DateChange dc = new DateChange();
