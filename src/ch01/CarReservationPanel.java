@@ -3,12 +3,16 @@ package ch01;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import main.HomePagePanel;
 
 public class CarReservationPanel extends JFrame implements ActionListener {
 
@@ -56,8 +60,8 @@ public class CarReservationPanel extends JFrame implements ActionListener {
 	public void setInitLayout() {
 		// 프레임 설정
 		setSize(1000, 1000);
-		setLayout(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setLayout(null);
 		setResizable(false);
 		setLocationRelativeTo(null);
 
@@ -68,7 +72,7 @@ public class CarReservationPanel extends JFrame implements ActionListener {
 		add(backgroundPanel);
 
 		// logo 이미지
-		logoLabel.setBounds(10, 10, 150, 150);
+		logoLabel.setBounds(30, 0, 105, 200);
 		logoLabel.setLayout(null);
 		backgroundPanel.add(logoLabel);
 
@@ -144,6 +148,16 @@ public class CarReservationPanel extends JFrame implements ActionListener {
 		sonata.addActionListener(this);
 		avante.addActionListener(this);
 		kanibal.addActionListener(this);
+
+		logoLabel.addMouseListener(new MouseAdapter() {
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				new HomePagePanel();
+				setVisible(false);
+			}
+
+		});
 
 	}
 
