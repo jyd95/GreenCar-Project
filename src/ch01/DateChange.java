@@ -45,13 +45,15 @@ public class DateChange extends JFrame {
 		ImageIcon img1 = new ImageIcon("buttonImage/대여일 선택하기.png");
 		ImageIcon img2 = new ImageIcon("buttonImage/반납일 선택하기.png");
 		ImageIcon img3 = new ImageIcon("buttonImage/대여기간 변경하기.png");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 843, 641);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setLocationRelativeTo(null);
+		setResizable(false);
 
 		JLabel lblNewLabel_1 = new JLabel("이미 예약된 날짜");
 		lblNewLabel_1.setFont(new Font("CookieRunOTF Black", Font.PLAIN, 20));
@@ -91,10 +93,10 @@ public class DateChange extends JFrame {
 		JLabel lblNewLabel = new JLabel("여기에 JDBC 이미예약된 차량 정보 넣기.");
 		lblNewLabel.setBounds(195, 85, 480, 263);
 		contentPane.add(lblNewLabel);
-		
+
 		JLabel image = new JLabel(new ImageIcon("img/배경이미지.jpg"));
 		image.setBounds(0, 0, 827, 602);
 		contentPane.add(image);
-		
+
 	}
 }

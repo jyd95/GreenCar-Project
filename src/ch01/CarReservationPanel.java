@@ -1,6 +1,7 @@
 package ch01;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -23,6 +24,7 @@ public class CarReservationPanel extends JFrame implements ActionListener {
 
 	// 로고
 	private JLabel logoLabel;
+	private JLabel headerLabel;
 
 	// 차량 버튼
 	private JButton k3;
@@ -44,6 +46,9 @@ public class CarReservationPanel extends JFrame implements ActionListener {
 
 		// 로고 라벨
 		logoLabel = new JLabel(new ImageIcon("img/logo2.png"));
+		
+		// 타이틀 라벨
+		headerLabel = new JLabel("차량으로 예약");
 
 		// 차량 버튼
 		k3 = new JButton(new ImageIcon("img/k3.png"));
@@ -75,6 +80,12 @@ public class CarReservationPanel extends JFrame implements ActionListener {
 		logoLabel.setBounds(30, 0, 105, 200);
 		logoLabel.setLayout(null);
 		backgroundPanel.add(logoLabel);
+		
+		// header 이미지
+		headerLabel.setBounds(200, 60, 300, 100);
+		headerLabel.setLayout(null);
+		headerLabel.setFont(new Font("궁서", Font.BOLD, 30));
+		backgroundPanel.add(headerLabel);
 
 		// 차량 버튼 이미지
 		k3.setBounds(60, 230, 200, 200);

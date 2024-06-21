@@ -51,7 +51,9 @@ public class CarChange {
 
 		frame = new JFrame();
 		frame.setBounds(0,0,800,800);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		frame.setLocationRelativeTo(null);
+		frame.setResizable(false);
 		frame.getContentPane().setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("변경 가능한 차량");
