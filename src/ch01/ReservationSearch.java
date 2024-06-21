@@ -65,6 +65,7 @@ public class ReservationSearch {
 		frame.getContentPane().setLayout(null);
 
 		JLabel lblNewLabel = new JLabel("예약번호 입력");
+		lblNewLabel.setForeground(new Color(255, 255, 255));
 		lblNewLabel.setFont(new Font("CookieRunOTF Bold", Font.PLAIN, 24));
 		lblNewLabel.setBounds(34, 93, 165, 122);
 		frame.getContentPane().add(lblNewLabel);
@@ -93,7 +94,13 @@ public class ReservationSearch {
 		});
 		btnNewButton.setBounds(231, 253, 336, 74);
 		frame.getContentPane().add(btnNewButton);
-
+		JLabel lblNewLabel_1 = new JLabel(new ImageIcon("img/예약조회.jpg"));
+		lblNewLabel_1.setBounds(0, 0, 784, 461);
+		frame.getContentPane().add(lblNewLabel_1);
+		
+//		JLabel background = new JLabel(new ImageIcon("img/예약조회.png"));
+//		background.setBounds(0, 0, 1000, 600);
+//		frame.getContentPane().add(background);
 	}
 	
 }

@@ -14,6 +14,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.JTextPane;
+import javax.swing.JTextArea;
 
 public class DateChange extends JFrame {
 
@@ -51,13 +53,9 @@ public class DateChange extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		JLabel lblNewLabel = new JLabel("변경가능한 날짜 JDBC 넣기");
-		lblNewLabel.setBounds(180, 61, 528, 299);
-		contentPane.add(lblNewLabel);
-
-		JLabel lblNewLabel_1 = new JLabel("변경가능한 날짜");
+		JLabel lblNewLabel_1 = new JLabel("이미 예약된 날짜");
 		lblNewLabel_1.setFont(new Font("CookieRunOTF Black", Font.PLAIN, 20));
-		lblNewLabel_1.setBounds(22, 155, 146, 110);
+		lblNewLabel_1.setBounds(12, 155, 156, 110);
 		contentPane.add(lblNewLabel_1);
 
 		JButton btnNewButton = new JButton(img1);
@@ -90,6 +88,13 @@ public class DateChange extends JFrame {
 		});
 		btnNewButton_2.setBounds(247, 489, 321, 79);
 		contentPane.add(btnNewButton_2);
+		JLabel lblNewLabel = new JLabel("여기에 JDBC 이미예약된 차량 정보 넣기.");
+		lblNewLabel.setBounds(195, 85, 480, 263);
+		contentPane.add(lblNewLabel);
+		
+		JLabel image = new JLabel(new ImageIcon("img/배경이미지.jpg"));
+		image.setBounds(0, 0, 827, 602);
+		contentPane.add(image);
+		
 	}
-
 }

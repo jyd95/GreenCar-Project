@@ -3,6 +3,7 @@ package ch01;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -13,6 +14,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
+
+import main.HomePagePanel;
 
 public class ReservationUpdatePage extends JFrame {
 
@@ -59,6 +62,8 @@ public class ReservationUpdatePage extends JFrame {
 
 	private JLabel lineImgLabel;
 	private ImageIcon lineImg;
+	
+	private JLabel logoLabel;
 
 	public ReservationUpdatePage() {
 		initData();
@@ -72,6 +77,8 @@ public class ReservationUpdatePage extends JFrame {
 		lineImg = new ImageIcon("img/img1.png");
 		lineImgLabel = new JLabel(lineImg);
 		backgroundPanel.add(lineImgLabel);
+		
+		logoLabel = new JLabel(new ImageIcon("img/logo2.png"));
 
 		
 		title = new JTextField("예약 변경하기");
@@ -121,31 +128,37 @@ public class ReservationUpdatePage extends JFrame {
 		setSize(800, 800);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLayout(null);
+		setLocationRelativeTo(null);
+		setResizable(false);
 
-		
-		title.setBounds(185, 20, 400, 80);
+		title.setBounds(185, 40, 400, 80);
 		title.setBorder(new LineBorder(new Color(0, 0, 0, 0)));
 		title.setEditable(false); // 입력불가상태 (텍스트 색상변경가능)
 		title.setForeground(Color.BLACK); // 메인보드 텍스트 검정색
 		title.setBackground(Color.white);
 		title.setHorizontalAlignment(JTextField.CENTER);
-		title.setFont(new Font("굴림", Font.BOLD, 20));
+		title.setFont(new Font("궁서체", Font.BOLD, 40));
 
+		logoLabel.setBounds(30,0,105,200);
+		logoLabel.setLayout(null);
+		backgroundPanel.add(logoLabel);
+		
+		
 		backgroundPanel.add(title);
 		
 		
-		id.setBounds(549, 200, 190, 30);
-		name.setBounds(549, 230, 190, 30);
-		phoneNumber.setBounds(549, 260, 190, 30);
+		id.setBounds(549, 250, 190, 30);
+		name.setBounds(549, 280, 190, 30);
+		phoneNumber.setBounds(549, 310, 190, 30);
 		id.setBorder(new LineBorder(new Color(0, 0, 0)));
 		name.setBorder(new LineBorder(new Color(0, 0, 0)));
 		phoneNumber.setBorder(new LineBorder(new Color(0, 0, 0)));
 
-		cartype.setBounds(549, 350, 190, 30);
-		carbrand.setBounds(549, 380, 190, 30);
-		carpuel.setBounds(549, 410, 190, 30);
-		rentdate.setBounds(549, 440, 190, 30);
-		returndate.setBounds(549, 470, 190, 30);
+		cartype.setBounds(549, 400, 190, 30);
+		carbrand.setBounds(549, 430, 190, 30);
+		carpuel.setBounds(549, 460, 190, 30);
+		rentdate.setBounds(549, 490, 190, 30);
+		returndate.setBounds(549, 520, 190, 30);
 		cartype.setBorder(new LineBorder(new Color(0, 0, 0)));
 		carbrand.setBorder(new LineBorder(new Color(0, 0, 0)));
 		carpuel.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -153,14 +166,13 @@ public class ReservationUpdatePage extends JFrame {
 		returndate.setBorder(new LineBorder(new Color(0, 0, 0)));
 
 		// 차 이미지
-
-		imgLabel.setBounds(50, 210, 300, 300);
+		imgLabel.setBounds(50, 260, 300, 300);
 		backgroundPanel.add(imgLabel);
 
 		// 차이름 차넘버
-		carName.setBounds(120, 110, 160, 50);
+		carName.setBounds(120, 160, 160, 50);
 		carName.setFont(new Font("굴림", Font.BOLD, 20));
-		carNumber.setBounds(145, 170, 100, 30);
+		carNumber.setBounds(145, 220, 100, 30);
 		carNumber.setFont(new Font("굴림", Font.BOLD, 15));
 		backgroundPanel.add(carName);
 		backgroundPanel.add(carNumber);
@@ -182,31 +194,31 @@ public class ReservationUpdatePage extends JFrame {
 		add(backgroundPanel);
 
 		// 버튼
-		updateCarBtn.setBounds(70, 580, 300, 100);
-		updateDateBtn.setBounds(430, 580, 300, 100);
+		updateCarBtn.setBounds(70, 630, 300, 100);
+		updateDateBtn.setBounds(430, 630, 300, 100);
 
 		// 예약자 정보
-		reservationPersonInfo.setBounds(450, 160, 100, 30);
+		reservationPersonInfo.setBounds(450, 210, 100, 30);
 		reservationPersonInfo.setBorder(new LineBorder(new Color(0, 0, 0, 0)));
 		reservationPersonInfo.setEditable(false); // 입력불가상태 (텍스트 색상변경가능)
 		reservationPersonInfo.setForeground(Color.BLACK); // 메인보드 텍스트 검정색
 		reservationPersonInfo.setBackground(new Color(0, 0, 0, 0));
 
-		reservationId.setBounds(450, 200, 100, 30);
+		reservationId.setBounds(450, 250, 100, 30);
 		reservationId.setBorder(new LineBorder(new Color(0, 0, 0)));
 		reservationId.setEditable(false); // 입력불가상태 (텍스트 색상변경가능)
 		reservationId.setForeground(Color.BLACK); // 메인보드 텍스트 검정색
 		reservationId.setBackground(backgrounColor);
 		reservationId.setHorizontalAlignment(JTextField.CENTER);
 
-		reservationname.setBounds(450, 230, 100, 30);
+		reservationname.setBounds(450, 280, 100, 30);
 		reservationname.setBorder(new LineBorder(new Color(0, 0, 0)));
 		reservationname.setEditable(false); // 입력불가상태 (텍스트 색상변경가능)
 		reservationname.setForeground(Color.BLACK); // 메인보드 텍스트 검정색
 		reservationname.setBackground(backgrounColor);
 		reservationname.setHorizontalAlignment(JTextField.CENTER);
 
-		reservationPhoneNumber.setBounds(450, 260, 100, 30);
+		reservationPhoneNumber.setBounds(450, 310, 100, 30);
 		reservationPhoneNumber.setBorder(new LineBorder(new Color(0, 0, 0)));
 		reservationPhoneNumber.setEditable(false); // 입력불가상태 (텍스트 색상변경가능)
 		reservationPhoneNumber.setForeground(Color.BLACK); // 메인보드 텍스트 검정색
@@ -214,41 +226,41 @@ public class ReservationUpdatePage extends JFrame {
 		reservationPhoneNumber.setHorizontalAlignment(JTextField.CENTER);
 
 		// 차량 정보
-		reservationCarInfo.setBounds(450, 310, 100, 30);
+		reservationCarInfo.setBounds(450, 360, 100, 30);
 		reservationCarInfo.setBorder(new LineBorder(new Color(0, 0, 0, 0)));
 		reservationCarInfo.setEditable(false); // 입력불가상태 (텍스트 색상변경가능)
 		reservationCarInfo.setForeground(Color.BLACK); // 메인보드 텍스트 검정색
 		reservationCarInfo.setBackground(new Color(0, 0, 0, 0));
 
-		reservationCarType.setBounds(450, 350, 100, 30);
+		reservationCarType.setBounds(450, 400, 100, 30);
 		reservationCarType.setBorder(new LineBorder(new Color(0, 0, 0)));
 		reservationCarType.setEditable(false); // 입력불가상태 (텍스트 색상변경가능)
 		reservationCarType.setForeground(Color.BLACK); // 메인보드 텍스트 검정색
 		reservationCarType.setBackground(backgrounColor);
 		reservationCarType.setHorizontalAlignment(JTextField.CENTER);
 
-		reservationCarBrand.setBounds(450, 380, 100, 30);
+		reservationCarBrand.setBounds(450, 430, 100, 30);
 		reservationCarBrand.setBorder(new LineBorder(new Color(0, 0, 0)));
 		reservationCarBrand.setEditable(false); // 입력불가상태 (텍스트 색상변경가능)
 		reservationCarBrand.setForeground(Color.BLACK); // 메인보드 텍스트 검정색
 		reservationCarBrand.setBackground(backgrounColor);
 		reservationCarBrand.setHorizontalAlignment(JTextField.CENTER);
 
-		reservationCarPuel.setBounds(450, 410, 100, 30);
+		reservationCarPuel.setBounds(450, 460, 100, 30);
 		reservationCarPuel.setBorder(new LineBorder(new Color(0, 0, 0)));
 		reservationCarPuel.setEditable(false); // 입력불가상태 (텍스트 색상변경가능)
 		reservationCarPuel.setForeground(Color.BLACK); // 메인보드 텍스트 검정색
 		reservationCarPuel.setBackground(backgrounColor);
 		reservationCarPuel.setHorizontalAlignment(JTextField.CENTER);
 
-		reservationCarRentDate.setBounds(450, 440, 100, 30);
+		reservationCarRentDate.setBounds(450, 490, 100, 30);
 		reservationCarRentDate.setBorder(new LineBorder(new Color(0, 0, 0)));
 		reservationCarRentDate.setEditable(false); // 입력불가상태 (텍스트 색상변경가능)
 		reservationCarRentDate.setForeground(Color.BLACK); // 메인보드 텍스트 검정색
 		reservationCarRentDate.setBackground(backgrounColor);
 		reservationCarRentDate.setHorizontalAlignment(JTextField.CENTER);
 
-		reservationCarReturnDate.setBounds(450, 470, 100, 30);
+		reservationCarReturnDate.setBounds(450, 520, 100, 30);
 		reservationCarReturnDate.setBorder(new LineBorder(new Color(0, 0, 0)));
 		reservationCarReturnDate.setEditable(false); // 입력불가상태 (텍스트 색상변경가능)
 		reservationCarReturnDate.setForeground(Color.BLACK); // 메인보드 텍스트 검정색
@@ -340,32 +352,51 @@ public class ReservationUpdatePage extends JFrame {
 	class MyDrawPanel extends JPanel {
 		public void paint(Graphics g) {
 			super.paintComponent(g);
-			g.drawRoundRect(30, 135, 730, 400, 20, 20);
+			g.drawRoundRect(30, 185, 730, 400, 20, 20);
 
 		}
 	}
 
 	private class BackgroundPanel extends JPanel {
-		// private Image backgroundImage;
+		private Image backgroundImage;
 		private JPanel backgroundPanel;
 
 		// 백그라운드 패널
 		public BackgroundPanel() {
-			// backgroundImage = new ImageIcon("img/background.jpg").getImage();
+			backgroundImage = new ImageIcon("img/updatebackground.png").getImage();
 			backgroundPanel = new JPanel();
+			add(backgroundPanel);
+		}
+		
+		@Override
+		protected void paintComponent(Graphics g) {
+			super.paintComponent(g);
+			g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), null);
 		}
 	}
 	
 	private void addEventListener() {
 		updateCarBtn.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent e) {
-				
+				CarChange cc = new CarChange();
+				cc.main(null);
+				setVisible(false);
+			
 				
 			}
 		});
 		
 		updateDateBtn.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent e) {
+				DateChange dc = new DateChange();
+				dc.setVisible(true);
+				setVisible(false);
+			}
+		});
+		logoLabel.addMouseListener(new MouseAdapter() {
+			public void mousePressed(MouseEvent e) {
+				new HomePagePanel();
+				setVisible(false);
 			}
 		});
 	}

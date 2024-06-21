@@ -11,6 +11,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.Color;
 
 public class CarChange {
 
@@ -49,17 +50,14 @@ public class CarChange {
 
 
 		frame = new JFrame();
-		frame.setBounds(100, 100, 869, 654);
+		frame.setBounds(0,0,800,800);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JList list = new JList();
-		list.setBounds(200, 40, 591, 339);
-		frame.getContentPane().add(list);
-		
 		JLabel lblNewLabel = new JLabel("변경 가능한 차량");
+		lblNewLabel.setForeground(new Color(255, 255, 255));
 		lblNewLabel.setFont(new Font("CookieRunOTF Black", Font.PLAIN, 20));
-		lblNewLabel.setBounds(31, 115, 172, 199);
+		lblNewLabel.setBounds(308, 67, 172, 199);
 		frame.getContentPane().add(lblNewLabel);
 		
 		btnNewButton = new JButton(img);
@@ -71,7 +69,15 @@ public class CarChange {
 				
 			}
 		});
-		btnNewButton.setBounds(391, 457, 257, 80);
+		btnNewButton.setBounds(265, 550, 257, 80);
 		frame.getContentPane().add(btnNewButton);
+		JLabel image = new JLabel(new ImageIcon("img/단풍이미지.png"));
+		image.setBounds(0, 0, 800, 800);
+		frame.getContentPane().add(image);
+		
+		JList list = new JList();
+		list.setBounds(259, 290, 257, 215);
+		frame.getContentPane().add(list);
+		
 	}
 }
