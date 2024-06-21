@@ -25,6 +25,7 @@ import javax.swing.border.LineBorder;
 import ch01.CarReservationPanel;
 import ch01.DiaryReservationPanel;
 import ch01.InputReservationInfo;
+import ch01.ReservationSearch;
 
 public class HomePagePanel extends JFrame {
 	// 패널
@@ -164,8 +165,8 @@ public class HomePagePanel extends JFrame {
 		usedCarBtn.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
-				InputReservationInfo iri = new InputReservationInfo();
-				iri.setVisible(true);
+				ReservationSearch rs = new ReservationSearch();
+				rs.main(null);
 				setVisible(false);
 			}
 		});
