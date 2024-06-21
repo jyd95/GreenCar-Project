@@ -14,40 +14,55 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import ch01.DiaryReservationPanel;
+
 public class SwingCalendar3 extends JFrame implements Runnable {
+
+	private DiaryReservationPanel drp;
+
 	// 다이어리 생성
-	Diary dr;
+	private Diary dr;
+
 	// 패널
-	JPanel term;
-	JPanel calendar;
+	private JPanel term;
+	private JPanel calendar;
+
 	// 라벨
-	JLabel yearMonthLabel;
+	private JLabel yearMonthLabel;
+	private JLabel headerLabel;
+
 	// 달력 버튼
-	JButton previousBtn;
-	JButton nextBtn;
+	private JButton previousBtn;
+	private JButton nextBtn;
 	private ImageIcon prebtnIcon;
 	private ImageIcon nextbtnIcon;
+
 	// 요일 버튼
-	JButton[] buttons;
+	private JButton[] buttons;
+
 	// 요일
 	private String[] dayAr = { "Sun", "Mon", "Tue", "Wen", "Thur", "Fri", "Sat" };
+
 	// 폰트
-	Font font;
+	private Font font;
+
 	// 날짜 조절
-	int gap;
+	private int gap;
+
 	// 클릭횟수 조절
 	private int clickCount;
 
 	// 버튼 텍스트 가져오기
-	String firstButtonText;
-	String secondButtonText;
+	private String firstButtonText;
+	private String secondButtonText;
 
 	// 버튼 클릭 횟수
 	private boolean firstClick = true;
 	private boolean secondClick = true;
 	private int firstClickedIndex = -1;
 
-	public SwingCalendar3() {
+	public SwingCalendar3(DiaryReservationPanel drp) {
+		this.drp = drp;
 		dr = new Diary();
 		initData();
 		setInitLayout();
@@ -61,7 +76,7 @@ public class SwingCalendar3 extends JFrame implements Runnable {
 		term = new JPanel();
 		// 라벨
 		yearMonthLabel = new JLabel("00년 0월");
-
+		headerLabel = new JLabel("날짜로 예약");
 		// 버튼
 		prebtnIcon = new ImageIcon("img/left.png");
 		nextbtnIcon = new ImageIcon("img/right.png");
@@ -131,12 +146,14 @@ public class SwingCalendar3 extends JFrame implements Runnable {
 					if (clickCount % 2 == 1) {
 						buttons[index].setEnabled(false);
 						firstButtonText = buttons[index].getText();
+
 						System.out.println(dr.getAllCal(firstButtonText));
+						drp.updatedateLabelText("대여일 : " + dr.getAllCal(firstButtonText));
 					} else if (clickCount % 2 == 0) {
 						secondButtonText = buttons[index].getText();
 						System.out.println(dr.getAllCal(secondButtonText));
-
 						buttons[index].setEnabled(true);
+						drp.updateReturnLabelText("반납일 : " + dr.getAllCal(secondButtonText));
 					}
 					clickCount++;
 					if (firstClick) {
@@ -149,6 +166,7 @@ public class SwingCalendar3 extends JFrame implements Runnable {
 						int start = Math.min(firstClickedIndex, secondClickedIndex);
 						int end = Math.max(firstClickedIndex, secondClickedIndex);
 						System.out.println("반납일 : " + dr.getAllCal(secondButtonText));
+
 						for (int j = start + 1; j < end + 1; j++) {
 							buttons[j].setEnabled(false);
 							if (j >= start && j <= end) {
@@ -158,6 +176,8 @@ public class SwingCalendar3 extends JFrame implements Runnable {
 						}
 						firstClickedIndex = -1;
 						firstClick = true;
+
+						dispose();
 					}
 				}
 			});
@@ -199,10 +219,6 @@ public class SwingCalendar3 extends JFrame implements Runnable {
 				yearMonthLabel.setText(dr.getCalText());
 			}
 		});
-	}
-
-	public static void main(String[] args) {
-		new SwingCalendar3();
 	}
 
 }
