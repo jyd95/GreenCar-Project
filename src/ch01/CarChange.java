@@ -9,6 +9,9 @@ import java.awt.Font;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.Color;
@@ -79,5 +82,14 @@ public class CarChange {
 		list.setBounds(259, 290, 257, 215);
 		frame.getContentPane().add(list);
 		
+		btnNewButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				ReservationUpdatePage rup = new ReservationUpdatePage();
+				rup.setVisible(true);
+				frame.setVisible(false);
+			}
+		});
 	}
 }

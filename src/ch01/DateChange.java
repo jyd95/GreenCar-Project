@@ -96,5 +96,14 @@ public class DateChange extends JFrame {
 		image.setBounds(0, 0, 827, 602);
 		contentPane.add(image);
 		
+		btnNewButton_2.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				ReservationUpdatePage rup = new ReservationUpdatePage();
+				rup.setVisible(true);
+				setVisible(false);
+			}
+		});
+		
 	}
 }
