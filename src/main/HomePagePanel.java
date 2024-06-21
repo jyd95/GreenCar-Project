@@ -93,13 +93,14 @@ public class HomePagePanel extends JFrame {
 		setLocationRelativeTo(null);
 		setResizable(false);
 		setLayout(null);
+		
 
 		// 패널
 		backgroundPanel.setSize(getWidth(), getHeight());
 		backgroundPanel.setBackground(Color.WHITE);
 		backgroundPanel.setLayout(null);
 		add(backgroundPanel);
-
+		
 		searchPanel.setBounds(200, 200, 600, 45);
 		searchPanel.setBackground(Color.WHITE);
 		// searchPanel.setBorder(BorderFactory.createLineBorder(Color.RED));
@@ -168,7 +169,6 @@ public class HomePagePanel extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				ReservationSearch rs = new ReservationSearch();
 				rs.main(null);
-				setVisible(false);
 			}
 		});
 		

@@ -59,8 +59,9 @@ public class ReservationSearch {
 		frame.getContentPane().setBackground(new Color(72, 209, 204));
 		frame.setTitle("예약 조회");
 		frame.getContentPane().setFont(new Font("굴림", Font.PLAIN, 15));
-		frame.setBounds(100, 100, 784, 423);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setBounds(750, 10, 800, 500);
+		
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 
 		JLabel lblNewLabel = new JLabel("예약번호 입력");
