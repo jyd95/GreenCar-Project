@@ -84,6 +84,10 @@ public class ReservationSearch {
 				int id = Integer.parseInt(text); // id = 예약번호
 				// 예약정보창(id){} -> 예약정보창 띄우기
 				// 서치원 - 예약정보창 구성중 
+				ReservationUpdatePage rup = new ReservationUpdatePage();
+				rup.setVisible(true);
+				frame.setVisible(false);
+				
 			}
 		});
 		btnNewButton.setBounds(231, 253, 336, 74);
