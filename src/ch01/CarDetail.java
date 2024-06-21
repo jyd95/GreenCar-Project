@@ -79,7 +79,7 @@ public class CarDetail extends JFrame implements ActionListener {
 
 		// 로고 라벨
 		logoLabel = new JLabel(new ImageIcon("img/logo2.png"));
-		logoLabel.setBounds(10, 10, 150, 150);
+		logoLabel.setBounds(30, 0, 105, 200);
 		logoLabel.setLayout(null);
 		backgroundPanel.add(logoLabel);
 
