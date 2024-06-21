@@ -1,4 +1,4 @@
-package ch01;
+package calendar;
 
 import java.util.Calendar;
 
@@ -14,9 +14,12 @@ public class Diary {
 	// 날짜 받아오기
 	private int year;
 	private int month;
+	private int day;
 
 	private int startDay;
-	private int lastDate;
+
+	String tenUnderM;
+	String tenUnderD;
 
 	public Diary() {
 		year = cal.get(Calendar.YEAR);
@@ -29,6 +32,20 @@ public class Diary {
 
 	public String getCalText() {
 		return year + "년" + month + "월";
+	}
+
+	public String getAllCal(String day) {
+		if (month < 10) {
+			tenUnderM = "0" + month;
+		} else {
+			tenUnderM = Integer.toString(month);
+		}
+		if (Integer.valueOf(day) < 10) {
+			tenUnderD = "0" + day;
+		} else {
+			tenUnderD = day;
+		}
+		return year + "-" + tenUnderM + "-" + tenUnderD;
 	}
 
 	// 버튼 날짜 출력

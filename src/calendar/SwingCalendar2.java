@@ -1,4 +1,4 @@
-package ch01;
+package calendar;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -128,7 +128,6 @@ public class SwingCalendar2 extends JFrame implements Runnable {
 		setVisible(true);
 	}
 
-	@Override
 	public void run() {
 		previousBtn.addMouseListener(new MouseAdapter() {
 
