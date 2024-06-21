@@ -44,8 +44,10 @@ public class ReservationPanel extends JFrame {
 
 	public void setInitLayout() {
 		setSize(1000, 1000);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setLayout(null);
+		setLocationRelativeTo(null);
+		setResizable(false);
 
 		// 패널
 		backgroundJPanel.setSize(getWidth(), getHeight());

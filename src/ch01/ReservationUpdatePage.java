@@ -126,7 +126,7 @@ public class ReservationUpdatePage extends JFrame {
 	public void setInitLayout() {
 		// 프레임 설정
 		setSize(800, 800);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setLayout(null);
 		setLocationRelativeTo(null);
 		setResizable(false);

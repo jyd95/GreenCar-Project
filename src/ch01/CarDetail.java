@@ -91,7 +91,7 @@ public class CarDetail extends JFrame implements ActionListener {
 		reservationL.setLayout(null);
 		reservationL.setBorder(null);
 		reservationL.setContentAreaFilled(false);
-		reservationL.addActionListener(new ButtonListener());
+		reservationL.addActionListener(this);
 		backgroundPanel.add(reservationL);
 		setVisible(true);
 
@@ -218,21 +218,26 @@ public class CarDetail extends JFrame implements ActionListener {
 		scripKanibal.setLayout(null);
 		backgroundPanel.add(scripKanibal);
 		setVisible(true);
-		
-	}
-	
-	
-	
-	class ButtonListener implements ActionListener{
 
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			InputReservationInfo iri = new InputReservationInfo();
-			iri.setVisible(true);
-			setVisible(false);
-		}
-		
-		
+	}
+
+//	class ButtonListener implements ActionListener {
+//
+//		@Override
+//		public void actionPerformed(ActionEvent e) {
+//			InputReservationInfo iri = new InputReservationInfo();
+//			iri.setVisible(true);
+//			setVisible(false);
+//		}
+//
+//	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		InputReservationInfo iri = new InputReservationInfo();
+		iri.setVisible(true);
+		setVisible(false);
+
 	}
 
 

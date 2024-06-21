@@ -59,7 +59,10 @@ public class InputReservationInfoNext {
 		frame = new JFrame();
 		frame.getContentPane().setBackground(new Color(255, 255, 255));
 		frame.setBounds(100, 100, 840, 408);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		frame.setLocationRelativeTo(null);
+		frame.setResizable(false);
 		frame.getContentPane().setLayout(null);
 		
 		JList list = new JList(whenPay);
