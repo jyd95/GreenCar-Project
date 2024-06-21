@@ -34,8 +34,8 @@ public class DiaryReservationPanel extends JFrame {
 
 	// 버튼
 	private JButton reserveBtn;
-	private JButton rentDateBtn;
-	private JButton rturnDateBtn;
+	private JButton choiceDateBtn;
+	private JButton completeSelectionBtn;
 
 	// 이미지
 	private ImageIcon reserveImg;
@@ -62,13 +62,13 @@ public class DiaryReservationPanel extends JFrame {
 
 		// 이미지
 		reserveImg = new ImageIcon("img/reserveBtn.png");
-		rentImg = new ImageIcon("img/rentDateBtn.png");
-		returnImg = new ImageIcon("img/returnDateBtn.png");
+		rentImg = new ImageIcon("img/chooseDate.png");
+		returnImg = new ImageIcon("img/completeSelection.png");
 
 		// 버튼
 		reserveBtn = new JButton(reserveImg);
-		rentDateBtn = new JButton(rentImg);
-		rturnDateBtn = new JButton(returnImg);
+		choiceDateBtn = new JButton(rentImg);
+		completeSelectionBtn = new JButton(returnImg);
 
 	}
 
@@ -116,20 +116,20 @@ public class DiaryReservationPanel extends JFrame {
 
 		// 버튼
 		reserveBtn.setBounds(330, 700, 370, 50);
-		rentDateBtn.setBounds(270, 630, 300, 50);
-		rturnDateBtn.setBounds(460, 630, 300, 50);
+		choiceDateBtn.setBounds(270, 630, 300, 50);
+		completeSelectionBtn.setBounds(460, 630, 300, 50);
 
 		reserveBtn.setBorder(null);
-		rentDateBtn.setBorder(null);
-		rturnDateBtn.setBorder(null);
+		choiceDateBtn.setBorder(null);
+		completeSelectionBtn.setBorder(null);
 
 		reserveBtn.setContentAreaFilled(false);
-		rentDateBtn.setContentAreaFilled(false);
-		rturnDateBtn.setContentAreaFilled(false);
+		choiceDateBtn.setContentAreaFilled(false);
+		completeSelectionBtn.setContentAreaFilled(false);
 
 		backgroundPanel.add(reserveBtn, 0);
-		backgroundPanel.add(rentDateBtn, 0);
-		backgroundPanel.add(rturnDateBtn, 0);
+		backgroundPanel.add(choiceDateBtn, 0);
+		backgroundPanel.add(completeSelectionBtn, 0);
 
 		setVisible(true);
 	}
@@ -143,13 +143,13 @@ public class DiaryReservationPanel extends JFrame {
 	}
 
 	public void addBtnListener() {
-		rentDateBtn.addActionListener(new ActionListener() {
+		choiceDateBtn.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
 				new SwingCalendar3(DiaryReservationPanel.this);
 			}
 		});
-		rturnDateBtn.addActionListener(new ActionListener() {
+		completeSelectionBtn.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
 			}
