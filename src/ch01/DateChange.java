@@ -1,21 +1,18 @@
 package ch01;
 
 import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import javax.swing.JTextPane;
-import javax.swing.JTextArea;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
 
 public class DateChange extends JFrame {
 
@@ -97,8 +94,7 @@ public class DateChange extends JFrame {
 		JLabel image = new JLabel(new ImageIcon("img/배경이미지.jpg"));
 		image.setBounds(0, 0, 827, 602);
 		contentPane.add(image);
-<<<<<<< HEAD
-		
+
 		btnNewButton_2.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -107,9 +103,6 @@ public class DateChange extends JFrame {
 				setVisible(false);
 			}
 		});
-		
-=======
 
->>>>>>> ecc413e12167cb52cec127962c62ad40afbcfc3e
 	}
 }
