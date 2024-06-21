@@ -15,13 +15,12 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 
-import main.HomePagePanel;
-
 public class ReservationUpdatePage extends JFrame {
 
 	private JPanel backgroundPanel;
 	private JButton updateCarBtn;
 	private JButton updateDateBtn;
+	private JButton cancelReservationBtn;
 	private JTextField reservationId;
 	private JTextField reservationname;
 	private JTextField reservationPhoneNumber;
@@ -54,6 +53,7 @@ public class ReservationUpdatePage extends JFrame {
 	// 버튼
 	private ImageIcon periodImg;
 	private ImageIcon changeCarImg;
+	private ImageIcon cancelImg;
 
 	private ImageIcon carImage;
 	private JLabel imgLabel;
@@ -74,9 +74,6 @@ public class ReservationUpdatePage extends JFrame {
 	public void initData() {
 		backgroundPanel = new BackgroundPanel();
 
-		lineImg = new ImageIcon("img/img1.png");
-		lineImgLabel = new JLabel(lineImg);
-		backgroundPanel.add(lineImgLabel);
 		
 		logoLabel = new JLabel(new ImageIcon("img/logo2.png"));
 
@@ -86,6 +83,7 @@ public class ReservationUpdatePage extends JFrame {
 		// 버튼
 		periodImg = new ImageIcon("img/changePeriod.png");
 		changeCarImg = new ImageIcon("img/changeCar.png");
+		cancelImg = new ImageIcon("img/cancelImg.png");
 
 		carImage = new ImageIcon("img/car.jpg");
 		imgLabel = new JLabel(carImage);
@@ -95,6 +93,7 @@ public class ReservationUpdatePage extends JFrame {
 
 		updateCarBtn = new JButton(changeCarImg);
 		updateDateBtn = new JButton(periodImg);
+		cancelReservationBtn = new JButton(cancelImg);
 
 		reservationId = new JTextField("예약 번호");
 		reservationname = new JTextField("성함");
@@ -125,8 +124,13 @@ public class ReservationUpdatePage extends JFrame {
 
 	public void setInitLayout() {
 		// 프레임 설정
+<<<<<<< HEAD
 		setSize(800, 800);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+=======
+		setSize(800, 900);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+>>>>>>> chiwon
 		setLayout(null);
 		setLocationRelativeTo(null);
 		setResizable(false);
@@ -194,8 +198,9 @@ public class ReservationUpdatePage extends JFrame {
 		add(backgroundPanel);
 
 		// 버튼
-		updateCarBtn.setBounds(70, 630, 300, 100);
-		updateDateBtn.setBounds(430, 630, 300, 100);
+		updateCarBtn.setBounds(70, 630, 300, 95);
+		updateDateBtn.setBounds(430, 630, 300, 95);
+		cancelReservationBtn.setBounds(250,770,276,67);
 
 		// 예약자 정보
 		reservationPersonInfo.setBounds(450, 210, 100, 30);
@@ -326,7 +331,7 @@ public class ReservationUpdatePage extends JFrame {
 		
 		
 		
-		
+		backgroundPanel.add(cancelReservationBtn);
 		backgroundPanel.add(id);
 		backgroundPanel.add(name);
 		backgroundPanel.add(phoneNumber);
@@ -363,9 +368,9 @@ public class ReservationUpdatePage extends JFrame {
 
 		// 백그라운드 패널
 		public BackgroundPanel() {
-			backgroundImage = new ImageIcon("img/updatebackground.png").getImage();
+//			backgroundImage = new ImageIcon("img/updatebackground.png").getImage();
 			backgroundPanel = new JPanel();
-			add(backgroundPanel);
+//			add(backgroundPanel);
 		}
 		
 		@Override
@@ -395,8 +400,8 @@ public class ReservationUpdatePage extends JFrame {
 		});
 		logoLabel.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent e) {
-				new HomePagePanel();
-				setVisible(false);
+//				new HomePagePanel();
+//				setVisible(false);
 			}
 		});
 	}
