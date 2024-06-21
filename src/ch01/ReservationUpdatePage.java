@@ -17,13 +17,13 @@ import javax.swing.border.LineBorder;
 
 import DAO.CarDAO;
 import DTO.ReservationDTO;
-import main.HomePagePanel;
 public class ReservationUpdatePage extends JFrame {
 	
 	private int receivedid;
 	private JPanel backgroundPanel;
 	private JButton updateCarBtn;
 	private JButton updateDateBtn;
+	private JButton cancelReservationBtn;
 	private JTextField reservationId;
 	private JTextField reservationname;
 	private JTextField reservationPhoneNumber;
@@ -40,7 +40,7 @@ public class ReservationUpdatePage extends JFrame {
 	private JTextField phoneNumber;
 
 	private JTextField title;
-	
+
 	private JTextField cartype;
 	private JTextField carbrand;
 	private JTextField carpuel;
@@ -56,6 +56,7 @@ public class ReservationUpdatePage extends JFrame {
 	// 버튼
 	private ImageIcon periodImg;
 	private ImageIcon changeCarImg;
+	private ImageIcon cancelImg;
 
 	private ImageIcon carImage;
 	private JLabel imgLabel;
@@ -64,7 +65,7 @@ public class ReservationUpdatePage extends JFrame {
 
 	private JLabel lineImgLabel;
 	private ImageIcon lineImg;
-	
+
 	private JLabel logoLabel;
 	
 	
@@ -84,18 +85,14 @@ public class ReservationUpdatePage extends JFrame {
 	public void initData() {
 		backgroundPanel = new BackgroundPanel();
 
-		lineImg = new ImageIcon("img/img1.png");
-		lineImgLabel = new JLabel(lineImg);
-		backgroundPanel.add(lineImgLabel);
-		
 		logoLabel = new JLabel(new ImageIcon("img/logo2.png"));
 
-		
 		title = new JTextField("예약 변경하기");
-		
+
 		// 버튼
 		periodImg = new ImageIcon("img/changePeriod.png");
 		changeCarImg = new ImageIcon("img/changeCar.png");
+		cancelImg = new ImageIcon("img/cancelImg.png");
 
 		carImage = new ImageIcon("img/car.jpg");
 		imgLabel = new JLabel(carImage);
@@ -105,6 +102,7 @@ public class ReservationUpdatePage extends JFrame {
 
 		updateCarBtn = new JButton(changeCarImg);
 		updateDateBtn = new JButton(periodImg);
+		cancelReservationBtn = new JButton(cancelImg);
 
 		reservationId = new JTextField("예약 번호");
 		reservationname = new JTextField("성함");
@@ -135,7 +133,7 @@ public class ReservationUpdatePage extends JFrame {
 
 	public void setInitLayout() {
 		// 프레임 설정
-		setSize(800, 800);
+		setSize(800, 900);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setLayout(null);
 		setLocationRelativeTo(null);
@@ -149,11 +147,10 @@ public class ReservationUpdatePage extends JFrame {
 		title.setHorizontalAlignment(JTextField.CENTER);
 		title.setFont(new Font("궁서체", Font.BOLD, 40));
 
-		logoLabel.setBounds(30,0,105,200);
+		logoLabel.setBounds(30, 0, 105, 200);
 		logoLabel.setLayout(null);
 		backgroundPanel.add(logoLabel);
-		
-		
+
 		backgroundPanel.add(title);
 		System.out.println(receivedid);
 		
@@ -206,8 +203,9 @@ public class ReservationUpdatePage extends JFrame {
 		add(backgroundPanel);
 
 		// 버튼
-		updateCarBtn.setBounds(70, 630, 300, 100);
-		updateDateBtn.setBounds(430, 630, 300, 100);
+		updateCarBtn.setBounds(70, 630, 300, 95);
+		updateDateBtn.setBounds(430, 630, 300, 95);
+		cancelReservationBtn.setBounds(250, 770, 276, 67);
 
 
 		// 예약자 정보
@@ -295,7 +293,7 @@ public class ReservationUpdatePage extends JFrame {
 		backgroundPanel.add(reservationPersonInfo);
 		backgroundPanel.add(updateCarBtn);
 		backgroundPanel.add(updateDateBtn);
-		
+
 		id.setHorizontalAlignment(JTextField.CENTER);
 		name.setHorizontalAlignment(JTextField.CENTER);
 		phoneNumber.setHorizontalAlignment(JTextField.CENTER);
@@ -304,41 +302,40 @@ public class ReservationUpdatePage extends JFrame {
 		carpuel.setHorizontalAlignment(JTextField.CENTER);
 		rentdate.setHorizontalAlignment(JTextField.CENTER);
 		returndate.setHorizontalAlignment(JTextField.CENTER);
-		
+
 		id.setEditable(false); // 입력불가상태 (텍스트 색상변경가능)
 		id.setForeground(Color.BLACK); // 메인보드 텍스트 검정색
 		id.setBackground(Color.white);
-		
+
 		name.setEditable(false); // 입력불가상태 (텍스트 색상변경가능)
 		name.setForeground(Color.BLACK); // 메인보드 텍스트 검정색
 		name.setBackground(Color.white);
-		 
+
 		phoneNumber.setEditable(false); // 입력불가상태 (텍스트 색상변경가능)
 		phoneNumber.setForeground(Color.BLACK); // 메인보드 텍스트 검정색
 		phoneNumber.setBackground(Color.white);
-		
+
 		cartype.setEditable(false); // 입력불가상태 (텍스트 색상변경가능)
 		cartype.setForeground(Color.BLACK); // 메인보드 텍스트 검정색
 		cartype.setBackground(Color.white);
-		
+
 		carbrand.setEditable(false); // 입력불가상태 (텍스트 색상변경가능)
 		carbrand.setForeground(Color.BLACK); // 메인보드 텍스트 검정색
 		carbrand.setBackground(Color.white);
-		
+
 		carpuel.setEditable(false); // 입력불가상태 (텍스트 색상변경가능)
 		carpuel.setForeground(Color.BLACK); // 메인보드 텍스트 검정색
 		carpuel.setBackground(Color.white);
-		
+
 		rentdate.setEditable(false); // 입력불가상태 (텍스트 색상변경가능)
 		rentdate.setForeground(Color.BLACK); // 메인보드 텍스트 검정색
 		rentdate.setBackground(Color.white);
-		
+
 		returndate.setEditable(false); // 입력불가상태 (텍스트 색상변경가능)
 		returndate.setForeground(Color.BLACK); // 메인보드 텍스트 검정색
 		returndate.setBackground(Color.white);
-		
-		
-		
+
+		backgroundPanel.add(cancelReservationBtn);
 		backgroundPanel.add(id);
 		backgroundPanel.add(name);
 		backgroundPanel.add(phoneNumber);
@@ -385,29 +382,28 @@ public class ReservationUpdatePage extends JFrame {
 
 		// 백그라운드 패널
 		public BackgroundPanel() {
-			backgroundImage = new ImageIcon("img/updatebackground.png").getImage();
+//			backgroundImage = new ImageIcon("img/updatebackground.png").getImage();
 			backgroundPanel = new JPanel();
-			add(backgroundPanel);
+//			add(backgroundPanel);
 		}
-		
+
 		@Override
 		protected void paintComponent(Graphics g) {
 			super.paintComponent(g);
 			g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), null);
 		}
 	}
-	
+
 	private void addEventListener() {
 		updateCarBtn.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent e) {
 				CarChange cc = new CarChange();
 				cc.main(null);
 				setVisible(false);
-			
-				
+
 			}
 		});
-		
+
 		updateDateBtn.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent e) {
 				DateChange dc = new DateChange();
@@ -417,8 +413,8 @@ public class ReservationUpdatePage extends JFrame {
 		});
 		logoLabel.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent e) {
-				new HomePagePanel();
-				setVisible(false);
+//				new HomePagePanel();
+//				setVisible(false);
 			}
 		});
 	}

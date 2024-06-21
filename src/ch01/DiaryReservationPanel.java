@@ -31,11 +31,12 @@ public class DiaryReservationPanel extends JFrame {
 	private JLabel headerLabel;
 	private JLabel midLabel;
 	private JLabel calendarLabel;
+	private JLabel oneLineLabel;
 
 	// 버튼
 	private JButton reserveBtn;
-	private JButton rentDateBtn;
-	private JButton rturnDateBtn;
+	private JButton choiceDateBtn;
+	private JButton completeSelectionBtn;
 
 	// 이미지
 	private ImageIcon reserveImg;
@@ -57,18 +58,19 @@ public class DiaryReservationPanel extends JFrame {
 		logoLabel = new JLabel(new ImageIcon("img/logo2.png"));
 		midLabel = new JLabel(new ImageIcon("img/reserveLogo3.png"));
 		calendarLabel = new JLabel(new ImageIcon("img/calender.png"));
+		oneLineLabel = new JLabel(new ImageIcon("img/oneline.png"));
 		dateLabel = new JLabel("대여일 : ");
 		returnLabel = new JLabel("반납일 : ");
 
 		// 이미지
 		reserveImg = new ImageIcon("img/reserveBtn.png");
-		rentImg = new ImageIcon("img/rentDateBtn.png");
-		returnImg = new ImageIcon("img/returnDateBtn.png");
+		rentImg = new ImageIcon("img/chooseDate.png");
+		returnImg = new ImageIcon("img/선택한 날짜로 예약하기.png");
 
 		// 버튼
 		reserveBtn = new JButton(reserveImg);
-		rentDateBtn = new JButton(rentImg);
-		rturnDateBtn = new JButton(returnImg);
+		choiceDateBtn = new JButton(rentImg);
+		completeSelectionBtn = new JButton(returnImg);
 
 	}
 
@@ -86,6 +88,7 @@ public class DiaryReservationPanel extends JFrame {
 
 		// logo 이미지
 		logoLabel.setBounds(30, 0, 105, 200);
+		oneLineLabel.setBounds(0, 170, 1000, 20);
 		headerLabel.setBounds(200, 50, 300, 100);
 		dateLabel.setBounds(280, 660, 300, 100);
 		returnLabel.setBounds(280, 690, 300, 100);
@@ -103,6 +106,7 @@ public class DiaryReservationPanel extends JFrame {
 		backgroundPanel.add(returnLabel);
 		backgroundPanel.add(logoLabel);
 		backgroundPanel.add(headerLabel);
+		backgroundPanel.add(oneLineLabel);
 
 		// 미드 로고
 		midLabel.setBounds(250, 150, 500, 700);
@@ -116,20 +120,29 @@ public class DiaryReservationPanel extends JFrame {
 
 		// 버튼
 		reserveBtn.setBounds(330, 700, 370, 50);
-		rentDateBtn.setBounds(270, 630, 300, 50);
-		rturnDateBtn.setBounds(460, 630, 300, 50);
+		choiceDateBtn.setBounds(350, 610, 300, 50);
+		completeSelectionBtn.setBounds(310, 830, 400, 50);
 
 		reserveBtn.setBorder(null);
-		rentDateBtn.setBorder(null);
-		rturnDateBtn.setBorder(null);
+		choiceDateBtn.setBorder(null);
+		completeSelectionBtn.setBorder(null);
 
 		reserveBtn.setContentAreaFilled(false);
-		rentDateBtn.setContentAreaFilled(false);
-		rturnDateBtn.setContentAreaFilled(false);
+		choiceDateBtn.setContentAreaFilled(false);
+		completeSelectionBtn.setContentAreaFilled(false);
+		completeSelectionBtn.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				InputReservationInfo inpi = new InputReservationInfo();
+				inpi.setVisible(true);
+				setVisible(false);
+			}
+		});
 
 		backgroundPanel.add(reserveBtn, 0);
-		backgroundPanel.add(rentDateBtn, 0);
-		backgroundPanel.add(rturnDateBtn, 0);
+		backgroundPanel.add(choiceDateBtn, 0);
+		backgroundPanel.add(completeSelectionBtn, 0);
 
 		setVisible(true);
 	}
@@ -143,17 +156,14 @@ public class DiaryReservationPanel extends JFrame {
 	}
 
 	public void addBtnListener() {
-		rentDateBtn.addActionListener(new ActionListener() {
+		choiceDateBtn.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
 				new SwingCalendar3(DiaryReservationPanel.this);
 			}
 		});
-		rturnDateBtn.addActionListener(new ActionListener() {
+		
 
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
 		logoLabel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {

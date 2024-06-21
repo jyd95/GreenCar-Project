@@ -135,25 +135,46 @@ public class SwingCalendar3 extends JFrame implements Runnable {
 	}
 
 	public void run() {
+		// 버튼 생성
 		for (int i = 0; i < buttons.length; i++) {
 			buttons[i] = new JButton();
+
+			// i값 index에 넣어버리기
 			final int index = i;
 			clickCount = 1;
+
+			// 캘린더에 에드
 			calendar.add(buttons[i]);
+
+			// 버튼 리스너!
 			buttons[i].addMouseListener(new MouseAdapter() {
 				@Override
 				public void mousePressed(MouseEvent e) {
+
+					// 클릭이 1번이면
 					if (clickCount % 2 == 1) {
 						buttons[index].setEnabled(false);
 						firstButtonText = buttons[index].getText();
 
+						////////////////// !!!!!!!!!!!!!!!!!///////////////////////////
+
 						System.out.println(dr.getAllCal(firstButtonText));
 						drp.updatedateLabelText("대여일 : " + dr.getAllCal(firstButtonText));
+
+						////////////////// !!!!!!!!!!!!!!!!!///////////////////////////
+
+						// 클릭이 2번이면
 					} else if (clickCount % 2 == 0) {
 						secondButtonText = buttons[index].getText();
 						System.out.println(dr.getAllCal(secondButtonText));
 						buttons[index].setEnabled(true);
+
+						// 대여일 , 반납일 출력하기!!!!!!!!!!!
+						//////////////// !!!!!!!!!!!!!!!!!!!!!!////////////////////////////
+
 						drp.updateReturnLabelText("반납일 : " + dr.getAllCal(secondButtonText));
+
+						//////////////// !!!!!!!!!!!!!!!!!!!!!!////////////////////////////
 					}
 					clickCount++;
 					if (firstClick) {
@@ -161,8 +182,10 @@ public class SwingCalendar3 extends JFrame implements Runnable {
 						firstClick = false;
 						System.out.println("대여일 : " + dr.getAllCal(firstButtonText));
 					} else {
+						// 두번쨰 클릭 값 받아 오기
 						int secondClickedIndex = index;
 
+						// 버튼 범위 클릭 되게 !
 						int start = Math.min(firstClickedIndex, secondClickedIndex);
 						int end = Math.max(firstClickedIndex, secondClickedIndex);
 						System.out.println("반납일 : " + dr.getAllCal(secondButtonText));
@@ -199,6 +222,7 @@ public class SwingCalendar3 extends JFrame implements Runnable {
 
 		previousBtn.addMouseListener(new MouseAdapter() {
 
+			// 이전버튼 누르면 월이 줄어들게!
 			@Override
 			public void mousePressed(MouseEvent e) {
 				if (e.getSource() == previousBtn) {
@@ -208,6 +232,8 @@ public class SwingCalendar3 extends JFrame implements Runnable {
 				yearMonthLabel.setText(dr.getCalText());
 			}
 		});
+
+		// 넥스트 버튼 누르면 월이 +1추가!!!!
 		nextBtn.addMouseListener(new MouseAdapter() {
 
 			@Override
