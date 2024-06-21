@@ -359,13 +359,19 @@ public class ReservationUpdatePage extends JFrame {
 	private void addEventListener() {
 		updateCarBtn.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent e) {
-				
+				CarChange cc = new CarChange();
+				cc.main(null);
+				setVisible(false);
+			
 				
 			}
 		});
 		
 		updateDateBtn.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent e) {
+				DateChange dc = new DateChange();
+				dc.setVisible(true);
+				setVisible(false);
 			}
 		});
 	}
