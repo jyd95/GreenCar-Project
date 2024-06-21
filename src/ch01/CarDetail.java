@@ -3,6 +3,7 @@ package ch01;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -221,17 +222,6 @@ public class CarDetail extends JFrame implements ActionListener {
 
 	}
 
-//	class ButtonListener implements ActionListener {
-//
-//		@Override
-//		public void actionPerformed(ActionEvent e) {
-//			InputReservationInfo iri = new InputReservationInfo();
-//			iri.setVisible(true);
-//			setVisible(false);
-//		}
-//
-//	}
-
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		InputReservationInfo iri = new InputReservationInfo();
@@ -239,4 +229,5 @@ public class CarDetail extends JFrame implements ActionListener {
 		setVisible(false);
 
 	}
+
 }
