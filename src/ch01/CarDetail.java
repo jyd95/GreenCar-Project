@@ -62,6 +62,12 @@ public class CarDetail extends JFrame implements ActionListener {
 	// 예약 버튼
 	private JButton reservationL;
 
+	// 라벨 이미지 크기
+	private int xLabel = 60;
+	private int yLabel = 230;
+	private int widthLabel = 200;
+	private int heightLabel = 200;
+
 	// 새 창 프레임
 	public CarDetail() {
 		setBounds(0, 0, 800, 800);
@@ -72,9 +78,9 @@ public class CarDetail extends JFrame implements ActionListener {
 
 	}
 
+	// 배경 패널
 	public void setInitLayout() {
-
-		// 배경 패널
+		// backgroundPanel
 		backgroundPanel.setSize(getWidth(), getHeight());
 		backgroundPanel.setBackground(Color.WHITE);
 		backgroundPanel.setLayout(null);
@@ -104,6 +110,8 @@ public class CarDetail extends JFrame implements ActionListener {
 		// 차량 이미지
 		k3 = new JLabel(new ImageIcon("img/k3.png"));
 		k3.setBounds(xCar, yCar, widthCar, heightCar);
+		k3 = new JLabel(new ImageIcon("img/k3.png"));
+		k3.setBounds(xLabel, yLabel, widthLabel, heightLabel);
 		k3.setLayout(null);
 		backgroundPanel.add(k3);
 		setVisible(true);
@@ -120,6 +128,7 @@ public class CarDetail extends JFrame implements ActionListener {
 	public void DetailK5() {
 		k5 = new JLabel(new ImageIcon("img/k5.png"));
 		k5.setBounds(xCar, yCar, widthCar, heightCar);
+		k5.setBounds(xLabel, yLabel, widthLabel, heightLabel);
 		k5.setLayout(null);
 		backgroundPanel.add(k5);
 		setVisible(true);
@@ -135,6 +144,7 @@ public class CarDetail extends JFrame implements ActionListener {
 	public void DetailModel3() {
 		model3 = new JLabel(new ImageIcon("img/MODEL3.png"));
 		model3.setBounds(xCar, yCar, widthCar, heightCar);
+		model3.setBounds(xLabel, yLabel, widthLabel, heightLabel);
 		model3.setLayout(null);
 		backgroundPanel.add(model3);
 		setVisible(true);
@@ -150,6 +160,7 @@ public class CarDetail extends JFrame implements ActionListener {
 	public void DetailNexo() {
 		nexo = new JLabel(new ImageIcon("img/넥쏘.png"));
 		nexo.setBounds(xCar, yCar, widthCar, heightCar);
+		nexo.setBounds(xLabel, yLabel, widthLabel, heightLabel);
 		nexo.setLayout(null);
 		backgroundPanel.add(nexo);
 		setVisible(true);
@@ -159,12 +170,12 @@ public class CarDetail extends JFrame implements ActionListener {
 		scripNexo.setLayout(null);
 		backgroundPanel.add(scripNexo);
 		setVisible(true);
-
 	}
 
 	public void DetailStaria() {
 		staria = new JLabel(new ImageIcon("img/스타리아.png"));
 		staria.setBounds(xCar, yCar, widthCar, heightCar);
+		staria.setBounds(xLabel, yLabel, widthLabel, heightLabel);
 		staria.setLayout(null);
 		backgroundPanel.add(staria);
 		setVisible(true);
@@ -178,8 +189,8 @@ public class CarDetail extends JFrame implements ActionListener {
 	}
 
 	public void DetailSonata() {
-		sonata = new JLabel(new ImageIcon("img/쏘나타.png"));
-		sonata.setBounds(xCar, yCar, widthCar, heightCar);
+		sonata = new JLabel(new ImageIcon("img/쏘나타2.png"));
+		sonata.setBounds(xLabel, yLabel, widthLabel, heightLabel);
 		sonata.setLayout(null);
 		backgroundPanel.add(sonata);
 		setVisible(true);
@@ -195,6 +206,7 @@ public class CarDetail extends JFrame implements ActionListener {
 	public void DetailAvante() {
 		avante = new JLabel(new ImageIcon("img/아반떼.png"));
 		avante.setBounds(xCar, yCar, widthCar, heightCar);
+		avante.setBounds(xLabel, yLabel, widthLabel, heightLabel);
 		avante.setLayout(null);
 		backgroundPanel.add(avante);
 		setVisible(true);
@@ -208,8 +220,8 @@ public class CarDetail extends JFrame implements ActionListener {
 	}
 
 	public void DetailKanibal() {
-		kanibal = new JLabel(new ImageIcon("img/카니발.png"));
-		kanibal.setBounds(xCar, yCar, widthCar, heightCar);
+		kanibal = new JLabel(new ImageIcon("img/카니발2.png"));
+		kanibal.setBounds(xLabel, yLabel, widthLabel, heightLabel);
 		kanibal.setLayout(null);
 		backgroundPanel.add(kanibal);
 		setVisible(true);
@@ -224,9 +236,15 @@ public class CarDetail extends JFrame implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+<<<<<<< HEAD
 		InputReservationInfo iri = new InputReservationInfo();
 		iri.setVisible(true);
 		setVisible(false);
+=======
+		if (e.getSource() == reservationL) {
+			// 예약 창 띄우기
+		}
+>>>>>>> e0f84bddfc7ab379ea04fe6a101b2eb6dbac2c38
 
 	}
 }

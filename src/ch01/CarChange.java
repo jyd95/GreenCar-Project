@@ -49,8 +49,6 @@ public class CarChange {
 	 */
 	private void initialize() {
 		ImageIcon img = new ImageIcon("buttonImage/차량 변경하기.png");
-		
-
 
 		frame = new JFrame();
 		frame.setBounds(0,0,800,800);
@@ -58,20 +56,28 @@ public class CarChange {
 		frame.setLocationRelativeTo(null);
 		frame.setResizable(false);
 		frame.getContentPane().setLayout(null);
+<<<<<<< HEAD
 		
+=======
+
+		JList list = new JList();
+		list.setBounds(200, 40, 591, 339);
+		frame.getContentPane().add(list);
+
+>>>>>>> e0f84bddfc7ab379ea04fe6a101b2eb6dbac2c38
 		JLabel lblNewLabel = new JLabel("변경 가능한 차량");
 		lblNewLabel.setForeground(new Color(255, 255, 255));
 		lblNewLabel.setFont(new Font("CookieRunOTF Black", Font.PLAIN, 20));
 		lblNewLabel.setBounds(308, 67, 172, 199);
 		frame.getContentPane().add(lblNewLabel);
-		
+
 		btnNewButton = new JButton(img);
 		btnNewButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				// 차량 변경 쿼리 executeupdate()
-				// 
-				
+				//
+
 			}
 		});
 		btnNewButton.setBounds(265, 550, 257, 80);
