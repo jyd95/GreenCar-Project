@@ -229,10 +229,4 @@ public class CarDetail extends JFrame implements ActionListener {
 		setVisible(false);
 
 	}
-
-<<<<<<< HEAD
-
-
-=======
->>>>>>> f-back2
 }
