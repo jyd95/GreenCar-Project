@@ -85,8 +85,7 @@ public class ReservationSearch {
 				String text = textField.getText();
 				int id = Integer.parseInt(text); // id = 예약번호
 				// 예약정보창(id){} -> 예약정보창 띄우기
-				// 서치원 - 예약정보창 구성중 
-				ReservationUpdatePage rup = new ReservationUpdatePage();
+				ReservationUpdatePage rup = new ReservationUpdatePage(id);
 				rup.setVisible(true);
 				frame.setVisible(false);
 				

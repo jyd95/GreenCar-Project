@@ -1,23 +1,25 @@
 package ch01;
 
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JList;
-
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
-import javax.swing.JLabel;
 import java.awt.Color;
+import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.DefaultSingleSelectionModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.ListSelectionModel;
+import javax.swing.SingleSelectionModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 @AllArgsConstructor
 @Getter
 @Setter
@@ -27,6 +29,7 @@ public class InputReservationInfoNext {
 	private String liceneceLevel;
 	private String phoneNumber;
 	private JFrame frame;
+	private boolean payment = false;
 	/**
 	 * Launch the application.
 	 */
@@ -54,6 +57,8 @@ public class InputReservationInfoNext {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		final String afterpay = "현장 결제 : 대여시간 5분 전부터 현장 결제 후 차량 불출이 가능합니다.";
+		final String prepay = "우선 결제 : 무통장 입금 계좌 = 농협 352-2474888-07-01 예금주 서치원";
 		ImageIcon img1 = new ImageIcon("buttonImage/예약 확정하기.png");
 		String whenPay[] = {"현장 결제 : 대여시간 5분 전부터 현장 결제 후 차량 불출이 가능합니다.","우선 결제 : 무통장 입금 계좌 = 농협 352-2474888-07-01 예금주 서치원"};
 		frame = new JFrame();
@@ -65,7 +70,19 @@ public class InputReservationInfoNext {
 		frame.setResizable(false);
 		frame.getContentPane().setLayout(null);
 		
-		JList list = new JList(whenPay);
+		final JList list = new JList(whenPay);
+		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		list.addListSelectionListener(new ListSelectionListener() {
+			
+			@Override
+			public void valueChanged(ListSelectionEvent e) {
+				if(list.getSelectedValue().toString().equals(prepay)) {
+					 
+				}else {
+					
+				}
+			}
+		});
 		list.setFont(new Font("굴림", Font.PLAIN, 18));
 		list.setBounds(195, 62, 596, 58);
 		frame.getContentPane().add(list);
@@ -87,6 +104,7 @@ public class InputReservationInfoNext {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				
 				ReservationUpdatePage rup = new ReservationUpdatePage();
 				rup.setVisible(true);
 				frame.setVisible(false);

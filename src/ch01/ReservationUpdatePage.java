@@ -15,10 +15,12 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 
+import DAO.CarDAO;
+import DTO.ReservationDTO;
 import main.HomePagePanel;
-
 public class ReservationUpdatePage extends JFrame {
-
+	
+	private int receivedid;
 	private JPanel backgroundPanel;
 	private JButton updateCarBtn;
 	private JButton updateDateBtn;
@@ -64,7 +66,15 @@ public class ReservationUpdatePage extends JFrame {
 	private ImageIcon lineImg;
 	
 	private JLabel logoLabel;
-
+	
+	
+	public ReservationUpdatePage(int receivedid) {
+		this.receivedid = receivedid;
+		initData();
+		setInitLayout();
+		addEventListener();
+	}
+	
 	public ReservationUpdatePage() {
 		initData();
 		setInitLayout();
@@ -130,7 +140,7 @@ public class ReservationUpdatePage extends JFrame {
 		setLayout(null);
 		setLocationRelativeTo(null);
 		setResizable(false);
-
+		
 		title.setBounds(185, 40, 400, 80);
 		title.setBorder(new LineBorder(new Color(0, 0, 0, 0)));
 		title.setEditable(false); // 입력불가상태 (텍스트 색상변경가능)
@@ -145,8 +155,10 @@ public class ReservationUpdatePage extends JFrame {
 		
 		
 		backgroundPanel.add(title);
+		System.out.println(receivedid);
 		
-		
+		ReservationDTO dto = CarDAO.reservationNumSelec(receivedid);
+
 		id.setBounds(549, 250, 190, 30);
 		name.setBounds(549, 280, 190, 30);
 		phoneNumber.setBounds(549, 310, 190, 30);
@@ -196,6 +208,7 @@ public class ReservationUpdatePage extends JFrame {
 		// 버튼
 		updateCarBtn.setBounds(70, 630, 300, 100);
 		updateDateBtn.setBounds(430, 630, 300, 100);
+
 
 		// 예약자 정보
 		reservationPersonInfo.setBounds(450, 210, 100, 30);
@@ -326,7 +339,6 @@ public class ReservationUpdatePage extends JFrame {
 		
 		
 		
-		
 		backgroundPanel.add(id);
 		backgroundPanel.add(name);
 		backgroundPanel.add(phoneNumber);
@@ -337,6 +349,14 @@ public class ReservationUpdatePage extends JFrame {
 		backgroundPanel.add(returndate);
 
 		setVisible(true);
+		id.setText(Integer.toString(dto.getId()));
+		name.setText((dto.getName()));
+		phoneNumber.setText((dto.getPhonenum()));
+		cartype.setText((dto.getCartype()));
+		carbrand.setText((dto.getBrand()));
+		carpuel.setText((dto.getPuel()));
+		rentdate.setText((dto.getRentdate().toString()));
+		returndate.setText((dto.getReturndate().toString()));
 
 		// line
 
@@ -348,6 +368,8 @@ public class ReservationUpdatePage extends JFrame {
 
 		repaint();
 	}
+	
+
 
 	class MyDrawPanel extends JPanel {
 		public void paint(Graphics g) {
@@ -400,8 +422,10 @@ public class ReservationUpdatePage extends JFrame {
 			}
 		});
 	}
+	
+	
 
 	public static void main(String[] args) {
-		new ReservationUpdatePage();
+		new ReservationUpdatePage(0);
 	}
 }

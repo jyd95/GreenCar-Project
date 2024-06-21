@@ -20,13 +20,12 @@ import lombok.ToString;
 
 @Data
 @ToString
-public class CarDAO implements reservationImploy {
+public class CarDAO {
 
 	CarDAO carDAO = getCarDAO();
 	int state = 1;
 
-	@Override
-	public ReservationDTO reservationNumSelec(int id) throws SQLException {
+	public static ReservationDTO reservationNumSelec(int id) {
 
 		ReservationDTO reservationDTO = null;
 
@@ -64,11 +63,12 @@ public class CarDAO implements reservationImploy {
 				System.out.println(" 입금여부 : " + reservationDTO.getPaymentornot());
 			}
 
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 		return reservationDTO;
 	}
 
-	@Override
 	public List<ReservationDTO> reservationNameSelec(String name) throws SQLException {
 		List<ReservationDTO> list = new ArrayList<>();
 		String query = " SELECT ri.id, rp.name, cm.carname, ci.cartype, ci.brand, ci.puel , rp.PhoneNum, re.rentDate, re.returnDate, datediff(re.returnDate,re.rentDate)*ci.priceperday as totalprice, ri.pay as paymentOrNot from reservationInfo as ri join reservationPersonInfo as rp on ri.personid = rp.personid join recruittable as re on re.id = ri.id join carmanagement as cm on cm.carid = re.carid join carinfo as ci on ci.carname = cm.carname where rp.name = ? order by re.rentDate desc; ";
@@ -98,7 +98,6 @@ public class CarDAO implements reservationImploy {
 		return list;
 	}
 
-	@Override
 	public List<CarInfoDTO> selecPuel(String puel) throws SQLException {
 		List<CarInfoDTO> list = new ArrayList<>();
 
@@ -126,7 +125,6 @@ public class CarDAO implements reservationImploy {
 		return list;
 	}
 
-	@Override
 	public List<SelectDTO> viewCarType(String cartype) throws SQLException {
 		List<SelectDTO> list = new ArrayList<>();
 
@@ -150,7 +148,6 @@ public class CarDAO implements reservationImploy {
 		return list;
 	}
 
-	@Override
 	public List<SelectDTO> viewBrandType(String brand) throws SQLException {
 		List<SelectDTO> list = new ArrayList<>();
 
@@ -174,7 +171,6 @@ public class CarDAO implements reservationImploy {
 		return list;
 	}
 
-	@Override
 	public List<SelectDTO> viewNameType(String name) throws SQLException {
 		List<SelectDTO> list = new ArrayList<>();
 
@@ -198,7 +194,6 @@ public class CarDAO implements reservationImploy {
 		return list;
 	}
 
-	@Override
 	public List<SelectDTO> viewneedLicenceType(String needlicence) throws SQLException {
 		List<SelectDTO> list = new ArrayList<>();
 
@@ -222,7 +217,6 @@ public class CarDAO implements reservationImploy {
 		return list;
 	}
 
-	@Override
 	public List<SelectDTO> orderAscPriceType() throws SQLException {
 		List<SelectDTO> list = new ArrayList<>();
 
@@ -245,7 +239,6 @@ public class CarDAO implements reservationImploy {
 		return list;
 	}
 
-	@Override
 	public List<SelectDTO> orderDescPriceType() throws SQLException {
 		List<SelectDTO> list = new ArrayList<>();
 
@@ -268,7 +261,6 @@ public class CarDAO implements reservationImploy {
 		return list;
 	}
 
-	@Override
 	public void changeCat(String carid, int id) throws SQLException {
 		String query = " Update recruittable set carid = ? where id = ? ";
 
@@ -283,7 +275,6 @@ public class CarDAO implements reservationImploy {
 
 	}
 
-	@Override
 	public void changeRent(Date rentDate, int id) throws SQLException {
 
 		String query = " UPDATE recruittable SET rentDate = ? WHERE id = ? ";
@@ -299,7 +290,6 @@ public class CarDAO implements reservationImploy {
 
 	}
 
-	@Override
 	public void changeReturn(Date returnDate, int id) throws SQLException {
 		String query = " UPDATE recruittable SET returnDate = ? WHERE id = ? ";
 		try (Connection conn = DBCarConnectionManager.getConnection()) {
@@ -313,7 +303,6 @@ public class CarDAO implements reservationImploy {
 		}
 	}
 
-	@Override
 	public void insertPerson(String name, String licenseNum, String licenseGreade, String phoneNum)
 			throws SQLException {
 
