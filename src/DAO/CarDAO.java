@@ -261,7 +261,7 @@ public class CarDAO {
 		return list;
 	}
 
-	public void changeCat(String carid, int id) throws SQLException {
+	public static void changeCat(String carid, int id) throws SQLException {
 		String query = " Update recruittable set carid = ? where id = ? ";
 
 		try (Connection conn = DBCarConnectionManager.getConnection()) {
@@ -275,7 +275,7 @@ public class CarDAO {
 
 	}
 
-	public void changeRent(Date rentDate, int id) throws SQLException {
+	public static void changeRent(Date rentDate, int id) throws SQLException {
 
 		String query = " UPDATE recruittable SET rentDate = ? WHERE id = ? ";
 		try (Connection conn = DBCarConnectionManager.getConnection()) {
@@ -290,7 +290,7 @@ public class CarDAO {
 
 	}
 
-	public void changeReturn(Date returnDate, int id) throws SQLException {
+	public static void changeReturn(Date returnDate, int id) throws SQLException {
 		String query = " UPDATE recruittable SET returnDate = ? WHERE id = ? ";
 		try (Connection conn = DBCarConnectionManager.getConnection()) {
 			PreparedStatement pstmt = conn.prepareStatement(query);
@@ -302,7 +302,10 @@ public class CarDAO {
 			e.printStackTrace();
 		}
 	}
-
+	
+	
+	// 인설트펄슨에서 인풋레저베이션 넥스트에 리턴값을 줘야 할거 같음
+	// void -> int 월요일 수정 상의
 	public void insertPerson(String name, String licenseNum, String licenseGreade, String phoneNum)
 			throws SQLException {
 
