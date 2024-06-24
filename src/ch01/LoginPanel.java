@@ -162,7 +162,7 @@ public class LoginPanel extends JFrame {
 		backgroundPanel.add(comboBox);
 
 		// 버튼
-		signUpBtn.setBounds(220, 730, 180, 80);
+		signUpBtn.setBounds(170, 730, 280, 80);
 		signUpBtn.setBorder(null);
 		signUpBtn.setContentAreaFilled(false);
 
@@ -174,12 +174,25 @@ public class LoginPanel extends JFrame {
 	private void addEventListener() {
 		signUpBtn.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent e) {
-				if (idTextField.getText().isEmpty() || pwdTextField.getText().isEmpty()
-						|| phoneNumField.getText().isEmpty() || addressField.getText().isEmpty()
-						|| emailField.getText().isEmpty()) {
-					JOptionPane.showConfirmDialog(null, "값을 입력해주세요", "알림", JOptionPane.DEFAULT_OPTION,
+
+				if (idTextField.getText().isEmpty()) {
+					JOptionPane.showConfirmDialog(null, "아이디를 입력해주세요", "알림", JOptionPane.DEFAULT_OPTION,
 							JOptionPane.PLAIN_MESSAGE);
-				} else {
+				} else if (pwdTextField.getText().isEmpty()) {
+					JOptionPane.showConfirmDialog(null, "패스워드를 입력해주세요", "알림", JOptionPane.DEFAULT_OPTION,
+							JOptionPane.PLAIN_MESSAGE);
+				} else if (phoneNumField.getText().isEmpty()) {
+					JOptionPane.showConfirmDialog(null, "전화번호를 입력해주세요", "알림", JOptionPane.DEFAULT_OPTION,
+							JOptionPane.PLAIN_MESSAGE);
+				} else if (addressField.getText().isEmpty()) {
+					JOptionPane.showConfirmDialog(null, "주소를 입력해주세요", "알림", JOptionPane.DEFAULT_OPTION,
+							JOptionPane.PLAIN_MESSAGE);
+				} else if (emailField.getText().isEmpty()) {
+					JOptionPane.showConfirmDialog(null, "이메일을 입력해주세요", "알림", JOptionPane.DEFAULT_OPTION,
+							JOptionPane.PLAIN_MESSAGE);
+				} else if (!idTextField.getText().isEmpty() || !pwdTextField.getText().isEmpty()
+						|| !phoneNumField.getText().isEmpty() || !addressField.getText().isEmpty()
+						|| !emailField.getText().isEmpty()) {
 					try {
 						ReservationPersonInfoDTO dto = CarDAO.insertPerson(idTextField.getText(),
 								pwdTextField.getText(), phoneNumField.getText(), addressField.getText(),
@@ -188,12 +201,33 @@ public class LoginPanel extends JFrame {
 								JOptionPane.PLAIN_MESSAGE);
 						setVisible(false);
 					} catch (SQLException s) {
+						JOptionPane.showConfirmDialog(null, "중복된 아이디 입니다.", "알림", JOptionPane.DEFAULT_OPTION,
+								JOptionPane.PLAIN_MESSAGE);
 						s.printStackTrace();
 					}
+//				}
+
+//				if (idTextField.getText().isEmpty() || pwdTextField.getText().isEmpty()
+//						|| phoneNumField.getText().isEmpty() || addressField.getText().isEmpty()
+//						|| emailField.getText().isEmpty()) {
+//					JOptionPane.showConfirmDialog(null, "값을 입력해주세요", "알림", JOptionPane.DEFAULT_OPTION,
+//							JOptionPane.PLAIN_MESSAGE);
+//				} else {
+//					try {
+//						ReservationPersonInfoDTO dto = CarDAO.insertPerson(idTextField.getText(),
+//								pwdTextField.getText(), phoneNumField.getText(), addressField.getText(),
+//								emailField.getText(), comboBox.getSelectedItem().toString());
+//						JOptionPane.showConfirmDialog(null, "회원가입 완료", "알림", JOptionPane.DEFAULT_OPTION,
+//								JOptionPane.PLAIN_MESSAGE);
+//						setVisible(false);
+//					} catch (SQLException s) {
+//						s.printStackTrace();
+//					}
 
 				}
 			}
 		});
+
 	}
 
 	public static void main(String[] args) {
