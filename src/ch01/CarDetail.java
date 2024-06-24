@@ -236,9 +236,15 @@ public class CarDetail extends JFrame implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		InputReservationInfo iri = new InputReservationInfo();
-		iri.setVisible(true);
-		setVisible(false);
+		if(HomePagePanel.movement == 1) {
+			DiaryReservationPanel drp = new DiaryReservationPanel();
+			drp.setVisible(true);
+			setVisible(false);
+		}else {
+			ReservationUpdatePage rup = new ReservationUpdatePage();
+			rup.setVisible(true);
+			setVisible(false);
+		}
 
 	}
 }

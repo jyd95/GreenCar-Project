@@ -15,9 +15,11 @@ import javax.swing.JPanel;
 
 import calendar.Diary;
 import calendar.SwingCalendar3;
-import main.HomePagePanel;
 
 public class DiaryReservationPanel extends JFrame {
+	
+	private String carname;
+	
 	private Diary dr;
 	// 패널
 	private JPanel backgroundPanel;
@@ -54,7 +56,7 @@ public class DiaryReservationPanel extends JFrame {
 		backgroundPanel = new JPanel();
 
 		// 로고
-		headerLabel = new JLabel("날짜로 예약");
+		headerLabel = new JLabel("날짜 선택하기");
 		logoLabel = new JLabel(new ImageIcon("img/logo2.png"));
 		midLabel = new JLabel(new ImageIcon("img/reserveLogo3.png"));
 		calendarLabel = new JLabel(new ImageIcon("img/calender.png"));
@@ -131,12 +133,20 @@ public class DiaryReservationPanel extends JFrame {
 		choiceDateBtn.setContentAreaFilled(false);
 		completeSelectionBtn.setContentAreaFilled(false);
 		completeSelectionBtn.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				InputReservationInfo inpi = new InputReservationInfo();
-				inpi.setVisible(true);
-				setVisible(false);
+				if (HomePagePanel.movement == 2) {
+					
+					CarReservationPanel crp = new CarReservationPanel();
+					crp.setVisible(true);
+					setVisible(false);
+				} else {
+					ReservationUpdatePage rup = new ReservationUpdatePage();
+					rup.setVisible(true);
+					setVisible(false);
+				}
+
 			}
 		});
 
@@ -162,12 +172,11 @@ public class DiaryReservationPanel extends JFrame {
 				new SwingCalendar3(DiaryReservationPanel.this);
 			}
 		});
-		
 
 		logoLabel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				new HomePagePanel();
+				new HomePagePanel(HomePagePanel.username);
 				setVisible(false);
 			}
 		});

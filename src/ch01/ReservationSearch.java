@@ -17,7 +17,6 @@ import javax.swing.JLabel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
-import main.HomePagePanel;
 
 @AllArgsConstructor
 @Getter

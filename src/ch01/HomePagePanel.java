@@ -1,4 +1,4 @@
-package main;
+package ch01;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -17,17 +17,18 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 
-import ch01.CarReservationPanel;
-import ch01.DiaryReservationPanel;
-import ch01.ReservationSearch;
-
 public class HomePagePanel extends JFrame {
+	public static String username = null;
+	public static int movement = 0;
+	// movement 의 값, 0 = 초기값, 1 = 차량으로 예약하기, 2 = 날짜로 예약하기.
+
 	// 패널
 	private JPanel backgroundPanel;
 	private JPanel searchPanel;
 
 	// 로고
 	private JLabel logoLabel;
+	private JLabel usernameLabel;
 
 	// 메뉴 버튼
 	private JButton carReserveBtn;
@@ -48,7 +49,8 @@ public class HomePagePanel extends JFrame {
 	private Timer timer;
 	private int currentImageIndex = 0;
 
-	public HomePagePanel() {
+	public HomePagePanel(String username) {
+		this.username = username;
 		initData();
 		setInitLayout();
 		initListener();
@@ -77,7 +79,10 @@ public class HomePagePanel extends JFrame {
 		// main 이미지
 		greenCarLabel1 = new JLabel(new ImageIcon("img/backgroundImg.jpg"));
 		greenCarLabel2 = new JLabel(new ImageIcon("img/backgroundImg2.jpg"));
-
+		usernameLabel = new JLabel(username + "님, 환영합니다.");
+		usernameLabel.setBounds(750, -80, 105, 200);
+		usernameLabel.setLayout(null);
+		backgroundPanel.add(usernameLabel);
 	}
 
 	public void setInitLayout() {
@@ -151,6 +156,7 @@ public class HomePagePanel extends JFrame {
 		carReserveBtn.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
+				movement = 1;
 				CarReservationPanel crp = new CarReservationPanel();
 				crp.setVisible(true);
 				setVisible(false);
@@ -191,6 +197,7 @@ public class HomePagePanel extends JFrame {
 		dateReserveBtn.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
+				movement = 2;
 				new DiaryReservationPanel();
 				setVisible(false);
 
@@ -216,7 +223,7 @@ public class HomePagePanel extends JFrame {
 	}
 
 	public static void main(String[] args) {
-		new HomePagePanel();
+		new HomePagePanel(username);
 	}
 
 }

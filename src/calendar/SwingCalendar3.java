@@ -19,7 +19,6 @@ import ch01.DiaryReservationPanel;
 public class SwingCalendar3 extends JFrame implements Runnable {
 
 	private DiaryReservationPanel drp;
-
 	// 다이어리 생성
 	private Diary dr;
 
