@@ -14,9 +14,9 @@ import lombok.Data;
 @Data
 public class DBCarConnectionManager {
 
-	private static final String URL = "jdbc:mysql://localhost:3306/greencar?serverTimezone=Asia/Seoul";
-	private static final String USER = "root";
-	private static final String PASSWORD = "asd123";
+	private static final String URL = "jdbc:mysql://192.168.0.140:3306/greencar?serverTimezone=Asia/Seoul";
+	private static final String USER = "tenco4";
+	private static final String PASSWORD = "1q2w3e4r5t!";
 
 	// 자기 자신의 참조 주소값을 담을 변수 생성 단. private
 	private static DBCarConnectionManager instance;
