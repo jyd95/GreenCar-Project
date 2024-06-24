@@ -42,9 +42,6 @@ public class CarChange {
 	private JLabel logoLabel;
 	private JLabel headerLabel;
 
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
 		new CarChange();
 		EventQueue.invokeLater(new Runnable() {
@@ -59,19 +56,16 @@ public class CarChange {
 		});
 	}
 
-	/**
-	 * Create the application.
-	 */
 	public CarChange() {
 		initialize();
 	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
 	private void initialize() {
+
+		// 차량 변경하기 이미지
 		ImageIcon img = new ImageIcon("img/changeCar.png");
 
+		// 프레임 창
 		frame = new JFrame();
 		frame.setBounds(0, 0, 1000, 1000);
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -79,11 +73,13 @@ public class CarChange {
 		frame.setResizable(false);
 		frame.getContentPane().setLayout(null);
 
+		// 로고 라벨
 		logoLabel = new JLabel(new ImageIcon("img/logo2.png"));
 		logoLabel.setBounds(30, 0, 105, 200);
 		logoLabel.setLayout(null);
 		frame.add(logoLabel);
 
+		// 차량 변경 라벨
 		headerLabel = new JLabel("차량 변경");
 		headerLabel.setBounds(400, 40, 300, 100);
 		headerLabel.setLayout(null);
@@ -97,14 +93,14 @@ public class CarChange {
 		frame.getContentPane().add(lblNewLabel);
 
 		// 차량 버튼
-		k3 = new JButton(new ImageIcon("img/k3.png"));
-		k5 = new JButton(new ImageIcon("img/k5.png"));
+		k3 = new JButton(new ImageIcon("img/K3.png"));
+		k5 = new JButton(new ImageIcon("img/K5.png"));
 		model3 = new JButton(new ImageIcon("img/MODEL3.png"));
 		nexo = new JButton(new ImageIcon("img/넥쏘.png"));
 		staria = new JButton(new ImageIcon("img/스타리아.png"));
-		sonata = new JButton(new ImageIcon("img/쏘나타.png"));
+		sonata = new JButton(new ImageIcon("img/쏘나타2.png"));
 		avante = new JButton(new ImageIcon("img/아반떼.png"));
-		kanibal = new JButton(new ImageIcon("img/카니발.png"));
+		kanibal = new JButton(new ImageIcon("img/카니발2.png"));
 
 		k3.setBounds(60, 180, 200, 200);
 		k3.setLayout(null);
@@ -165,17 +161,17 @@ public class CarChange {
 		choiceCar.setFont(new Font("굴림", Font.BOLD, 20));
 		frame.getContentPane().add(choiceCar);
 
+		// 선택된 차량의 값
 		JTextField choiceCarValue = new JTextField();
 		choiceCarValue.setBounds(470, 700, 130, 50);
 		choiceCarValue.setBorder(new LineBorder(new Color(0, 0, 0, 0)));
 		choiceCarValue.setEditable(false);
 		choiceCarValue.setForeground(Color.BLACK);
 		choiceCarValue.setOpaque(false); // 배경 투명 설정
-//		choiceCarValue.setBackground(new Color(0, 0, 0, 0));
 		choiceCarValue.setFont(new Font("굴림", Font.BOLD, 20));
 		frame.getContentPane().add(choiceCarValue);
 
-		// 버튼 별
+		// 버튼 별 carid
 		k3.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
@@ -241,10 +237,12 @@ public class CarChange {
 			}
 		});
 
+		// 차량 변경하기 버튼
 		btnNewButton = new JButton(img);
 		btnNewButton.setBorderPainted(false);
 		btnNewButton.setContentAreaFilled(false);
 		btnNewButton.addMouseListener(new MouseAdapter() {
+
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (choiceCarValue.getText().equals(ReservationUpdatePage.carNameTextField().getText())) {
@@ -274,10 +272,8 @@ public class CarChange {
 							} catch (SQLException e1) {
 								e1.printStackTrace();
 							}
-						} else {
 						}
 					}
-//				} else if (ReservationUpdatePage.getLicenseGrade().getText().equals("1종")) {
 				} else {
 					int result = JOptionPane.showConfirmDialog(null, choiceCarValue.getText() + "로 변경하시겠습니까 ?", "알림",
 							JOptionPane.YES_NO_OPTION);
@@ -295,7 +291,6 @@ public class CarChange {
 						} catch (SQLException e1) {
 							e1.printStackTrace();
 						}
-					} else {
 					}
 				}
 			}
