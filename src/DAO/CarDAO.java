@@ -10,20 +10,24 @@ import java.util.List;
 
 import DTO.CarInfoDTO;
 import DTO.ReservationDTO;
-import DTO.ReservationInfoDTO;
 import DTO.ReservationPersonInfoDTO;
 import DTO.SelectDTO;
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.ToString;
 
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @ToString
 public class CarDAO {
 
+	static int state;
 	CarDAO carDAO = getCarDAO();
-	int state = 1;
+
 	// 오버라이드 삭제 -> 스태틱 넣음
 	public static ReservationDTO reservationNumSelec(int id) {
 
@@ -69,7 +73,7 @@ public class CarDAO {
 		return reservationDTO;
 	}
 
-	public List<ReservationDTO> reservationNameSelec(String name) throws SQLException {
+	public static List<ReservationDTO> reservationNameSelec(String name) throws SQLException {
 		List<ReservationDTO> list = new ArrayList<>();
 		String query = " SELECT ri.id, rp.name, cm.carname, ci.cartype, ci.brand, ci.puel , rp.PhoneNum, re.rentDate, re.returnDate, datediff(re.returnDate,re.rentDate)*ci.priceperday as totalprice, ri.pay as paymentOrNot from reservationInfo as ri join reservationPersonInfo as rp on ri.personid = rp.personid join recruittable as re on re.id = ri.id join carmanagement as cm on cm.carid = re.carid join carinfo as ci on ci.carname = cm.carname where rp.name = ? order by re.rentDate desc; ";
 		try (Connection conn = DBCarConnectionManager.getConnection()) {
@@ -98,7 +102,7 @@ public class CarDAO {
 		return list;
 	}
 
-	public List<CarInfoDTO> selecPuel(String puel) throws SQLException {
+	public static List<CarInfoDTO> selecPuel(String puel) throws SQLException {
 		List<CarInfoDTO> list = new ArrayList<>();
 
 		String query = " select cm.carname, cm.carid, ci.cartype, ci.brand, ci.puel, ci.needlicence, ci.priceperday from carmanagement as cm join carinfo as ci on cm.carname = ci.carname where ci.puel = ?; ";
@@ -125,7 +129,7 @@ public class CarDAO {
 		return list;
 	}
 
-	public List<SelectDTO> viewCarType(String cartype) throws SQLException {
+	public static List<SelectDTO> viewCarType(String cartype) throws SQLException {
 		List<SelectDTO> list = new ArrayList<>();
 
 		String query = " select cm.carname, cm.carid, ci.cartype, ci.brand, ci.puel, ci.needlicence, ci.priceperday from carmanagement as cm join carinfo as ci on cm.carname = ci.carname where ci.cartype = ?; ";
@@ -148,7 +152,7 @@ public class CarDAO {
 		return list;
 	}
 
-	public List<SelectDTO> viewBrandType(String brand) throws SQLException {
+	public static List<SelectDTO> viewBrandType(String brand) throws SQLException {
 		List<SelectDTO> list = new ArrayList<>();
 
 		String query = " select cm.carname, ci.cartype, ci.brand, ci.puel, ci.needlicence, ci.priceperday from carmanagement as cm join carinfo as ci on cm.carname = ci.carname where ci.brand = ?; ";
@@ -171,7 +175,7 @@ public class CarDAO {
 		return list;
 	}
 
-	public List<SelectDTO> viewNameType(String name) throws SQLException {
+	public static List<SelectDTO> viewNameType(String name) throws SQLException {
 		List<SelectDTO> list = new ArrayList<>();
 
 		String query = " select cm.carname, ci.cartype, ci.brand, ci.puel, ci.needlicence, ci.priceperday from carmanagement as cm join carinfo as ci on cm.carname = ci.carname where cm.carname = ?; ";
@@ -194,7 +198,7 @@ public class CarDAO {
 		return list;
 	}
 
-	public List<SelectDTO> viewneedLicenceType(String needlicence) throws SQLException {
+	public static List<SelectDTO> viewneedLicenceType(String needlicence) throws SQLException {
 		List<SelectDTO> list = new ArrayList<>();
 
 		String query = " select cm.carname, ci.cartype, ci.brand, ci.puel, ci.needlicence, ci.priceperday from carmanagement as cm join carinfo as ci on cm.carname = ci.carname where ci.needlicence = ?; ";
@@ -217,7 +221,7 @@ public class CarDAO {
 		return list;
 	}
 
-	public List<SelectDTO> orderAscPriceType() throws SQLException {
+	public static List<SelectDTO> orderAscPriceType() throws SQLException {
 		List<SelectDTO> list = new ArrayList<>();
 
 		String query = " select cm.carname, ci.cartype, ci.brand, ci.puel, ci.needlicence, ci.priceperday from carmanagement as cm join carinfo as ci on cm.carname = ci.carname order by ci.priceperday; ";
@@ -239,7 +243,7 @@ public class CarDAO {
 		return list;
 	}
 
-	public List<SelectDTO> orderDescPriceType() throws SQLException {
+	public static List<SelectDTO> orderDescPriceType() throws SQLException {
 		List<SelectDTO> list = new ArrayList<>();
 
 		String query = " select cm.carname, ci.cartype, ci.brand, ci.puel, ci.needlicence, ci.priceperday from carmanagement as cm join carinfo as ci on cm.carname = ci.carname order by ci.priceperday desc; ";
@@ -302,11 +306,10 @@ public class CarDAO {
 			e.printStackTrace();
 		}
 	}
-	
-	
+
 	// 인설트펄슨에서 인풋레저베이션 넥스트에 리턴값을 줘야 할거 같음
 	// void -> int 월요일 수정 상의
-	public void insertPerson(String name, String licenseNum, String licenseGreade, String phoneNum)
+	public static void insertPerson(String name, String licenseNum, String licenseGreade, String phoneNum)
 			throws SQLException {
 
 		String query = " INSERT INTO reservationpersoninfo(name, licensenum, licensegrade, phoneNum) values(?, ?, ?, ?); ";
@@ -330,21 +333,29 @@ public class CarDAO {
 				String phoneNum2 = rs.getString("phoneNum");
 				ReservationPersonInfoDTO dto = new ReservationPersonInfoDTO(personId, name2, licenseNum2,
 						licenseGreade2, phoneNum2);
-				if (phoneNum.equalsIgnoreCase(dto.getPhoneNum())) {
-					state = 2;
-					System.out.println("이미있는 번호입니다");
-				}
+				if (phoneNum.equalsIgnoreCase(dto.getPhoneNum()))
+					try {
+
+						state = 2;
+						System.out.println("이미있는 번호입니다");
+
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 			}
 			pstmt.executeUpdate();
 			System.out.println("업데이트");
 
-		} catch (Exception e) {
+		} catch (
+
+		Exception e) {
 			e.printStackTrace();
 		}
 
 	}
 
-	public void truePerson(String phone, int pay) throws SQLException {
+	public static void truePerson(String phone, int pay) throws SQLException {
 		String query = "INSERT INTO reservationinfo(personId, pay) values( ? , ?) ";
 		String selectPerson = "select * from reservationpersoninfo where phoneNum = ? ";
 		try (Connection conn = DBCarConnectionManager.getConnection()) {
@@ -368,7 +379,7 @@ public class CarDAO {
 
 	}
 
-	public void falsePerson(int pay) throws SQLException {
+	public static void falsePerson(int pay) throws SQLException {
 		String query = " INSERT INTO reservationinfo(personId, pay) values( (select max(personId) from reservationpersoninfo) , ?)  ";
 		try (Connection conn = DBCarConnectionManager.getConnection()) {
 			PreparedStatement pstmt = conn.prepareStatement(query);
@@ -380,6 +391,22 @@ public class CarDAO {
 			e.printStackTrace();
 		}
 
+	}
+
+	public CarDAO getCarDAO() {
+		return carDAO;
+	}
+
+	public void setCarDAO(CarDAO carDAO) {
+		this.carDAO = carDAO;
+	}
+
+	public int getState() {
+		return state;
+	}
+
+	public void setState(int state) {
+		this.state = state;
 	}
 
 }
