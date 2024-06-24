@@ -18,6 +18,7 @@ import javax.swing.JTextField;
 import DAO.CarDAO;
 import DTO.ReservationPersonInfoDTO;
 import lombok.Data;
+import main.Login;
 
 @Data
 
@@ -180,9 +181,6 @@ public class LoginPanel extends JFrame {
 							JOptionPane.PLAIN_MESSAGE);
 				} else {
 					try {
-						InputReservationInfo iri = new InputReservationInfo(idTextField.getText(),
-								pwdTextField.getText(), phoneNumField.getText(), addressField.getText(),
-								emailField.getText(), (String) comboBox.getSelectedItem());
 						ReservationPersonInfoDTO dto = CarDAO.insertPerson(idTextField.getText(),
 								pwdTextField.getText(), phoneNumField.getText(), addressField.getText(),
 								emailField.getText(), comboBox.getSelectedItem().toString());
