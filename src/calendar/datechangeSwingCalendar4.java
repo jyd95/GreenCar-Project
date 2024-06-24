@@ -28,7 +28,7 @@ public class datechangeSwingCalendar4 extends JFrame implements Runnable {
 	// Date값 보내주기
 	private String rentDate;
 	private String returnDate;
-	
+
 	// 패널
 	private JPanel term;
 	private JPanel calendar;
@@ -176,7 +176,6 @@ public class datechangeSwingCalendar4 extends JFrame implements Runnable {
 
 						// 대여일 , 반납일 출력하기!!!!!!!!!!!
 						//////////////// !!!!!!!!!!!!!!!!!!!!!!////////////////////////////
-
 
 						//////////////// !!!!!!!!!!!!!!!!!!!!!!////////////////////////////
 					}
