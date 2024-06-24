@@ -167,26 +167,17 @@ public class CarReservationPanel extends JFrame implements ActionListener {
 				new HomePagePanel(HomePagePanel.username);
 				setVisible(false);
 			}
-
 		});
-
 	}
 
 	private class BackgroundPanel extends JPanel {
-		// private Image backgroundImage;
+		
 		private JPanel backgroundPanel;
 
 		// 백그라운드 패널
 		public BackgroundPanel() {
-			// backgroundImage = new ImageIcon("img/background.jpg").getImage();
 			backgroundPanel = new JPanel();
 		}
-
-//		@Override
-//		protected void paintComponent(Graphics g) {
-//			super.paintComponent(g);
-//			g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), null);
-//		}
 	}
 
 	public static void main(String[] args) {

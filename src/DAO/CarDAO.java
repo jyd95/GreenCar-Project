@@ -61,6 +61,11 @@ public class CarDAO {
 	// r.carid = cm.carid join users as u on u.username = r.username where
 	// ci.carname = ?;
 
+	// select u.username, r.start_date, r.end_date from carinfo as ci join
+	// carmanagement as cm on ci.carname = cm.carname join reservation as r on
+	// r.carid = cm.carid join users as u on u.username = r.username where
+	// ci.carname = ?;
+
 	public static boolean isDateRangeAvailable(String carname, Date startDate, Date endDate) {
 		String query = " SELECT * FROM reservation as r join carmanagement as cm on r.carid = cm.carid WHERE cm.carname = ? AND ((start_date <= ? AND end_date >= ?) OR (start_date <= ? AND end_date >= ?) OR (start_date >= ? AND end_date <= ?)) ";
 		try (Connection conn = DBCarConnectionManager.getConnection()) {
@@ -80,9 +85,6 @@ public class CarDAO {
 			return false;
 		}
 	}
-
-	//String query = " select cm.carname from carmanagement as cm join reservation as re on re.carid = cm.carid where (re.start_date > ? or re.end_date < ?) and cm.carname != ? ";
-		
 
 	public static ReservationDTO reservationNumSelec(int id, String name) {
 

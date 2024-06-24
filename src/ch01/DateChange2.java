@@ -48,7 +48,6 @@ public class DateChange2 extends JFrame {
 	private JTextField usernamevalue[];
 	private JTextField startdatevalue[];
 	private JTextField enddatevalue[];
-
 	private Color headerColor = new Color(220, 220, 220);
 
 	public DateChange2(String rentDate, String returnDate) {
@@ -59,17 +58,17 @@ public class DateChange2 extends JFrame {
 		addEventListener();
 	}
 
-//	public DateChange2() {
-//		initDate();
-//		setInitLayout();
-//		addEventListener();
-//	}
+	public DateChange2() {
+		initDate();
+		setInitLayout();
+		addEventListener();
+	}
 
 	public void initDate() {
 
 		backgroundPanel = new BackgroundPanel();
-		dateChoiceBtn = new JButton(new ImageIcon("buttonImage/대여일 선택하기.png")); // 날짜 선택 이미지로 변경 예정
-		updateDateBtn = new JButton(new ImageIcon("buttonImage/대여기간 변경하기.png"));
+		dateChoiceBtn = new JButton(new ImageIcon("img/chooseDate2.png")); // 날짜 선택 이미지로 변경 예정
+		updateDateBtn = new JButton(new ImageIcon("img/changePeriod.png"));
 		title = new JTextField("대여기간 변경");
 		logoLabel = new JLabel(new ImageIcon("img/logo2.png"));
 
@@ -113,42 +112,35 @@ public class DateChange2 extends JFrame {
 		setLocationRelativeTo(null);
 		setResizable(false);
 		setVisible(true);
-
 		// 분류값
 		reservationid.setBounds(200, 150, 100, 40);
 		username.setBounds(300, 150, 100, 40);
 		startdate.setBounds(400, 150, 100, 40);
 		enddate.setBounds(500, 150, 100, 40);
-
 		reservationid.setFont(new Font("굴림", Font.PLAIN, 15));
 		username.setFont(new Font("굴림", Font.PLAIN, 15));
 		startdate.setFont(new Font("굴림", Font.PLAIN, 15));
 		enddate.setFont(new Font("굴림", Font.PLAIN, 15));
-
 		reservationid.setHorizontalAlignment(JTextField.CENTER);
 		reservationid.setEditable(false);
 		reservationid.setForeground(Color.BLACK);
 		reservationid.setHorizontalAlignment(JTextField.CENTER);
 		reservationid.setBackground(headerColor);
-
 		username.setHorizontalAlignment(JTextField.CENTER);
 		username.setEditable(false);
 		username.setForeground(Color.BLACK);
 		username.setHorizontalAlignment(JTextField.CENTER);
 		username.setBackground(headerColor);
-
 		startdate.setHorizontalAlignment(JTextField.CENTER);
 		startdate.setEditable(false);
 		startdate.setForeground(Color.BLACK);
 		startdate.setHorizontalAlignment(JTextField.CENTER);
 		startdate.setBackground(headerColor);
-
 		enddate.setHorizontalAlignment(JTextField.CENTER);
 		enddate.setEditable(false);
 		enddate.setForeground(Color.BLACK);
 		enddate.setHorizontalAlignment(JTextField.CENTER);
 		enddate.setBackground(headerColor);
-
 		backgroundPanel.add(reservationid);
 		backgroundPanel.add(username);
 		backgroundPanel.add(startdate);
@@ -247,6 +239,7 @@ public class DateChange2 extends JFrame {
 		dateChoiceBtn.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent e) {
 				new datechangeSwingCalendar4(DateChange2.this);
+				setVisible(false);
 			}
 		});
 
@@ -263,7 +256,7 @@ public class DateChange2 extends JFrame {
 							int result2 = JOptionPane.showConfirmDialog(null, "변경되었습니다.", "알림",
 									JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE);
 							if (result2 == JOptionPane.YES_OPTION) {
-								setVisible(false);
+								setVisible(false); // < 안꺼짐..
 								Date rentDate2 = Date.valueOf(rentDate);
 								Date returnDate2 = Date.valueOf(returnDate);
 								try {

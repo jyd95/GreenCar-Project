@@ -79,15 +79,17 @@ public class HomePagePanel extends JFrame {
 		// main 이미지
 		greenCarLabel1 = new JLabel(new ImageIcon("img/backgroundImg.jpg"));
 		greenCarLabel2 = new JLabel(new ImageIcon("img/backgroundImg2.jpg"));
-		usernameLabel = new JLabel(username + "님, 환영합니다.");
-		usernameLabel.setBounds(750, -80, 105, 200);
-		usernameLabel.setLayout(null);
-		backgroundPanel.add(usernameLabel);
+//		usernameLabel = new JLabel(username + "님, 환영합니다.");
+//		usernameLabel.setBounds(750, -80, 105, 200);
+//		usernameLabel.setLayout(null);
+//		backgroundPanel.add(usernameLabel);
 	}
 
 	public void setInitLayout() {
 		// 프레임 설정
+
 		setSize(1000, 1000);
+		setTitle(username + "님, 환영합니다.");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
 		setResizable(false);

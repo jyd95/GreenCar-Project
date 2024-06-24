@@ -80,7 +80,7 @@ public class CarChange {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		ImageIcon img = new ImageIcon("buttonImage/차량 변경하기.png");
+		ImageIcon img = new ImageIcon("img/changeCar.png");
 
 		frame = new JFrame();
 		frame.setBounds(0, 0, 1000, 1000);
@@ -100,7 +100,7 @@ public class CarChange {
 		headerLabel.setFont(new Font("궁서", Font.BOLD, 40));
 		frame.add(headerLabel);
 
-		JLabel lblNewLabel = new JLabel("변경 가능한 차량");
+		JLabel lblNewLabel = new JLabel();
 		lblNewLabel.setForeground(new Color(255, 255, 255));
 		lblNewLabel.setFont(new Font("CookieRunOTF Black", Font.PLAIN, 20));
 		lblNewLabel.setBounds(308, 67, 172, 199);
