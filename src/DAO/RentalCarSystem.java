@@ -442,10 +442,10 @@ public class RentalCarSystem extends JFrame {
 	}
 
 	private boolean isDateRangeAvailable(String carId, Date startDate, Date endDate) {
-		String query = "SELECT * FROM reservation WHERE carid = ? AND ((start_date <= ? AND end_date >= ?) OR (start_date <= ? AND end_date >= ?) OR (start_date >= ? AND end_date <= ?))";
+		String query = "SELECT * FROM reservation WHERE carid = '46하8247' AND ((start_date <= ? AND end_date >= ?) OR (start_date <= ? AND end_date >= ?) OR (start_date >= ? AND end_date <= ?))";
 		try (PreparedStatement pstmt = conn.prepareStatement(query)) {
 			pstmt.setString(1, carId);
-			pstmt.setDate(2, new java.sql.Date(startDate.getTime()));
+			pstmt.setDate(2, new java.sql.Date(endDate.getTime()));
 			pstmt.setDate(3, new java.sql.Date(startDate.getTime()));
 			pstmt.setDate(4, new java.sql.Date(endDate.getTime()));
 			pstmt.setDate(5, new java.sql.Date(endDate.getTime()));

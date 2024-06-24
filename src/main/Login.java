@@ -18,7 +18,6 @@ import javax.swing.border.EmptyBorder;
 
 import DAO.RentalCarSystem;
 import ch01.HomePagePanel;
-import ch01.JoinMembership;
 import ch01.LoginPanel;
 import ch01.ReservationSearch;
 
@@ -35,9 +34,10 @@ public class Login extends JFrame {
 	private String address;
 	private String email;
 	private String licenseGrade;
-
+	
 	private String username;
-
+	
+	HomePagePanel hpp = null;
 	/**
 	 * Launch the application.
 	 */
@@ -127,9 +127,9 @@ public class Login extends JFrame {
 				String pw = textField_1.getText();
 				if (rcs.checkLogin(id, pw)) {
 					System.out.println("로그인 성공");
-					HomePagePanel hpp = new HomePagePanel(id);
+					hpp = new HomePagePanel(id);
 					hpp.setVisible(true);
-					frame1.dispose();
+					setVisible(false);
 				} else {
 					JOptionPane.showConfirmDialog(null, "로그인 실패", "알림", JOptionPane.DEFAULT_OPTION,
 							JOptionPane.PLAIN_MESSAGE);

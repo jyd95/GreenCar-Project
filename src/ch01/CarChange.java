@@ -36,6 +36,16 @@ public class CarChange {
 	private JButton avante;
 	private JButton kanibal;
 
+	private boolean k3res = false;
+	private boolean k5res = false;
+	private boolean model3res = false;
+	private boolean nexores = false;
+	private boolean stariares = false;
+	private boolean sonatares = false;
+	private boolean avanteres = false;
+	private boolean kanibalres = false;
+	CarDAO cardao;
+
 	private String carid;
 
 	// 로고
@@ -95,17 +105,142 @@ public class CarChange {
 		lblNewLabel.setFont(new Font("CookieRunOTF Black", Font.PLAIN, 20));
 		lblNewLabel.setBounds(308, 67, 172, 199);
 		frame.getContentPane().add(lblNewLabel);
+		
+		// todos!
+		
+		// String query = " select cm.carname from carmanagement as cm join
+		// reservation as re on re.carid = cm.carid where (re.start_date > ? or
+		// re.end_date < ?) and cm.carname != ? ";
+		
+		// 해당 쿼리로 jdbc 작성 후 차량변경 클래스 carchange 에 해당 날짜에
+		// 예약이 가능한 차 carname 값 받아와서 
+		// 불리언 차량res 값을 true로 변경해 주는 기능 구현
+		
 
-		// 차량 버튼
-		k3 = new JButton(new ImageIcon("img/k3.png"));
-		k5 = new JButton(new ImageIcon("img/k5.png"));
-		model3 = new JButton(new ImageIcon("img/MODEL3.png"));
-		nexo = new JButton(new ImageIcon("img/넥쏘.png"));
-		staria = new JButton(new ImageIcon("img/스타리아.png"));
-		sonata = new JButton(new ImageIcon("img/쏘나타.png"));
-		avante = new JButton(new ImageIcon("img/아반떼.png"));
-		kanibal = new JButton(new ImageIcon("img/카니발.png"));
+		JTextField choiceCar = new JTextField("선택된 차량 : ");
+		choiceCar.setBounds(340, 700, 135, 50);
+		choiceCar.setBorder(new LineBorder(new Color(0, 0, 0, 0)));
+		choiceCar.setEditable(false);
+		choiceCar.setForeground(Color.BLACK);
+		choiceCar.setBackground(new Color(0, 0, 0, 0));
+		choiceCar.setFont(new Font("굴림", Font.BOLD, 20));
+		frame.getContentPane().add(choiceCar);
+		
+		JTextField choiceCarValue = new JTextField();
+		choiceCarValue.setBounds(470, 700, 130, 50);
+		choiceCarValue.setBorder(new LineBorder(new Color(0, 0, 0, 0)));
+		choiceCarValue.setEditable(false);
+		choiceCarValue.setForeground(Color.BLACK);
+		choiceCarValue.setOpaque(false); // 배경 투명 설정
+//		choiceCarValue.setBackground(new Color(0, 0, 0, 0));
+		choiceCarValue.setFont(new Font("굴림", Font.BOLD, 20));
+		frame.getContentPane().add(choiceCarValue);
 
+		
+		if (k3res == true) {
+			k3 = new JButton(new ImageIcon("img/k3.png"));
+			k3.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mousePressed(MouseEvent e) {
+					choiceCarValue.setText("K3");
+					frame.repaint();
+					carid = "47호4827";
+				}
+			});
+		} else {
+			k3 = new JButton(new ImageIcon("img/k3x.png"));
+		}
+		if (k5res == true) {
+			k5 = new JButton(new ImageIcon("img/k5.png"));
+			k5.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mousePressed(MouseEvent e) {
+					choiceCarValue.setText("K5");
+					frame.repaint();
+					carid = "49허3814";
+				}
+			});
+		} else {
+			k5 = new JButton(new ImageIcon("img/k5x.png"));
+		}
+		if (model3res == true) {
+			model3 = new JButton(new ImageIcon("img/model3.png"));
+			model3.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mousePressed(MouseEvent e) {
+					choiceCarValue.setText("모델3");
+					frame.repaint();
+					carid = "52하3362";
+				}
+			});
+		} else {
+			model3 = new JButton(new ImageIcon("img/model3x.png"));
+		}
+		if (nexores == true) {
+			nexo = new JButton(new ImageIcon("img/넥쏘.png"));
+			nexo.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mousePressed(MouseEvent e) {
+					choiceCarValue.setText("넥쏘");
+					frame.repaint();
+					carid = "53호6642";
+				}
+			});
+		} else {
+			nexo = new JButton(new ImageIcon("img/넥쏘x.png"));
+		}
+		if (stariares == true) {
+			staria = new JButton(new ImageIcon("img/스타리아.png"));
+			staria.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mousePressed(MouseEvent e) {
+					choiceCarValue.setText("스타렉스");
+					frame.repaint();
+					carid = "51하3942";
+				}
+			});
+		} else {
+			staria = new JButton(new ImageIcon("img/스타리아x.png"));
+		}
+		if (sonatares == true) {
+			sonata = new JButton(new ImageIcon("img/쏘나타.png"));
+			sonata.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mousePressed(MouseEvent e) {
+					choiceCarValue.setText("소나타");
+					frame.repaint();
+					carid = "46하8247";
+				}
+			});
+		} else {
+			sonata = new JButton(new ImageIcon("img/쏘나타x.png"));
+		}
+		if (avanteres == true) {
+			avante = new JButton(new ImageIcon("img/아반떼.png"));
+			avante.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mousePressed(MouseEvent e) {
+					choiceCarValue.setText("아반떼");
+					frame.repaint();
+					carid = "48허2748";
+				}
+			});
+		} else {
+			avante = new JButton(new ImageIcon("img/아반떼x.png"));
+		}
+		if (kanibalres == true) {
+			kanibal = new JButton(new ImageIcon("img/카니발.png"));
+			kanibal.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mousePressed(MouseEvent e) {
+					choiceCarValue.setText("카니발");
+					frame.repaint();
+					carid = "50호3827";
+				}
+			});
+		} else {
+			kanibal = new JButton(new ImageIcon("img/카니발x.png"));
+		}
 		k3.setBounds(60, 180, 200, 200);
 		k3.setLayout(null);
 		frame.add(k3);
@@ -156,90 +291,17 @@ public class CarChange {
 		avante.setContentAreaFilled(false);
 		kanibal.setContentAreaFilled(false);
 
-		JTextField choiceCar = new JTextField("선택된 차량 : ");
-		choiceCar.setBounds(340, 700, 135, 50);
-		choiceCar.setBorder(new LineBorder(new Color(0, 0, 0, 0)));
-		choiceCar.setEditable(false);
-		choiceCar.setForeground(Color.BLACK);
-		choiceCar.setBackground(new Color(0, 0, 0, 0));
-		choiceCar.setFont(new Font("굴림", Font.BOLD, 20));
-		frame.getContentPane().add(choiceCar);
 
-		JTextField choiceCarValue = new JTextField();
-		choiceCarValue.setBounds(470, 700, 130, 50);
-		choiceCarValue.setBorder(new LineBorder(new Color(0, 0, 0, 0)));
-		choiceCarValue.setEditable(false);
-		choiceCarValue.setForeground(Color.BLACK);
-		choiceCarValue.setOpaque(false); // 배경 투명 설정
-//		choiceCarValue.setBackground(new Color(0, 0, 0, 0));
-		choiceCarValue.setFont(new Font("굴림", Font.BOLD, 20));
-		frame.getContentPane().add(choiceCarValue);
-
-		// 버튼 별
-		k3.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-				choiceCarValue.setText("K3");
-				frame.repaint();
-				carid = "47호4827";
-			}
-		});
-		k5.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-				choiceCarValue.setText("K5");
-				frame.repaint();
-				carid = "49허3814";
-			}
-		});
-		model3.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-				choiceCarValue.setText("모델3");
-				frame.repaint();
-				carid = "52하3362";
-			}
-		});
-		nexo.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-				choiceCarValue.setText("넥쏘");
-				frame.repaint();
-				carid = "53호6642";
-			}
-		});
-		staria.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-				choiceCarValue.setText("스타렉스");
-				frame.repaint();
-				carid = "51하3942";
-			}
-		});
-		sonata.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-				choiceCarValue.setText("소나타");
-				frame.repaint();
-				carid = "46하8247";
-			}
-		});
-		avante.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-				choiceCarValue.setText("아반떼");
-				frame.repaint();
-				carid = "48허2748";
-			}
-		});
-		kanibal.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-				choiceCarValue.setText("카니발");
-				frame.repaint();
-				carid = "50호3827";
-			}
-		});
+		
+	
+		
+		
+		
+		
+		
+		
+		
+		
 
 		btnNewButton = new JButton(img);
 		btnNewButton.setBorderPainted(false);

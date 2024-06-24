@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import DTO.CarInfoDTO;
+import DTO.ReservationCarDTO;
 import DTO.ReservationDTO;
 import DTO.ReservationPersonInfoDTO;
 import DTO.SelectDTO;
@@ -20,9 +21,6 @@ import lombok.ToString;
 
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@ToString
 public class CarDAO {
 
 	static int state;
@@ -42,7 +40,7 @@ public class CarDAO {
 		}
 		return reservationDTO;
 	}
-	
+
 	public static void changeDate(Date rentDate, Date returnDate, int id) throws SQLException {
 
 		String query = " UPDATE reservation SET start_date = ? , end_date = ? WHERE reservation_id = ?; ";
@@ -58,7 +56,34 @@ public class CarDAO {
 		}
 
 	}
-	
+	// select u.username, r.start_date, r.end_date from carinfo as ci join
+	// carmanagement as cm on ci.carname = cm.carname join reservation as r on
+	// r.carid = cm.carid join users as u on u.username = r.username where
+	// ci.carname = ?;
+
+	public static boolean isDateRangeAvailable(String carname, Date startDate, Date endDate) {
+		String query = " SELECT * FROM reservation as r join carmanagement as cm on r.carid = cm.carid WHERE cm.carname = ? AND ((start_date <= ? AND end_date >= ?) OR (start_date <= ? AND end_date >= ?) OR (start_date >= ? AND end_date <= ?)) ";
+		try (Connection conn = DBCarConnectionManager.getConnection()) {
+			PreparedStatement pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, carname);
+			pstmt.setDate(2, new java.sql.Date(startDate.getTime()));
+			pstmt.setDate(3, new java.sql.Date(startDate.getTime()));
+			pstmt.setDate(4, new java.sql.Date(endDate.getTime()));
+			pstmt.setDate(5, new java.sql.Date(endDate.getTime()));
+			pstmt.setDate(6, new java.sql.Date(startDate.getTime()));
+			pstmt.setDate(7, new java.sql.Date(endDate.getTime()));
+
+			ResultSet rs = pstmt.executeQuery();
+			return !rs.next();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+
+	//String query = " select cm.carname from carmanagement as cm join reservation as re on re.carid = cm.carid where (re.start_date > ? or re.end_date < ?) and cm.carname != ? ";
+		
+
 	public static ReservationDTO reservationNumSelec(int id, String name) {
 
 		ReservationDTO reservationDTO = null;
@@ -85,8 +110,8 @@ public class CarDAO {
 				int priceperday = rs.getInt("priceperday");
 				String licenseGrade = rs.getString("licenseGrade");
 
-				reservationDTO = new ReservationDTO(reservation_id, username, carname, carid, cartype,brand,
-						puel,phonenum,start_date,end_date,priceperday,licenseGrade);
+				reservationDTO = new ReservationDTO(reservation_id, username, carname, carid, cartype, brand, puel,
+						phonenum, start_date, end_date, priceperday, licenseGrade);
 			}
 
 		} catch (SQLException e) {
@@ -94,7 +119,7 @@ public class CarDAO {
 		}
 		return reservationDTO;
 	}
-	
+
 	public static void changeCar(String carid, int id) throws SQLException {
 		String query = " Update reservation set carid = ? where reservation_id = ? ";
 
@@ -131,8 +156,8 @@ public class CarDAO {
 				Date end_date = rs.getDate("end_date");
 				int priceperday = rs.getInt("priceperday");
 				String licenseGrade = rs.getString("paymentornot");
-				list.add(new ReservationDTO(reservation_id, username, carname, carid, cartype,brand,
-						puel,phonenum,start_date,end_date,priceperday,licenseGrade));
+				list.add(new ReservationDTO(reservation_id, username, carname, carid, cartype, brand, puel, phonenum,
+						start_date, end_date, priceperday, licenseGrade));
 			}
 
 		}
@@ -212,23 +237,21 @@ public class CarDAO {
 		return list;
 	}
 
-	public static List<SelectDTO> viewNameType(String name) throws SQLException {
-		List<SelectDTO> list = new ArrayList<>();
+	public static List<ReservationCarDTO> viewNameType(String carname) throws SQLException {
+		List<ReservationCarDTO> list = new ArrayList<>();
 
-		String query = " select cm.carname, ci.cartype, ci.brand, ci.puel, ci.needlicence, ci.priceperday from carmanagement as cm join carinfo as ci on cm.carname = ci.carname where cm.carname = ?; ";
+		String query = " select r.reservation_id,u.username, r.start_date, r.end_date from carinfo as ci join carmanagement as cm on ci.carname = cm.carname join reservation as r on r.carid = cm.carid join users as u on u.username = r.username where ci.carname = ?;  ";
 		try (Connection conn = DBCarConnectionManager.getConnection()) {
 			PreparedStatement pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, name);
+			pstmt.setString(1, carname);
 
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
-				String carname = rs.getString("carname");
-				String cartype = rs.getString("cartype");
-				String brand1 = rs.getString("brand");
-				String puel1 = rs.getString("puel");
-				String needlicence = rs.getString("needlicence");
-				int priceperday = rs.getInt("priceperday");
-				SelectDTO dto = new SelectDTO(carname, cartype, brand1, puel1, needlicence, priceperday);
+				int reservationid = rs.getInt("reservation_id");
+				String username = rs.getString("username");
+				Date startdate = Date.valueOf(rs.getString("start_date"));
+				Date enddate = Date.valueOf(rs.getString("end_date"));
+				ReservationCarDTO dto = new ReservationCarDTO(reservationid, username, startdate, enddate);
 				list.add(dto);
 			}
 		}
