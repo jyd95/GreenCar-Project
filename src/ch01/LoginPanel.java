@@ -11,11 +11,15 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import DAO.CarDAO;
 import DTO.ReservationPersonInfoDTO;
+import lombok.Data;
+
+@Data
 
 public class LoginPanel extends JFrame {
 
@@ -24,6 +28,9 @@ public class LoginPanel extends JFrame {
 
 	// 로고
 	private JLabel greeeCarLogo;
+
+	// 이미지
+	private ImageIcon signUpBtnImg;
 
 	// 레이블
 	private JLabel idLabel;
@@ -36,7 +43,6 @@ public class LoginPanel extends JFrame {
 	// 텍스트 필드
 	private JTextField idTextField;
 	private JTextField pwdTextField;
-	private JTextField LicenseField;
 	private JTextField phoneNumField;
 	private JTextField addressField;
 	private JTextField emailField;
@@ -63,6 +69,7 @@ public class LoginPanel extends JFrame {
 
 		// 로고
 		greeeCarLogo = new JLabel(new ImageIcon("img/logo2.png"));
+		signUpBtnImg = new ImageIcon("img/회원가입.png");
 
 		// id, pwd 라벨
 		idLabel = new JLabel("아이디");
@@ -75,7 +82,6 @@ public class LoginPanel extends JFrame {
 		// 텍스트 필드
 		idTextField = new JTextField();
 		pwdTextField = new JTextField();
-		LicenseField = new JTextField();
 		phoneNumField = new JTextField();
 		addressField = new JTextField();
 		emailField = new JTextField();
@@ -84,7 +90,7 @@ public class LoginPanel extends JFrame {
 		comboBox = new JComboBox(licenceLevel);
 
 		// 버튼
-		signUpBtn = new JButton("회원가입");
+		signUpBtn = new JButton(signUpBtnImg);
 	}
 
 	public void setInitLayout() {
@@ -155,15 +161,11 @@ public class LoginPanel extends JFrame {
 		backgroundPanel.add(comboBox);
 
 		// 버튼
-		signUpBtn.setBounds(250, 730, 130, 80);
-		backgroundPanel.add(signUpBtn);
+		signUpBtn.setBounds(220, 730, 180, 80);
+		signUpBtn.setBorder(null);
+		signUpBtn.setContentAreaFilled(false);
 
-//		try {
-//			ReservationPersonInfoDTO dto = CarDAO.insertPerson(idTextField.getText(), pwdTextField.getText(),
-//					phoneNumField.getText(), addressField.getText(), emailField.getText(), LicenseField.getText());
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}
+		backgroundPanel.add(signUpBtn);
 
 		setVisible(true);
 	}
@@ -171,9 +173,27 @@ public class LoginPanel extends JFrame {
 	private void addEventListener() {
 		signUpBtn.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent e) {
-				CarChange cc = new CarChange();
-				cc.main(null);
-				setVisible(false);
+				if (idTextField.getText().isEmpty() || pwdTextField.getText().isEmpty()
+						|| phoneNumField.getText().isEmpty() || addressField.getText().isEmpty()
+						|| emailField.getText().isEmpty()) {
+					JOptionPane.showConfirmDialog(null, "값을 입력해주세요", "알림", JOptionPane.DEFAULT_OPTION,
+							JOptionPane.PLAIN_MESSAGE);
+				} else {
+					try {
+						InputReservationInfo iri = new InputReservationInfo(idTextField.getText(),
+								pwdTextField.getText(), phoneNumField.getText(), addressField.getText(),
+								emailField.getText(), (String) comboBox.getSelectedItem());
+						ReservationPersonInfoDTO dto = CarDAO.insertPerson(idTextField.getText(),
+								pwdTextField.getText(), phoneNumField.getText(), addressField.getText(),
+								emailField.getText(), comboBox.getSelectedItem().toString());
+						JOptionPane.showConfirmDialog(null, "회원가입 완료", "알림", JOptionPane.DEFAULT_OPTION,
+								JOptionPane.PLAIN_MESSAGE);
+						setVisible(false);
+					} catch (SQLException s) {
+						s.printStackTrace();
+					}
+
+				}
 			}
 		});
 	}

@@ -19,8 +19,8 @@ public class RentalCarSystem extends JFrame {
 
     public RentalCarSystem() {
         initializeDB();
-        createMainFrame();
-        createLoginGUI();
+//        createMainFrame();
+//        createLoginGUI();
     }
 
     private void initializeDB() {
@@ -31,66 +31,66 @@ public class RentalCarSystem extends JFrame {
         }
     }
 
-    private void createMainFrame() {
-        setTitle("렌터카 시스템");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(800, 600);
-        setLocationRelativeTo(null);
+//    private void createMainFrame() {
+//        setTitle("렌터카 시스템");
+//        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//        setSize(800, 600);
+//        setLocationRelativeTo(null);
+//
+//        mainPanel = new JPanel(new BorderLayout());
+//        mainPanel.setBorder(new EmptyBorder(10, 10, 10, 10));
+//
+//        tabbedPane = new JTabbedPane();
+//        mainPanel.add(tabbedPane, BorderLayout.CENTER);
+//
+//        add(mainPanel);
+//        setVisible(true);
+//    }
+//
+//    private void createLoginGUI() {
+//        JFrame frame = new JFrame("로그인");
+//        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//        frame.setSize(300, 150);
+//        frame.setLayout(new BorderLayout());
+//
+//        JPanel panel = new JPanel();
+//        panel.setLayout(new GridLayout(3, 2));
+//
+//        JLabel usernameLabel = new JLabel("사용자 이름:");
+//        JTextField usernameField = new JTextField();
+//        JLabel passwordLabel = new JLabel("비밀번호:");
+//        JPasswordField passwordField = new JPasswordField();
+//        JButton loginButton = new JButton("로그인");
+//        JButton signupButton = new JButton("회원 가입");
+//
+//        panel.add(usernameLabel);
+//        panel.add(usernameField);
+//        panel.add(passwordLabel);
+//        panel.add(passwordField);
+//        panel.add(loginButton);
+//        panel.add(signupButton);
+//
+//        frame.add(panel, BorderLayout.CENTER);
+//        frame.setVisible(true);
+//
+//        loginButton.addActionListener(e -> {
+//            String username = usernameField.getText();
+//            String password = new String(passwordField.getPassword());
+//            if (checkLogin(username, password)) {
+//                frame.dispose();
+//                createMainTabs(username);
+//            } else {
+//                JOptionPane.showMessageDialog(null, "로그인 실패. 사용자 이름 또는 비밀번호를 확인하세요.");
+//            }
+//        });
+//
+//        signupButton.addActionListener(e -> {
+//            frame.dispose();
+//            showSignupForm();
+//        });
+//    }
 
-        mainPanel = new JPanel(new BorderLayout());
-        mainPanel.setBorder(new EmptyBorder(10, 10, 10, 10));
-
-        tabbedPane = new JTabbedPane();
-        mainPanel.add(tabbedPane, BorderLayout.CENTER);
-
-        add(mainPanel);
-        setVisible(true);
-    }
-
-    private void createLoginGUI() {
-        JFrame frame = new JFrame("로그인");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(300, 150);
-        frame.setLayout(new BorderLayout());
-
-        JPanel panel = new JPanel();
-        panel.setLayout(new GridLayout(3, 2));
-
-        JLabel usernameLabel = new JLabel("사용자 이름:");
-        JTextField usernameField = new JTextField();
-        JLabel passwordLabel = new JLabel("비밀번호:");
-        JPasswordField passwordField = new JPasswordField();
-        JButton loginButton = new JButton("로그인");
-        JButton signupButton = new JButton("회원 가입");
-
-        panel.add(usernameLabel);
-        panel.add(usernameField);
-        panel.add(passwordLabel);
-        panel.add(passwordField);
-        panel.add(loginButton);
-        panel.add(signupButton);
-
-        frame.add(panel, BorderLayout.CENTER);
-        frame.setVisible(true);
-
-        loginButton.addActionListener(e -> {
-            String username = usernameField.getText();
-            String password = new String(passwordField.getPassword());
-            if (checkLogin(username, password)) {
-                frame.dispose();
-                createMainTabs(username);
-            } else {
-                JOptionPane.showMessageDialog(null, "로그인 실패. 사용자 이름 또는 비밀번호를 확인하세요.");
-            }
-        });
-
-        signupButton.addActionListener(e -> {
-            frame.dispose();
-            showSignupForm();
-        });
-    }
-
-    private boolean checkLogin(String username, String password) {
+    public boolean checkLogin(String username, String password) {
         String query = "SELECT * FROM users WHERE username = ? AND password = ?";
         try (PreparedStatement pstmt = conn.prepareStatement(query)) {
             pstmt.setString(1, username);
@@ -484,7 +484,7 @@ public class RentalCarSystem extends JFrame {
                 if (signupUser(username, password, phonum, address, email)) {
                     JOptionPane.showMessageDialog(null, "회원 가입이 완료되었습니다.");
                     frame.dispose();
-                    createLoginGUI();
+//                    createLoginGUI();
                 } else {
                     JOptionPane.showMessageDialog(null, "회원 가입 실패. 다시 시도하세요.");
                 }

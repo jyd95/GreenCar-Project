@@ -314,8 +314,8 @@ public class CarDAO {
 
 		ReservationPersonInfoDTO dto = null;
 
-		String query = " INSERT INTO users(name, password, phonenum, address,email,licenseGrade) values(?, ?, ?, ?, ?, ?); ";
-		String select = " select * from users where phoneNum = ? ";
+		String query = " INSERT INTO users(username, password, phonenum, address, email, licenseGrade) values(?, ?, ?, ?, ?, ?); ";
+		// String select = " select * from users where phonenum = ? ";
 		// String selectPay = " INSERT INTO users(personId, pay) values( ?, ?); ";
 
 		try (Connection conn = DBCarConnectionManager.getConnection()) {
@@ -327,27 +327,18 @@ public class CarDAO {
 			pstmt.setString(5, email);
 			pstmt.setString(6, licenseGrade);
 
-			PreparedStatement pstmt2 = conn.prepareStatement(select);
-			ResultSet rs = pstmt2.executeQuery();
-			while (rs.next()) {
-				String name2 = rs.getString("name");
-				String password2 = rs.getString("password");
-				String phoneNum2 = rs.getString("phoneNum");
-				String address2 = rs.getString("address");
-				String email2 = rs.getString("email");
-				String licenseGrade2 = rs.getString("licenseGrade");
-				dto = new ReservationPersonInfoDTO(name2, password2, phoneNum2, address2, email2, licenseGrade2);
-				if (phoneNum.equalsIgnoreCase(dto.getPhoneNum()))
-					try {
-
-						state = 2;
-						System.out.println("이미있는 번호입니다");
-
-					} catch (Exception e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-			}
+			// PreparedStatement pstmt2 = conn.prepareStatement(select);
+			// ResultSet rs = pstmt2.executeQuery();
+//			while (rs.next()) {
+//				String name2 = rs.getString("username");
+//				String password2 = rs.getString("password");
+//				String phoneNum2 = rs.getString("phonenum");
+//				String address2 = rs.getString("address");
+//				String email2 = rs.getString("email");
+//				String licenseGrade2 = rs.getString("licenseGrade");
+//				dto = new ReservationPersonInfoDTO(name2, password2, phoneNum2, address2, email2, licenseGrade2);
+//
+//			}
 			pstmt.executeUpdate();
 			System.out.println("업데이트");
 
