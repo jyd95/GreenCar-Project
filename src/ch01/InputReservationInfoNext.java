@@ -29,7 +29,8 @@ public class InputReservationInfoNext {
 	private String liceneceLevel;
 	private String phoneNumber;
 	private JFrame frame;
-	private boolean payment = false;
+	private String payment;
+	private int pay; //현장결제 0 , 선결제 1;
 	/**
 	 * Launch the application.
 	 */
@@ -52,7 +53,15 @@ public class InputReservationInfoNext {
 	public InputReservationInfoNext() {
 		initialize();
 	}
-
+	
+	public InputReservationInfoNext(String name, String licenceNum, String phoneNumber, String licenceLevel) {
+		name = this.name;
+		licenceNum = this.licenceNum;
+		phoneNumber = this.phoneNumber;
+		licenceLevel = this.liceneceLevel;
+		initialize();
+	}
+	
 	/**
 	 * Initialize the contents of the frame.
 	 */
@@ -70,7 +79,8 @@ public class InputReservationInfoNext {
 		frame.setResizable(false);
 		frame.getContentPane().setLayout(null);
 		
-		final JList list = new JList(whenPay);
+		final JList list = new JList(whenPay); // 콤보박스로 수정하기, 
+		// 콤보박스.겟액션커멘드 하면 바로 스트링 값 읽음 , JList보다 값 읽어오기 훨씬 쉬움
 		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		list.addListSelectionListener(new ListSelectionListener() {
 			
@@ -104,7 +114,18 @@ public class InputReservationInfoNext {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				// insertPerson 넣기
+				// todo = payment = 콤보박스에서 값 받아오기
+				if(payment.equals(afterpay)) {
+					pay = 0;
+				}else if (payment.equals(prepay)){
+					pay = 1;
+				}else {
+					System.out.println("어케함?");
+				}
+				// 리턴값 확인후 true펄슨 or false펄슨 실행
 				
+				// ReservationUpdatePage 에 abcde 다 넣어서 실행
 				ReservationUpdatePage rup = new ReservationUpdatePage();
 				rup.setVisible(true);
 				frame.setVisible(false);

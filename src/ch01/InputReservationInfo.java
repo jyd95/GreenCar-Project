@@ -116,6 +116,11 @@ public class InputReservationInfo extends JFrame {
 		JButton btnNewButton = new JButton(img1);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				String name = textField.getText();
+				String licenceNum = textField_1.getText();
+				String phoneNumber = textField_2.getText();
+				String licenceLevel = comboBox.getActionCommand();
+				
 				InputReservationInfoNext irin = new InputReservationInfoNext();
 				irin.main(null);
 				setVisible(false);

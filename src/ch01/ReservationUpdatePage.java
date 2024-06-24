@@ -6,6 +6,8 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.Date;
+import java.sql.SQLException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -19,8 +21,16 @@ import DAO.CarDAO;
 import DTO.ReservationDTO;
 
 public class ReservationUpdatePage extends JFrame {
+<<<<<<< HEAD
 
 	private int receivedid;
+=======
+	
+	private int receivedid; // 조회용 예약 id 받아온 값
+	private String receivedcarid; // 차량 변경시 필요한 carId 받아온값
+	private Date receivedrentdate; // 대여기간 변경시 필요한 빌리는 날 받아온값
+	private Date receivedreturndate; // 대여기간 변경시 필요한 반납하는 날 받아온값
+>>>>>>> 124ea0958278fad855aca264e923afa878ca9ef6
 	private JPanel backgroundPanel;
 	private JButton updateCarBtn;
 	private JButton updateDateBtn;
@@ -68,9 +78,38 @@ public class ReservationUpdatePage extends JFrame {
 	private ImageIcon lineImg;
 
 	private JLabel logoLabel;
+<<<<<<< HEAD
 
+=======
+	
+	ReservationDTO dto;
+	
+>>>>>>> 124ea0958278fad855aca264e923afa878ca9ef6
 	public ReservationUpdatePage(int receivedid) {
 		this.receivedid = receivedid;
+		dto = CarDAO.reservationNumSelec(receivedid);
+		initData();
+		setInitLayout();
+		addEventListener();
+	}
+	
+	public ReservationUpdatePage(String receivedcarid, int receivedid) throws SQLException {
+		this.receivedid = receivedid;
+		this.receivedcarid = receivedcarid;
+		CarDAO.changeCat(receivedcarid ,receivedid);
+		dto = CarDAO.reservationNumSelec(receivedid);
+		initData();
+		setInitLayout();
+		addEventListener();
+	}
+	
+	public ReservationUpdatePage(Date receivedrentdate, Date receivedreturndate, int receivedid) throws SQLException {
+		this.receivedid = receivedid;
+		this.receivedrentdate = receivedrentdate;
+		this.receivedreturndate = receivedreturndate;
+		CarDAO.changeRent(receivedrentdate ,receivedid);
+		CarDAO.changeReturn(receivedreturndate ,receivedid);
+		dto = CarDAO.reservationNumSelec(receivedid);
 		initData();
 		setInitLayout();
 		addEventListener();
@@ -153,8 +192,13 @@ public class ReservationUpdatePage extends JFrame {
 
 		backgroundPanel.add(title);
 		System.out.println(receivedid);
+<<<<<<< HEAD
 
 		ReservationDTO dto = CarDAO.reservationNumSelec(receivedid);
+=======
+		
+		
+>>>>>>> 124ea0958278fad855aca264e923afa878ca9ef6
 
 		id.setBounds(549, 250, 190, 30);
 		name.setBounds(549, 280, 190, 30);
