@@ -80,6 +80,7 @@ public class CarDetail extends JFrame implements ActionListener {
 
 	// 배경 패널
 	public void setInitLayout() {
+
 		// backgroundPanel
 		backgroundPanel.setSize(getWidth(), getHeight());
 		backgroundPanel.setBackground(Color.WHITE);
@@ -104,7 +105,7 @@ public class CarDetail extends JFrame implements ActionListener {
 
 	}
 
-	// 새 창에 뜨는 이미지
+	// 새 창에 뜨는 차량 및 설명 이미지
 	public void DetailK3() {
 
 		// 차량 이미지
@@ -234,17 +235,17 @@ public class CarDetail extends JFrame implements ActionListener {
 
 	}
 
+	// 버튼 클릭 시 날짜 선택으로 전환
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(HomePagePanel.movement == 1) {
+		if (HomePagePanel.movement == 1) {
 			DiaryReservationPanel drp = new DiaryReservationPanel();
 			drp.setVisible(true);
 			setVisible(false);
-		}else {
+		} else {
 			ReservationUpdatePage rup = new ReservationUpdatePage();
 			rup.setVisible(true);
 			setVisible(false);
 		}
-
 	}
 }
