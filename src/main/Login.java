@@ -19,6 +19,7 @@ import javax.swing.border.EmptyBorder;
 import DAO.RentalCarSystem;
 import ch01.HomePagePanel;
 import ch01.JoinMembership;
+import ch01.LoginPanel;
 import ch01.ReservationSearch;
 
 public class Login extends JFrame {
@@ -28,10 +29,15 @@ public class Login extends JFrame {
 	private JPanel contentPane;
 	private ReservationSearch reservationSearch;
 	private JFrame frame1;
+	private String name;
+	private String password;
+	private String phoneNum;
+	private String address;
+	private String email;
+	private String licenseGrade;
+
 	private String username;
-	
-	
-	
+
 	/**
 	 * Launch the application.
 	 */
@@ -46,6 +52,22 @@ public class Login extends JFrame {
 				}
 			}
 		});
+	}
+
+	public void InputReservationInfo(String name, String password, String phoneNum, String address, String email,
+			String licenseGrade) {
+		this.name = name;
+		this.password = password;
+		this.phoneNum = phoneNum;
+		this.address = address;
+		this.email = email;
+		this.licenseGrade = licenseGrade;
+		System.out.println(name);
+		System.out.println(password);
+		System.out.println(phoneNum);
+		System.out.println(address);
+		System.out.println(email);
+		System.out.println(licenseGrade);
 	}
 
 	/**
@@ -103,15 +125,16 @@ public class Login extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				String id = textField.getText();
 				String pw = textField_1.getText();
-				if(rcs.checkLogin(id,pw)) {
+				if (rcs.checkLogin(id, pw)) {
 					System.out.println("로그인 성공");
-					HomePagePanel hpp= new HomePagePanel(id);
+					HomePagePanel hpp = new HomePagePanel(id);
 					hpp.setVisible(true);
-					frame1.dispose();	
-				}else {
-					JOptionPane.showConfirmDialog(null, "로그인 실패", "알림", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE);
+					frame1.dispose();
+				} else {
+					JOptionPane.showConfirmDialog(null, "로그인 실패", "알림", JOptionPane.DEFAULT_OPTION,
+							JOptionPane.PLAIN_MESSAGE);
 				}
-				
+
 			}
 		});
 		JButton btnNewButton_1 = new JButton(img2);
@@ -119,11 +142,12 @@ public class Login extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				String name = textField.getText();
 				String licenceNum = textField_1.getText();
+				LoginPanel lg = new LoginPanel();
+				lg.setVisible(true);
 
-				JoinMembership jms = new JoinMembership();
-				jms.setVisible(true);
 			}
 		});
+
 		btnNewButton_1.setBounds(446, 259, 206, 55);
 		contentPane.add(btnNewButton_1);
 
@@ -136,8 +160,6 @@ public class Login extends JFrame {
 		JLabel background = new JLabel(new ImageIcon("img/reservation.png"));
 		background.setBounds(0, 0, 1000, 561);
 		contentPane.add(background);
-
-		
 
 	}
 }

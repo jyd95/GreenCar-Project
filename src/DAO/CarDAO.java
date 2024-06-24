@@ -346,41 +346,36 @@ public class CarDAO {
 
 	// 인설트펄슨에서 인풋레저베이션 넥스트에 리턴값을 줘야 할거 같음
 	// void -> int 월요일 수정 상의
-	public static void insertPerson(String name, String licenseNum, String licenseGreade, String phoneNum)
-			throws SQLException {
+	public static ReservationPersonInfoDTO insertPerson(String name, String password, String phoneNum, String address,
+			String email, String licenseGrade) throws SQLException {
 
-		String query = " INSERT INTO reservationpersoninfo(name, licensenum, licensegrade, phoneNum) values(?, ?, ?, ?); ";
-		String select = " select * from reservationpersoninfo where phoneNum = ? ";
-		String selectPay = " INSERT INTO reservationinfo(personId, pay) values( ?, ?); ";
+		ReservationPersonInfoDTO dto = null;
+
+		String query = " INSERT INTO users(username, password, phonenum, address, email, licenseGrade) values(?, ?, ?, ?, ?, ?); ";
+		// String select = " select * from users where phonenum = ? ";
+		// String selectPay = " INSERT INTO users(personId, pay) values( ?, ?); ";
 
 		try (Connection conn = DBCarConnectionManager.getConnection()) {
 			PreparedStatement pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, name);
-			pstmt.setString(2, licenseNum);
-			pstmt.setString(3, licenseGreade);
-			pstmt.setString(4, phoneNum);
-			PreparedStatement pstmt2 = conn.prepareStatement(select);
-			pstmt2.setString(1, phoneNum);
-			ResultSet rs = pstmt2.executeQuery();
-			while (rs.next()) {
-				int personId = rs.getInt("personId");
-				String name2 = rs.getString("name");
-				String licenseNum2 = rs.getString("licenseNum");
-				String licenseGreade2 = rs.getString("licenseGrade");
-				String phoneNum2 = rs.getString("phoneNum");
-				ReservationPersonInfoDTO dto = new ReservationPersonInfoDTO(personId, name2, licenseNum2,
-						licenseGreade2, phoneNum2);
-				if (phoneNum.equalsIgnoreCase(dto.getPhoneNum()))
-					try {
+			pstmt.setString(2, password);
+			pstmt.setString(3, phoneNum);
+			pstmt.setString(4, address);
+			pstmt.setString(5, email);
+			pstmt.setString(6, licenseGrade);
 
-						state = 2;
-						System.out.println("이미있는 번호입니다");
-
-					} catch (Exception e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-			}
+			// PreparedStatement pstmt2 = conn.prepareStatement(select);
+			// ResultSet rs = pstmt2.executeQuery();
+//			while (rs.next()) {
+//				String name2 = rs.getString("username");
+//				String password2 = rs.getString("password");
+//				String phoneNum2 = rs.getString("phonenum");
+//				String address2 = rs.getString("address");
+//				String email2 = rs.getString("email");
+//				String licenseGrade2 = rs.getString("licenseGrade");
+//				dto = new ReservationPersonInfoDTO(name2, password2, phoneNum2, address2, email2, licenseGrade2);
+//
+//			}
 			pstmt.executeUpdate();
 			System.out.println("업데이트");
 
@@ -389,6 +384,7 @@ public class CarDAO {
 		Exception e) {
 			e.printStackTrace();
 		}
+		return dto;
 
 	}
 

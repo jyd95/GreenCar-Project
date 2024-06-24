@@ -1,4 +1,5 @@
 package DAO;
+
 import java.sql.Date;
 import java.sql.SQLException;
 import java.util.List;
@@ -37,19 +38,18 @@ public interface reservationImploy {
 
 	// 차량을 1일당 가격 순으로 오름차순 정렬하는 쿼리(최고가 정렬)
 	public List<SelectDTO> orderDescPriceType() throws SQLException;
-	
+
 	// 차량 변경
 	public void changeCat(String carid, int id) throws SQLException;
-	
+
 	// 렌트일 변경
 	public void changeRent(Date rentDate, int id) throws SQLException;
-	
-	// 반납일 변경 
-	public void changeReturn(Date returnDate, int id) throws SQLException;
-	
-	// 예약 1단계
-	public void insertPerson(String name,String licenseNum, String licenseGreade, String phoneNum) throws SQLException;
 
-	
-	
+	// 반납일 변경
+	public void changeReturn(Date returnDate, int id) throws SQLException;
+
+	// 예약 1단계
+	public void insertPerson(String username, String password, String phonenum, String address, String email,
+			String licenseGrade) throws SQLException;
+
 }
