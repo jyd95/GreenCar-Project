@@ -24,7 +24,7 @@ import lombok.Setter;
 
 public class ReservationUpdatePage extends JFrame {
 	private JPanel backgroundPanel;
-
+	
 	// 버튼
 	private JButton updateCarBtn;
 	private JButton updateDateBtn;
@@ -98,6 +98,8 @@ public class ReservationUpdatePage extends JFrame {
 		setInitLayout();
 		addEventListener();
 	}
+	
+	
 
 	public ReservationUpdatePage() {
 		initData();
@@ -441,8 +443,8 @@ public class ReservationUpdatePage extends JFrame {
 		});
 		updateDateBtn.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent e) {
-				DateChange2 dc = new DateChange2(null,null);
-				dc.setVisible(true);
+				new DateChange2(null,null);
+//				dc.setVisible(true);
 				setVisible(false);
 			}
 		});
