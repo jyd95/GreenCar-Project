@@ -24,7 +24,7 @@ public class CarDAO {
 
 	CarDAO carDAO = getCarDAO();
 	int state = 1;
-
+	// 오버라이드 삭제 -> 스태틱 넣음
 	public static ReservationDTO reservationNumSelec(int id) {
 
 		ReservationDTO reservationDTO = null;
@@ -341,8 +341,6 @@ public class CarDAO {
 
 	}
 
-	
-
 	public void truePerson(String phone, int pay) throws SQLException {
 		String query = "INSERT INTO reservationinfo(personId, pay) values( ? , ?) ";
 		String selectPerson = "select * from reservationpersoninfo where phoneNum = ? ";
@@ -369,12 +367,11 @@ public class CarDAO {
 
 	public void falsePerson(int pay) throws SQLException {
 		String query = " INSERT INTO reservationinfo(personId, pay) values( (select max(personId) from reservationpersoninfo) , ?)  ";
-		try (Connection conn = DBCarConnectionManager.getConnection()){
-			 PreparedStatement pstmt = conn.prepareStatement(query);
-			 pstmt.setInt(1, pay);
-			 pstmt.executeUpdate();
-			 
-			
+		try (Connection conn = DBCarConnectionManager.getConnection()) {
+			PreparedStatement pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, pay);
+			pstmt.executeUpdate();
+
 		} catch (Exception e) {
 			System.out.println("falsePerson 오류");
 			e.printStackTrace();

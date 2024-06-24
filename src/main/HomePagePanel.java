@@ -2,17 +2,12 @@ package main;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.Image;
-import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.Timer;
 
-import javax.swing.BorderFactory;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -24,7 +19,6 @@ import javax.swing.border.LineBorder;
 
 import ch01.CarReservationPanel;
 import ch01.DiaryReservationPanel;
-import ch01.InputReservationInfo;
 import ch01.ReservationSearch;
 
 public class HomePagePanel extends JFrame {

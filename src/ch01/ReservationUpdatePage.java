@@ -17,8 +17,9 @@ import javax.swing.border.LineBorder;
 
 import DAO.CarDAO;
 import DTO.ReservationDTO;
+
 public class ReservationUpdatePage extends JFrame {
-	
+
 	private int receivedid;
 	private JPanel backgroundPanel;
 	private JButton updateCarBtn;
@@ -67,15 +68,14 @@ public class ReservationUpdatePage extends JFrame {
 	private ImageIcon lineImg;
 
 	private JLabel logoLabel;
-	
-	
+
 	public ReservationUpdatePage(int receivedid) {
 		this.receivedid = receivedid;
 		initData();
 		setInitLayout();
 		addEventListener();
 	}
-	
+
 	public ReservationUpdatePage() {
 		initData();
 		setInitLayout();
@@ -138,7 +138,7 @@ public class ReservationUpdatePage extends JFrame {
 		setLayout(null);
 		setLocationRelativeTo(null);
 		setResizable(false);
-		
+
 		title.setBounds(185, 40, 400, 80);
 		title.setBorder(new LineBorder(new Color(0, 0, 0, 0)));
 		title.setEditable(false); // 입력불가상태 (텍스트 색상변경가능)
@@ -153,7 +153,7 @@ public class ReservationUpdatePage extends JFrame {
 
 		backgroundPanel.add(title);
 		System.out.println(receivedid);
-		
+
 		ReservationDTO dto = CarDAO.reservationNumSelec(receivedid);
 
 		id.setBounds(549, 250, 190, 30);
@@ -206,7 +206,6 @@ public class ReservationUpdatePage extends JFrame {
 		updateCarBtn.setBounds(70, 630, 300, 95);
 		updateDateBtn.setBounds(430, 630, 300, 95);
 		cancelReservationBtn.setBounds(250, 770, 276, 67);
-
 
 		// 예약자 정보
 		reservationPersonInfo.setBounds(450, 210, 100, 30);
@@ -365,8 +364,6 @@ public class ReservationUpdatePage extends JFrame {
 
 		repaint();
 	}
-	
-
 
 	class MyDrawPanel extends JPanel {
 		public void paint(Graphics g) {
@@ -418,8 +415,6 @@ public class ReservationUpdatePage extends JFrame {
 			}
 		});
 	}
-	
-	
 
 	public static void main(String[] args) {
 		new ReservationUpdatePage(0);
