@@ -131,7 +131,7 @@ public class DiaryReservationPanel extends JFrame {
 		choiceDateBtn.setContentAreaFilled(false);
 		completeSelectionBtn.setContentAreaFilled(false);
 		completeSelectionBtn.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				InputReservationInfo inpi = new InputReservationInfo();
@@ -162,7 +162,6 @@ public class DiaryReservationPanel extends JFrame {
 				new SwingCalendar3(DiaryReservationPanel.this);
 			}
 		});
-		
 
 		logoLabel.addMouseListener(new MouseAdapter() {
 			@Override

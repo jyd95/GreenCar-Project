@@ -192,7 +192,7 @@ public class MainTestCar {
 
 					System.out.println("전화번호");
 					String phoneNum = sc.nextLine();
-					dao.insertPerson(name, licenseNum, licenseGreade, phoneNum);
+					// dao.insertPerson(name, licenseNum, licenseGreade, phoneNum);
 					System.out.println("입금방식을 선택해줘세요");
 					System.out.println("0. 무통장, 1. 현장결제");
 					if (state == 1) {

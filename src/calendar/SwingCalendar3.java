@@ -143,6 +143,11 @@ public class SwingCalendar3 extends JFrame implements Runnable {
 			final int index = i;
 			clickCount = 1;
 
+			if (buttons[i].getText() == "") {
+				buttons[i].setBorder(null);
+				buttons[i].setContentAreaFilled(false);
+			}
+
 			// 캘린더에 에드
 			calendar.add(buttons[i]);
 

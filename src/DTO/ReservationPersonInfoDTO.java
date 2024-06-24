@@ -1,21 +1,25 @@
 package DTO;
 
-
 public class ReservationPersonInfoDTO {
-	
+
 	private int personId;
 	private String name;
+	private String password;
+	private String address;
+	private String email;
+	private String licenseGrade;
 	private String licenseNum;
 	private String licenseGreade;
 	private String phoneNum;
-	
-	public ReservationPersonInfoDTO(int personId, String name, String licenseNum, String licenseGreade,
-			String phoneNum) {
-		this.personId = personId;
-		this.name = name;
-		this.licenseNum = licenseNum;
-		this.licenseGreade = licenseGreade;
-		this.phoneNum = phoneNum;
+
+	public ReservationPersonInfoDTO(String username, String password, String phoeNum, String address, String email,
+			String licenseGrade) {
+		this.name = username;
+		this.password = password;
+		this.address = address;
+		this.email = email;
+		this.licenseGrade = licenseGrade;
+		this.phoneNum = phoeNum;
 	}
 
 	public ReservationPersonInfoDTO() {
@@ -60,7 +64,5 @@ public class ReservationPersonInfoDTO {
 	public void setPhoneNum(String phoneNum) {
 		this.phoneNum = phoneNum;
 	}
-	
-	
-	
+
 }
