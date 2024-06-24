@@ -13,11 +13,11 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import main.HomePagePanel;
-
 public class CarReservationPanel extends JFrame implements ActionListener {
 
 	CarDetail carDetail;
+
+	public static String carname = null;
 
 	// 배경 패널
 	JPanel backgroundPanel = new JPanel();
@@ -46,7 +46,7 @@ public class CarReservationPanel extends JFrame implements ActionListener {
 
 		// 로고 라벨
 		logoLabel = new JLabel(new ImageIcon("img/logo2.png"));
-		
+
 		// 타이틀 라벨
 		headerLabel = new JLabel("차량으로 예약");
 
@@ -80,7 +80,7 @@ public class CarReservationPanel extends JFrame implements ActionListener {
 		logoLabel.setBounds(30, 0, 105, 200);
 		logoLabel.setLayout(null);
 		backgroundPanel.add(logoLabel);
-		
+
 		// header 이미지
 		headerLabel.setBounds(200, 60, 300, 100);
 		headerLabel.setLayout(null);
@@ -164,7 +164,7 @@ public class CarReservationPanel extends JFrame implements ActionListener {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				new HomePagePanel();
+				new HomePagePanel(HomePagePanel.username);
 				setVisible(false);
 			}
 
@@ -196,20 +196,28 @@ public class CarReservationPanel extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 
 		if (e.getSource() == k3) {
+			carname = e.getSource().toString();
 			new CarDetail().DetailK3();
 		} else if (e.getSource() == k5) {
+			carname = e.getSource().toString();
 			new CarDetail().DetailK5();
 		} else if (e.getSource() == model3) {
+			carname = e.getSource().toString();
 			new CarDetail().DetailModel3();
 		} else if (e.getSource() == nexo) {
+			carname = e.getSource().toString();
 			new CarDetail().DetailNexo();
 		} else if (e.getSource() == staria) {
+			carname = e.getSource().toString();
 			new CarDetail().DetailStaria();
 		} else if (e.getSource() == sonata) {
+			carname = e.getSource().toString();
 			new CarDetail().DetailSonata();
 		} else if (e.getSource() == avante) {
+			carname = e.getSource().toString();
 			new CarDetail().DetailAvante();
 		} else if (e.getSource() == kanibal) {
+			carname = e.getSource().toString();
 			new CarDetail().DetailKanibal();
 		}
 	}

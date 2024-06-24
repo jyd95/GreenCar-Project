@@ -1,4 +1,4 @@
-package ch01;
+package main;
 
 import java.awt.Color;
 import java.awt.EventQueue;
@@ -10,20 +10,25 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import DAO.RentalCarSystem;
-import main.HomePagePanel;
+import ch01.HomePagePanel;
+import ch01.JoinMembership;
+import ch01.ReservationSearch;
 
-public class InputReservationInfo extends JFrame {
+public class Login extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JTextField textField_1;
 	private JPanel contentPane;
 	private ReservationSearch reservationSearch;
 	private JFrame frame1;
+<<<<<<< HEAD:src/ch01/InputReservationInfo.java
 	private String name;
 	private String password;
 	private String phoneNum;
@@ -31,11 +36,20 @@ public class InputReservationInfo extends JFrame {
 	private String email;
 	private String licenseGrade;
 
+=======
+	private String username;
+	
+	
+	
+	/**
+	 * Launch the application.
+	 */
+>>>>>>> 11f7854c383deecb27093032461b13b03b864d5c:src/main/Login.java
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					InputReservationInfo frame = new InputReservationInfo();
+					Login frame = new Login();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -63,7 +77,7 @@ public class InputReservationInfo extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public InputReservationInfo() {
+	public Login() {
 		final JTextField textField;
 		ImageIcon img1 = new ImageIcon("img/LOGIN.png");
 		ImageIcon img2 = new ImageIcon("img/회원가입.png");
@@ -98,7 +112,7 @@ public class InputReservationInfo extends JFrame {
 		lblNewLabel_1.setBounds(104, 192, 65, 34);
 		contentPane.add(lblNewLabel_1);
 
-		textField_1 = new JTextField();
+		textField_1 = new JPasswordField();
 		textField_1.setBounds(227, 199, 361, 27);
 		contentPane.add(textField_1);
 		textField_1.setColumns(10);
@@ -117,14 +131,11 @@ public class InputReservationInfo extends JFrame {
 				String pw = textField_1.getText();
 				if(rcs.checkLogin(id,pw)) {
 					System.out.println("로그인 성공");
-					HomePagePanel hpp= new HomePagePanel();
+					HomePagePanel hpp= new HomePagePanel(id);
 					hpp.setVisible(true);
 					frame1.dispose();	
 				}else {
-					System.out.println("로그인 실패");
-					InputReservationInfo iri = new InputReservationInfo();
-					iri.setVisible(true);
-					setVisible(false);
+					JOptionPane.showConfirmDialog(null, "로그인 실패", "알림", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE);
 				}
 
 			}
@@ -134,8 +145,14 @@ public class InputReservationInfo extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				String name = textField.getText();
 				String licenceNum = textField_1.getText();
+<<<<<<< HEAD:src/ch01/InputReservationInfo.java
 				LoginPanel lg = new LoginPanel();
 				lg.setVisible(true); 
+=======
+
+				JoinMembership jms = new JoinMembership();
+				jms.setVisible(true);
+>>>>>>> 11f7854c383deecb27093032461b13b03b864d5c:src/main/Login.java
 			}
 		});
 				 
