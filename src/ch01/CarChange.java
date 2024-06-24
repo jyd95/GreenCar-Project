@@ -14,13 +14,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.Date;
 import java.awt.Color;
 
 public class CarChange {
 
 	private JFrame frame;
 	private JButton btnNewButton;
-
+	private static Date startDate = null;
+	private static Date endDate = null;
 	/**
 	 * Launch the application.
 	 */
