@@ -207,6 +207,7 @@ public class datechangeSwingCalendar4 extends JFrame implements Runnable {
 						firstClick = true;
 
 						dispose();
+//						d2.setVisible(false);
 					}
 				}
 			});

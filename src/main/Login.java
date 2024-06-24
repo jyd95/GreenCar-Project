@@ -129,7 +129,7 @@ public class Login extends JFrame {
 					System.out.println("로그인 성공");
 					HomePagePanel hpp = new HomePagePanel(id);
 					hpp.setVisible(true);
-					frame1.dispose();
+					setVisible(false);
 				} else {
 					JOptionPane.showConfirmDialog(null, "로그인 실패", "알림", JOptionPane.DEFAULT_OPTION,
 							JOptionPane.PLAIN_MESSAGE);

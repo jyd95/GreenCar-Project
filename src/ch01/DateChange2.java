@@ -62,17 +62,17 @@ public class DateChange2 extends JFrame {
 		addEventListener();
 	}
 
-//	public DateChange2() {
-//		initDate();
-//		setInitLayout();
-//		addEventListener();
-//	}
+	public DateChange2() {
+		initDate();
+		setInitLayout();
+		addEventListener();
+	}
 
 	public void initDate() {
 
 		backgroundPanel = new BackgroundPanel();
-		dateChoiceBtn = new JButton(new ImageIcon("buttonImage/대여일 선택하기.png")); // 날짜 선택 이미지로 변경 예정
-		updateDateBtn = new JButton(new ImageIcon("buttonImage/대여기간 변경하기.png"));
+		dateChoiceBtn = new JButton(new ImageIcon("img/chooseDate2.png")); // 날짜 선택 이미지로 변경 예정
+		updateDateBtn = new JButton(new ImageIcon("img/changePeriod.png"));
 		title = new JTextField("대여기간 변경");
 		logoLabel = new JLabel(new ImageIcon("img/logo2.png"));
 
@@ -210,10 +210,6 @@ public class DateChange2 extends JFrame {
 		
 		}
 
-		
-		
-		
-		
 		for (int i = 0; i < 4; i++) {
 			backgroundPanel.add(reservationidvalue[i]);
 			backgroundPanel.add(usernamevalue[i]);
@@ -255,6 +251,7 @@ public class DateChange2 extends JFrame {
 		dateChoiceBtn.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent e) {
 				new datechangeSwingCalendar4(DateChange2.this);
+				setVisible(false);
 			}
 		});
 
@@ -271,7 +268,7 @@ public class DateChange2 extends JFrame {
 							int result2 = JOptionPane.showConfirmDialog(null, "변경되었습니다.", "알림",
 									JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE);
 							if (result2 == JOptionPane.YES_OPTION) {
-								setVisible(false);
+								setVisible(false); // < 안꺼짐..
 								Date rentDate2 = Date.valueOf(rentDate);
 								Date returnDate2 = Date.valueOf(returnDate);
 								try {
