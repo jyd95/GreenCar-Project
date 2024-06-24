@@ -453,7 +453,7 @@ public class RentalCarSystem extends JFrame {
 			pstmt.setDate(7, new java.sql.Date(endDate.getTime()));
 
 			ResultSet rs = pstmt.executeQuery();
-			return !rs.next(); // Return true if no overlapping reservation found
+			return !rs.next(); 
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return false;
@@ -479,10 +479,10 @@ public class RentalCarSystem extends JFrame {
 	private void showSignupForm() {
 		JFrame frame = new JFrame("회원 가입");
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		frame.setSize(300, 250); // Increased size to accommodate additional fields
+		frame.setSize(300, 250); 
 		frame.setLayout(new BorderLayout());
 
-		JPanel panel = new JPanel(new GridLayout(6, 2)); // Adjusted grid layout for new fields
+		JPanel panel = new JPanel(new GridLayout(6, 2)); 
 
 		JLabel usernameLabel = new JLabel("사용자 이름:");
 		JTextField usernameField = new JTextField();
@@ -506,7 +506,7 @@ public class RentalCarSystem extends JFrame {
 		panel.add(addressField);
 		panel.add(emailLabel);
 		panel.add(emailField);
-		panel.add(new JLabel()); // Empty label for spacing
+		panel.add(new JLabel()); 
 		panel.add(signupButton);
 
 		frame.add(panel, BorderLayout.CENTER);
