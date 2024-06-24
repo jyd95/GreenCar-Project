@@ -52,9 +52,6 @@ public class CarChange {
 	private JLabel logoLabel;
 	private JLabel headerLabel;
 
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
 		new CarChange();
 		EventQueue.invokeLater(new Runnable() {
@@ -69,19 +66,16 @@ public class CarChange {
 		});
 	}
 
-	/**
-	 * Create the application.
-	 */
 	public CarChange() {
 		initialize();
 	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
 	private void initialize() {
+
+		// 차량 변경하기 이미지
 		ImageIcon img = new ImageIcon("img/changeCar.png");
 
+		// 프레임 창
 		frame = new JFrame();
 		frame.setBounds(0, 0, 1000, 1000);
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -89,11 +83,13 @@ public class CarChange {
 		frame.setResizable(false);
 		frame.getContentPane().setLayout(null);
 
+		// 로고 라벨
 		logoLabel = new JLabel(new ImageIcon("img/logo2.png"));
 		logoLabel.setBounds(30, 0, 105, 200);
 		logoLabel.setLayout(null);
 		frame.add(logoLabel);
 
+		// 차량 변경 라벨
 		headerLabel = new JLabel("차량 변경");
 		headerLabel.setBounds(400, 40, 300, 100);
 		headerLabel.setLayout(null);
@@ -117,6 +113,7 @@ public class CarChange {
 		// 불리언 차량res 값을 true로 변경해 주는 기능 구현
 		
 
+<<<<<<< HEAD
 		JTextField choiceCar = new JTextField("선택된 차량 : ");
 		choiceCar.setBounds(340, 700, 135, 50);
 		choiceCar.setBorder(new LineBorder(new Color(0, 0, 0, 0)));
@@ -135,6 +132,17 @@ public class CarChange {
 //		choiceCarValue.setBackground(new Color(0, 0, 0, 0));
 		choiceCarValue.setFont(new Font("굴림", Font.BOLD, 20));
 		frame.getContentPane().add(choiceCarValue);
+=======
+		// 차량 버튼
+		k3 = new JButton(new ImageIcon("img/K3.png"));
+		k5 = new JButton(new ImageIcon("img/K5.png"));
+		model3 = new JButton(new ImageIcon("img/MODEL3.png"));
+		nexo = new JButton(new ImageIcon("img/넥쏘.png"));
+		staria = new JButton(new ImageIcon("img/스타리아.png"));
+		sonata = new JButton(new ImageIcon("img/쏘나타2.png"));
+		avante = new JButton(new ImageIcon("img/아반떼.png"));
+		kanibal = new JButton(new ImageIcon("img/카니발2.png"));
+>>>>>>> f-uio
 
 		
 		if (k3res == true) {
@@ -292,6 +300,7 @@ public class CarChange {
 		kanibal.setContentAreaFilled(false);
 
 
+<<<<<<< HEAD
 		
 	
 		
@@ -302,11 +311,90 @@ public class CarChange {
 		
 		
 		
+=======
+		// 선택된 차량의 값
+		JTextField choiceCarValue = new JTextField();
+		choiceCarValue.setBounds(470, 700, 130, 50);
+		choiceCarValue.setBorder(new LineBorder(new Color(0, 0, 0, 0)));
+		choiceCarValue.setEditable(false);
+		choiceCarValue.setForeground(Color.BLACK);
+		choiceCarValue.setOpaque(false); // 배경 투명 설정
+		choiceCarValue.setFont(new Font("굴림", Font.BOLD, 20));
+		frame.getContentPane().add(choiceCarValue);
 
+		// 버튼 별 carid
+		k3.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				choiceCarValue.setText("K3");
+				frame.repaint();
+				carid = "47호4827";
+			}
+		});
+		k5.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				choiceCarValue.setText("K5");
+				frame.repaint();
+				carid = "49허3814";
+			}
+		});
+		model3.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				choiceCarValue.setText("모델3");
+				frame.repaint();
+				carid = "52하3362";
+			}
+		});
+		nexo.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				choiceCarValue.setText("넥쏘");
+				frame.repaint();
+				carid = "53호6642";
+			}
+		});
+		staria.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				choiceCarValue.setText("스타렉스");
+				frame.repaint();
+				carid = "51하3942";
+			}
+		});
+		sonata.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				choiceCarValue.setText("소나타");
+				frame.repaint();
+				carid = "46하8247";
+			}
+		});
+		avante.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				choiceCarValue.setText("아반떼");
+				frame.repaint();
+				carid = "48허2748";
+			}
+		});
+		kanibal.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				choiceCarValue.setText("카니발");
+				frame.repaint();
+				carid = "50호3827";
+			}
+		});
+>>>>>>> f-uio
+
+		// 차량 변경하기 버튼
 		btnNewButton = new JButton(img);
 		btnNewButton.setBorderPainted(false);
 		btnNewButton.setContentAreaFilled(false);
 		btnNewButton.addMouseListener(new MouseAdapter() {
+
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (choiceCarValue.getText().equals(ReservationUpdatePage.carNameTextField().getText())) {
@@ -336,10 +424,8 @@ public class CarChange {
 							} catch (SQLException e1) {
 								e1.printStackTrace();
 							}
-						} else {
 						}
 					}
-//				} else if (ReservationUpdatePage.getLicenseGrade().getText().equals("1종")) {
 				} else {
 					int result = JOptionPane.showConfirmDialog(null, choiceCarValue.getText() + "로 변경하시겠습니까 ?", "알림",
 							JOptionPane.YES_NO_OPTION);
@@ -357,7 +443,6 @@ public class CarChange {
 						} catch (SQLException e1) {
 							e1.printStackTrace();
 						}
-					} else {
 					}
 				}
 			}

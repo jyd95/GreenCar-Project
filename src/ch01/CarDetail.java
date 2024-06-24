@@ -106,9 +106,8 @@ public class CarDetail extends JFrame implements ActionListener {
 	public void DetailK3() {
 
 		// 차량 이미지
-		k3 = new JLabel(new ImageIcon("img/k3.png"));
+		k3 = new JLabel(new ImageIcon("img/K3.png"));
 		k3.setBounds(xCar, yCar, widthCar, heightCar);
-		k3 = new JLabel(new ImageIcon("img/k3.png"));
 		k3.setBounds(xLabel, yLabel, widthLabel, heightLabel);
 		k3.setLayout(null);
 		backgroundPanel.add(k3);
@@ -124,7 +123,7 @@ public class CarDetail extends JFrame implements ActionListener {
 	}
 
 	public void DetailK5() {
-		k5 = new JLabel(new ImageIcon("img/k5.png"));
+		k5 = new JLabel(new ImageIcon("img/K5.png"));
 		k5.setBounds(xCar, yCar, widthCar, heightCar);
 		k5.setBounds(xLabel, yLabel, widthLabel, heightLabel);
 		k5.setLayout(null);
