@@ -13,6 +13,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -27,6 +29,9 @@ public class ReservationSearch {
 	
 	HomePagePanel mContext;
 	private JFrame frame;
+	private JTextField nameTextField;
+	private JTextField idTextField;
+	private JLabel logoLabel;
 	
 	
 	
@@ -34,6 +39,7 @@ public class ReservationSearch {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		new ReservationSearch();
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -59,41 +65,60 @@ public class ReservationSearch {
 		frame.getContentPane().setBackground(new Color(72, 209, 204));
 		frame.setTitle("예약 조회");
 		frame.getContentPane().setFont(new Font("굴림", Font.PLAIN, 15));
-		frame.setBounds(750, 10, 800, 500);
+		frame.setBounds(600, 250, 550, 400);
 		
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
+		
+		logoLabel = new JLabel(new ImageIcon("img/logo2.png"));
+		logoLabel.setBounds(30, 0, 105, 200);
+		logoLabel.setLayout(null);
+		frame.add(logoLabel);
 
-		JLabel lblNewLabel = new JLabel("예약번호 입력");
-		lblNewLabel.setForeground(new Color(255, 255, 255));
-		lblNewLabel.setFont(new Font("CookieRunOTF Bold", Font.PLAIN, 24));
-		lblNewLabel.setBounds(34, 93, 165, 122);
+		JLabel lblNewLabel = new JLabel("예약번호 입력 : ");
+		lblNewLabel.setFont(new Font("굴림", Font.BOLD, 18));
+		lblNewLabel.setBounds(170, 10, 165, 122);
 		frame.getContentPane().add(lblNewLabel);
+		
+		JLabel lblNewLabel1 = new JLabel("   이름 입력    : ");
+		lblNewLabel1.setFont(new Font("굴림", Font.BOLD, 18));
+		lblNewLabel1.setBounds(170, 80, 165, 122);
+		frame.getContentPane().add(lblNewLabel1);
 
-		final TextField textField = new TextField();
-		textField.setBounds(231, 129, 336, 42);
-		frame.getContentPane().add(textField);
+		idTextField = new JTextField();
+		idTextField.setBounds(330, 50, 150, 42);
+		frame.getContentPane().add(idTextField);
+		
+		nameTextField = new JTextField();
+		nameTextField.setBounds(330,120,150,42);
+		frame.getContentPane().add(nameTextField);
 
 		JButton btnNewButton = new JButton(img);
+		btnNewButton.setBorderPainted(false);
+		btnNewButton.setContentAreaFilled(false);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
 		btnNewButton.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent e) {
-				String text = textField.getText();
+			public void mousePressed(MouseEvent e) {
+				String text = idTextField.getText();
 				int id = Integer.parseInt(text); // id = 예약번호
+				String name = nameTextField.getText();
 				// 예약정보창(id){} -> 예약정보창 띄우기
-				ReservationUpdatePage rup = new ReservationUpdatePage(id);
-				rup.setVisible(true);
-				frame.setVisible(false);
-				
+				try {
+					ReservationUpdatePage rup = new ReservationUpdatePage(id,name);
+					rup.setVisible(true);
+					frame.setVisible(false);
+				} catch (Exception e2) {
+					JOptionPane.showConfirmDialog(null, "이름과 예약번호가 일치하지 않습니다.", "알림", JOptionPane.DEFAULT_OPTION);
+				}
 			}
 		});
-		btnNewButton.setBounds(231, 253, 336, 74);
+		btnNewButton.setBounds(100, 220, 336, 74);
 		frame.getContentPane().add(btnNewButton);
-		JLabel lblNewLabel_1 = new JLabel(new ImageIcon("img/예약조회.jpg"));
+		JLabel lblNewLabel_1 = new JLabel(new ImageIcon("img/updatebackground.jpg"));
 		lblNewLabel_1.setBounds(0, 0, 784, 461);
 		frame.getContentPane().add(lblNewLabel_1);
 		

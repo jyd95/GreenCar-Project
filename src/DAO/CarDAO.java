@@ -29,48 +29,84 @@ public class CarDAO {
 	CarDAO carDAO = getCarDAO();
 
 	// 오버라이드 삭제 -> 스태틱 넣음
-	public static ReservationDTO reservationNumSelec(int id) {
+	public static ReservationDTO DeleteReservation(int id) {
+		ReservationDTO reservationDTO = null;
+
+		String query = " DELETE from reservation WHERE reservation_id = ?; ";
+		try (Connection conn = DBCarConnectionManager.getConnection()) {
+			PreparedStatement pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, id);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return reservationDTO;
+	}
+	
+	public static void changeDate(Date rentDate, Date returnDate, int id) throws SQLException {
+
+		String query = " UPDATE reservation SET start_date = ? , end_date = ? WHERE reservation_id = ?; ";
+		try (Connection conn = DBCarConnectionManager.getConnection()) {
+			PreparedStatement pstmt = conn.prepareStatement(query);
+			pstmt.setDate(1, rentDate);
+			pstmt.setDate(2, returnDate);
+			pstmt.setInt(3, id);
+			pstmt.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+	
+	public static ReservationDTO reservationNumSelec(int id, String name) {
 
 		ReservationDTO reservationDTO = null;
 
-		String query = " SELECT ri.id, rp.name, cm.carname, ci.cartype, ci.brand, ci.puel , rp.PhoneNum, re.rentDate, re.returnDate, datediff(re.returnDate,re.rentDate)*ci.priceperday as totalprice, ri.pay as paymentOrNot /*결제 여부*/  from reservationInfo as ri join reservationPersonInfo as rp on ri.personid = rp.personid join recruittable as re on re.id = ri.id join carmanagement as cm on cm.carid = re.carid join carinfo as ci on ci.carname = cm.carname where ri.id = ? ";
+		String query = " select r.reservation_id, r.username, ci.carname, cm.carid,ci.cartype,ci.brand,ci.puel,u.phonenum,r.start_date,r.end_date,ci.priceperday, u.licenseGrade from reservation as r join users as u on r.username = u.username join carmanagement as cm on cm.carid = r.carid join carinfo as ci on cm.carname = ci.carname where reservation_id = ? and u.username = ?;";
 
 		try (Connection conn = DBCarConnectionManager.getConnection()) {
 			PreparedStatement pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1, id);
+			pstmt.setString(2, name);
 			ResultSet rs = pstmt.executeQuery();
 
 			if (rs.next()) {
-				int id1 = rs.getInt("id");
-				String name = rs.getString("name");
+				int reservation_id = rs.getInt("reservation_id");
+				String username = rs.getString("username");
 				String carname = rs.getString("carname");
+				String carid = rs.getString("carid");
 				String cartype = rs.getString("cartype");
 				String brand = rs.getString("brand");
 				String puel = rs.getString("puel");
-				String Phonenum = rs.getString("Phonenum");
-				Date rentdate = rs.getDate("rentdate");
-				Date returndate = rs.getDate("returndate");
-				int totalprice = rs.getInt("totalprice");
-				int paymentornot = rs.getInt("paymentornot");
+				String phonenum = rs.getString("phonenum");
+				Date start_date = rs.getDate("start_date");
+				Date end_date = rs.getDate("end_date");
+				int priceperday = rs.getInt("priceperday");
+				String licenseGrade = rs.getString("licenseGrade");
 
-				reservationDTO = new ReservationDTO(id1, name, carname, cartype, brand, puel, Phonenum, rentdate,
-						returndate, totalprice, paymentornot);
-				System.out.println(" 예약번호 : " + reservationDTO.getId());
-				System.out.println(" 예약자이름 : " + reservationDTO.getName());
-				System.out.println(" 차이름 : " + reservationDTO.getCarname());
-				System.out.println(" 차타입 : " + reservationDTO.getCartype());
-				System.out.println(" 브랜드 : " + reservationDTO.getBrand());
-				System.out.println(" 유종 : " + reservationDTO.getPuel());
-				System.out.println(" 시작일 : " + reservationDTO.getRentdate());
-				System.out.println(" 반납일 : " + reservationDTO.getReturndate());
-				System.out.println(" 가격 : " + reservationDTO.getTotalprice());
-				System.out.println(" 입금여부 : " + reservationDTO.getPaymentornot());
+				reservationDTO = new ReservationDTO(reservation_id, username, carname, carid, cartype,brand,
+						puel,phonenum,start_date,end_date,priceperday,licenseGrade);
 			}
 
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return reservationDTO;
+	}
+	
+	public static void changeCar(String carid, int id) throws SQLException {
+		String query = " Update reservation set carid = ? where reservation_id = ? ";
+
+		try (Connection conn = DBCarConnectionManager.getConnection()) {
+			PreparedStatement pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, carid);
+			pstmt.setInt(2, id);
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+
+		}
+
 	}
 
 	public static List<ReservationDTO> reservationNameSelec(String name) throws SQLException {
@@ -83,19 +119,20 @@ public class CarDAO {
 
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
-				int id = rs.getInt("id");
-				String name1 = rs.getString("name");
+				int reservation_id = rs.getInt("reservation_id");
+				String username = rs.getString("username");
 				String carname = rs.getString("carname");
+				String carid = rs.getString("carid");
 				String cartype = rs.getString("cartype");
 				String brand = rs.getString("brand");
 				String puel = rs.getString("puel");
-				String Phonenum = rs.getString("Phonenum");
-				Date rentdate = rs.getDate("rentdate");
-				Date returndate = rs.getDate("returndate");
-				int totalprice = rs.getInt("totalprice");
-				int paymentornot = rs.getInt("paymentornot");
-				list.add(new ReservationDTO(id, name1, carname, cartype, brand, puel, Phonenum, rentdate, returndate,
-						totalprice, paymentornot));
+				String phonenum = rs.getString("phonenum");
+				Date start_date = rs.getDate("start_date");
+				Date end_date = rs.getDate("end_date");
+				int priceperday = rs.getInt("priceperday");
+				String licenseGrade = rs.getString("paymentornot");
+				list.add(new ReservationDTO(reservation_id, username, carname, carid, cartype,brand,
+						puel,phonenum,start_date,end_date,priceperday,licenseGrade));
 			}
 
 		}
