@@ -5,7 +5,10 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+<<<<<<< HEAD
 import java.sql.SQLException;
+=======
+>>>>>>> 76aead5567e8ac8a64c16db9fabef59f77adb48b
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -15,9 +18,13 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+<<<<<<< HEAD
 import DAO.CarDAO;
 import DAO.RentalCarSystem;
 import DTO.ReservationPersonInfoDTO;
+=======
+import DAO.RentalCarSystem;
+>>>>>>> 76aead5567e8ac8a64c16db9fabef59f77adb48b
 import main.HomePagePanel;
 
 public class InputReservationInfo extends JFrame {
@@ -27,6 +34,7 @@ public class InputReservationInfo extends JFrame {
 	private JPanel contentPane;
 	private ReservationSearch reservationSearch;
 	private JFrame frame1;
+<<<<<<< HEAD
 	private String name;
 	private String password;
 	private String phoneNum;
@@ -34,6 +42,11 @@ public class InputReservationInfo extends JFrame {
 	private String email;
 	private String licenseGrade;
 
+=======
+	
+	
+	
+>>>>>>> 76aead5567e8ac8a64c16db9fabef59f77adb48b
 	/**
 	 * Launch the application.
 	 */
@@ -121,17 +134,27 @@ public class InputReservationInfo extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				String id = textField.getText();
 				String pw = textField_1.getText();
+<<<<<<< HEAD
 				if (rcs.checkLogin(id, pw)) {
 					System.out.println("로그인 성공");
 					HomePagePanel hpp = new HomePagePanel();
 					hpp.setVisible(true);
 					frame1.dispose();
 				} else {
+=======
+				if(rcs.checkLogin(id,pw)) {
+					System.out.println("로그인 성공");
+					HomePagePanel hpp= new HomePagePanel();
+					hpp.setVisible(true);
+					frame1.dispose();	
+				}else {
+>>>>>>> 76aead5567e8ac8a64c16db9fabef59f77adb48b
 					System.out.println("로그인 실패");
 					InputReservationInfo iri = new InputReservationInfo();
 					iri.setVisible(true);
 					setVisible(false);
 				}
+<<<<<<< HEAD
 
 			}
 		});
@@ -144,6 +167,22 @@ public class InputReservationInfo extends JFrame {
 				lg.setVisible(true);
 			}
 		});
+=======
+				
+			}
+		});
+		JButton btnNewButton_1 = new JButton(img2);
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String name = textField.getText();
+				String licenceNum = textField_1.getText();
+
+				InputReservationInfoNext irin = new InputReservationInfoNext();
+				irin.main(null);
+				setVisible(false);
+			}
+		});
+>>>>>>> 76aead5567e8ac8a64c16db9fabef59f77adb48b
 		btnNewButton_1.setBounds(446, 259, 206, 55);
 		contentPane.add(btnNewButton_1);
 
@@ -157,5 +196,10 @@ public class InputReservationInfo extends JFrame {
 		background.setBounds(0, 0, 1000, 561);
 		contentPane.add(background);
 
+<<<<<<< HEAD
+=======
+		
+
+>>>>>>> 76aead5567e8ac8a64c16db9fabef59f77adb48b
 	}
 }

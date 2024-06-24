@@ -11,7 +11,7 @@ import java.util.List;
 
 public class RentalCarSystem extends JFrame {
 
-    private Connection conn;
+    private static Connection conn;
     private JPanel mainPanel;
     private JTabbedPane tabbedPane;
     private JTextArea reservationTextArea;
@@ -19,8 +19,13 @@ public class RentalCarSystem extends JFrame {
 
     public RentalCarSystem() {
         initializeDB();
+<<<<<<< HEAD
 //        createMainFrame();
 //        createLoginGUI();
+=======
+       // createMainFrame();
+        //createLoginGUI();
+>>>>>>> 76aead5567e8ac8a64c16db9fabef59f77adb48b
     }
 
     private void initializeDB() {
@@ -46,6 +51,7 @@ public class RentalCarSystem extends JFrame {
 //        add(mainPanel);
 //        setVisible(true);
 //    }
+<<<<<<< HEAD
 //
 //    private void createLoginGUI() {
 //        JFrame frame = new JFrame("로그인");
@@ -92,6 +98,54 @@ public class RentalCarSystem extends JFrame {
 
     public boolean checkLogin(String username, String password) {
         String query = "SELECT * FROM users WHERE username = ? AND password = ?";
+=======
+
+//    private void createLoginGUI() {
+//        JFrame frame = new JFrame("로그인");
+//        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//        frame.setSize(300, 150);
+//        frame.setLayout(new BorderLayout());
+//
+//        JPanel panel = new JPanel();
+//        panel.setLayout(new GridLayout(3, 2));
+//
+//        JLabel usernameLabel = new JLabel("사용자 이름:");
+//        JTextField usernameField = new JTextField();
+//        JLabel passwordLabel = new JLabel("비밀번호:");
+//        JPasswordField passwordField = new JPasswordField();
+//        JButton loginButton = new JButton("로그인");
+//        JButton signupButton = new JButton("회원 가입");
+//
+//        panel.add(usernameLabel);
+//        panel.add(usernameField);
+//        panel.add(passwordLabel);
+//        panel.add(passwordField);
+//        panel.add(loginButton);
+//        panel.add(signupButton);
+//
+//        frame.add(panel, BorderLayout.CENTER);
+//        frame.setVisible(true);
+//
+//        loginButton.addActionListener(e -> {
+//            String username = usernameField.getText();
+//            String password = new String(passwordField.getPassword());
+//            if (checkLogin(username, password)) {
+//                frame.dispose();
+//                createMainTabs(username);
+//            } else {
+//                JOptionPane.showMessageDialog(null, "로그인 실패. 사용자 이름 또는 비밀번호를 확인하세요.");
+//            }
+//        });
+//
+//        signupButton.addActionListener(e -> {
+//            frame.dispose();
+//            showSignupForm();
+//        });
+//    }
+
+    public boolean checkLogin(String username, String password) {
+        String query = " SELECT * FROM users WHERE username = ? AND password = ? ";
+>>>>>>> 76aead5567e8ac8a64c16db9fabef59f77adb48b
         try (PreparedStatement pstmt = conn.prepareStatement(query)) {
             pstmt.setString(1, username);
             pstmt.setString(2, password);
@@ -99,6 +153,7 @@ public class RentalCarSystem extends JFrame {
             return rs.next();
         } catch (SQLException e) {
             e.printStackTrace();
+            System.out.println("로그인 실패함");
             return false;
         }
     }
@@ -484,7 +539,11 @@ public class RentalCarSystem extends JFrame {
                 if (signupUser(username, password, phonum, address, email)) {
                     JOptionPane.showMessageDialog(null, "회원 가입이 완료되었습니다.");
                     frame.dispose();
+<<<<<<< HEAD
 //                    createLoginGUI();
+=======
+                    //createLoginGUI();
+>>>>>>> 76aead5567e8ac8a64c16db9fabef59f77adb48b
                 } else {
                     JOptionPane.showMessageDialog(null, "회원 가입 실패. 다시 시도하세요.");
                 }
@@ -493,6 +552,7 @@ public class RentalCarSystem extends JFrame {
     }
 
 
+    
     private boolean signupUser(String username, String password, String phonum, String address, String email) {
         String query = "INSERT INTO users (username, password, phonum, address, email) VALUES (?, ?, ?, ?, ?)";
         try (PreparedStatement pstmt = conn.prepareStatement(query)) {
