@@ -4,6 +4,9 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javax.swing.ImageIcon;
@@ -16,6 +19,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import DAO.CarDAO;
+import DAO.DBCarConnectionManager;
 import DTO.ReservationPersonInfoDTO;
 import lombok.Data;
 import main.Login;
@@ -234,3 +238,5 @@ public class LoginPanel extends JFrame {
 		new LoginPanel();
 	}
 }
+
+//public static void possibleCarChange(String startDate, String endDate, String carname) throws SQLException {

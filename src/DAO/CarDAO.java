@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import DTO.CarChangeDTO;
 import DTO.CarInfoDTO;
 import DTO.ReservationCarDTO;
 import DTO.ReservationDTO;
@@ -325,6 +326,23 @@ public class CarDAO {
 			}
 		}
 		return list;
+	}
+	public static void possibleCarChange(String endDate, String startDate, String carname) throws SQLException {
+		
+		String query = " select distinct cm.carname from carmanagement as cm join reservation as re on re.carid = cm.carid where (re.start_date > ? or re.end_date < ?) and cm.carname != ?; ";
+		try (Connection conn = DBCarConnectionManager.getConnection()) {
+			PreparedStatement pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, endDate);
+			pstmt.setString(2, startDate);
+			pstmt.setString(3, carname);		
+			ResultSet rs = pstmt.executeQuery();
+			
+			System.out.println("현재 변경 가능한 차량 목록");
+			while (rs.next()) {
+				System.out.println(rs.getString("carname"));
+			} 
+		}
+		return;
 	}
 
 	public static void changeCat(String carid, int id) throws SQLException {
