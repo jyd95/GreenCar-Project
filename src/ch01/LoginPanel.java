@@ -2,9 +2,11 @@ package ch01;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.HeadlessException;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -40,6 +42,7 @@ public class LoginPanel extends JFrame {
 	private JLabel phoneNumLabel;
 	private JLabel addressLabel;
 	private JLabel emailLabel;
+	private JLabel possibleLabel;
 
 	// 텍스트 필드
 	private JTextField idTextField;
@@ -50,12 +53,15 @@ public class LoginPanel extends JFrame {
 
 	// 버튼
 	private JButton signUpBtn;
+	private JButton duplicateBtn;
 
 	// 면허 종
 	String licenceLevel[] = { "1종", "2종" };
 
 	// 콤보 박수
 	private JComboBox comboBox;
+
+	private int duplicationCount = 0;
 
 	public LoginPanel() {
 		initData();
@@ -79,6 +85,7 @@ public class LoginPanel extends JFrame {
 		phoneNumLabel = new JLabel("핸드폰 번호");
 		addressLabel = new JLabel("주소");
 		emailLabel = new JLabel("이메일");
+		possibleLabel = new JLabel("중복된 아이디 입니다");
 
 		// 텍스트 필드
 		idTextField = new JTextField();
@@ -92,6 +99,7 @@ public class LoginPanel extends JFrame {
 
 		// 버튼
 		signUpBtn = new JButton(signUpBtnImg);
+		duplicateBtn = new JButton("중복체크");
 	}
 
 	public void setInitLayout() {
@@ -139,6 +147,12 @@ public class LoginPanel extends JFrame {
 		emailLabel.setFont(new Font("궁서", Font.BOLD, 20));
 		backgroundPanel.add(emailLabel);
 
+		possibleLabel.setBounds(220, 135, 200, 200);
+		possibleLabel.setFont(new Font("궁서", Font.BOLD, 12));
+		possibleLabel.setForeground(new Color(255, 0, 0));
+		backgroundPanel.add(possibleLabel);
+		possibleLabel.setVisible(false);
+
 		// JText필드
 
 		idTextField.setBounds(220, 175, 180, 50);
@@ -166,11 +180,17 @@ public class LoginPanel extends JFrame {
 		signUpBtn.setBorder(null);
 		signUpBtn.setContentAreaFilled(false);
 
+		duplicateBtn.setBounds(380, 175, 180, 50);
+		duplicateBtn.setBorder(null);
+		duplicateBtn.setContentAreaFilled(false);
+
+		backgroundPanel.add(duplicateBtn);
 		backgroundPanel.add(signUpBtn);
 
 		setVisible(true);
 	}
-
+	
+	// 회원가입 버튼
 	private void addEventListener() {
 		signUpBtn.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent e) {
@@ -190,40 +210,57 @@ public class LoginPanel extends JFrame {
 				} else if (emailField.getText().isEmpty()) {
 					JOptionPane.showConfirmDialog(null, "이메일을 입력해주세요", "알림", JOptionPane.DEFAULT_OPTION,
 							JOptionPane.PLAIN_MESSAGE);
-				} else if (!idTextField.getText().isEmpty() || !pwdTextField.getText().isEmpty()
-						|| !phoneNumField.getText().isEmpty() || !addressField.getText().isEmpty()
-						|| !emailField.getText().isEmpty()) {
+				} else if (duplicationCount == 0) {
+					JOptionPane.showConfirmDialog(null, "중복체크를 해주세요", "알림", JOptionPane.DEFAULT_OPTION,
+							JOptionPane.PLAIN_MESSAGE);
+				} else
 					try {
-						ReservationPersonInfoDTO dto = CarDAO.insertPerson(idTextField.getText(),
-								pwdTextField.getText(), phoneNumField.getText(), addressField.getText(),
-								emailField.getText(), comboBox.getSelectedItem().toString());
-						JOptionPane.showConfirmDialog(null, "회원가입 완료", "알림", JOptionPane.DEFAULT_OPTION,
-								JOptionPane.PLAIN_MESSAGE);
-						setVisible(false);
-					} catch (SQLException s) {
+						if (!CarDAO.isUsernameExists(idTextField.getText())) {
+							try {
+								ReservationPersonInfoDTO dto = CarDAO.insertPerson(idTextField.getText(),
+										pwdTextField.getText(), phoneNumField.getText(), addressField.getText(),
+										emailField.getText(), comboBox.getSelectedItem().toString());
+								JOptionPane.showConfirmDialog(null, "회원가입 완료", "알림", JOptionPane.DEFAULT_OPTION,
+										JOptionPane.PLAIN_MESSAGE);
+								setVisible(false);
+							} catch (SQLException s) {
+								s.printStackTrace();
+							}
+
+						} else {
+							JOptionPane.showConfirmDialog(null, "아이디가 중복입니다!", "알림", JOptionPane.DEFAULT_OPTION,
+									JOptionPane.PLAIN_MESSAGE);
+						}
+					} catch (HeadlessException e1) {
+						e1.printStackTrace();
+					} catch (SQLException e1) {
+						e1.printStackTrace();
+					}
+			}
+		});
+
+		duplicateBtn.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				try {
+					if (CarDAO.isUsernameExists(idTextField.getText())) {
 						JOptionPane.showConfirmDialog(null, "중복된 아이디 입니다.", "알림", JOptionPane.DEFAULT_OPTION,
 								JOptionPane.PLAIN_MESSAGE);
-						s.printStackTrace();
+						possibleLabel.setVisible(true);
+						possibleLabel.setText("중복된 아이디 입니다");
+						duplicationCount = 1;
+					} else if (idTextField.getText().isEmpty()) {
+						JOptionPane.showConfirmDialog(null, "아이디를 입력해주세요", "알림", JOptionPane.DEFAULT_OPTION,
+								JOptionPane.PLAIN_MESSAGE);
+					} else {
+						JOptionPane.showConfirmDialog(null, "사용 가능한 아이디 입니다.", "알림", JOptionPane.DEFAULT_OPTION,
+								JOptionPane.PLAIN_MESSAGE);
+						possibleLabel.setVisible(true);
+						possibleLabel.setText("사용 가능한 아이디 입니다");
+						duplicationCount = 1;
 					}
-//				}
-
-//				if (idTextField.getText().isEmpty() || pwdTextField.getText().isEmpty()
-//						|| phoneNumField.getText().isEmpty() || addressField.getText().isEmpty()
-//						|| emailField.getText().isEmpty()) {
-//					JOptionPane.showConfirmDialog(null, "값을 입력해주세요", "알림", JOptionPane.DEFAULT_OPTION,
-//							JOptionPane.PLAIN_MESSAGE);
-//				} else {
-//					try {
-//						ReservationPersonInfoDTO dto = CarDAO.insertPerson(idTextField.getText(),
-//								pwdTextField.getText(), phoneNumField.getText(), addressField.getText(),
-//								emailField.getText(), comboBox.getSelectedItem().toString());
-//						JOptionPane.showConfirmDialog(null, "회원가입 완료", "알림", JOptionPane.DEFAULT_OPTION,
-//								JOptionPane.PLAIN_MESSAGE);
-//						setVisible(false);
-//					} catch (SQLException s) {
-//						s.printStackTrace();
-//					}
-
+				} catch (SQLException e1) {
+					e1.printStackTrace();
 				}
 			}
 		});

@@ -136,6 +136,46 @@ public class CarDAO {
 
 	}
 
+	public static boolean isUsernameExists(String username) throws SQLException {
+		String query = " SELECT COUNT(*) FROM users WHERE username = ? ";
+		try (Connection conn = DBCarConnectionManager.getConnection()) {
+			PreparedStatement pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, username);
+			ResultSet rs = pstmt.executeQuery();
+			if (rs.next()) {
+				return rs.getInt(1) > 0;
+			}
+		}
+		return false;
+	}
+
+	public static List<ReservationPersonInfoDTO> viewDuplicatedId(String name) throws SQLException {
+		List<ReservationPersonInfoDTO> list = new ArrayList<>();
+
+		String query = " SELECT * FROM users where username = ? ; ";
+		try (Connection conn = DBCarConnectionManager.getConnection()) {
+			PreparedStatement pstmt = conn.prepareStatement(query);
+
+			pstmt.setString(1, name);
+			ResultSet rs = pstmt.executeQuery();
+			while (rs.next()) {
+				String name2 = rs.getString("username");
+				String password = rs.getString("password");
+				String phonenum = rs.getString("phonenum");
+				String address = rs.getString("address");
+				String email = rs.getString("email");
+				String licensegrade = rs.getString("licensegrade");
+				list.add(new ReservationPersonInfoDTO(name2, password, phonenum, address, email, licensegrade));
+
+				for (ReservationPersonInfoDTO reservationPersonInfoDTO : list) {
+					System.out.println(reservationPersonInfoDTO);
+				}
+			}
+		}
+
+		return list;
+	}
+
 	public static List<ReservationDTO> reservationNameSelec(String name) throws SQLException {
 		List<ReservationDTO> list = new ArrayList<>();
 		String query = " SELECT ri.id, rp.name, cm.carname, ci.cartype, ci.brand, ci.puel , rp.PhoneNum, re.rentDate, re.returnDate, datediff(re.returnDate,re.rentDate)*ci.priceperday as totalprice, ri.pay as paymentOrNot from reservationInfo as ri join reservationPersonInfo as rp on ri.personid = rp.personid join recruittable as re on re.id = ri.id join carmanagement as cm on cm.carid = re.carid join carinfo as ci on ci.carname = cm.carname where rp.name = ? order by re.rentDate desc; ";
