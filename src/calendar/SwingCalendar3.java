@@ -15,6 +15,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import ch01.DiaryReservationPanel;
+import lombok.Getter;
+import lombok.Setter;
+
+
 
 public class SwingCalendar3 extends JFrame implements Runnable {
 
@@ -54,6 +58,8 @@ public class SwingCalendar3 extends JFrame implements Runnable {
 	// 버튼 텍스트 가져오기
 	private String firstButtonText;
 	private String secondButtonText;
+	public static String startDate;
+	public static String EndDate;
 
 	// 버튼 클릭 횟수
 	private boolean firstClick = true;
@@ -163,6 +169,7 @@ public class SwingCalendar3 extends JFrame implements Runnable {
 						////////////////// !!!!!!!!!!!!!!!!!///////////////////////////
 
 						System.out.println(dr.getAllCal(firstButtonText));
+						startDate = dr.getAllCal(firstButtonText);
 						drp.updatedateLabelText("대여일 : " + dr.getAllCal(firstButtonText));
 
 						////////////////// !!!!!!!!!!!!!!!!!///////////////////////////
@@ -175,7 +182,7 @@ public class SwingCalendar3 extends JFrame implements Runnable {
 
 						// 대여일 , 반납일 출력하기!!!!!!!!!!!
 						//////////////// !!!!!!!!!!!!!!!!!!!!!!////////////////////////////
-
+						EndDate = dr.getAllCal(secondButtonText);
 						drp.updateReturnLabelText("반납일 : " + dr.getAllCal(secondButtonText));
 
 						//////////////// !!!!!!!!!!!!!!!!!!!!!!////////////////////////////
@@ -250,5 +257,22 @@ public class SwingCalendar3 extends JFrame implements Runnable {
 			}
 		});
 	}
+
+	public String getStartDate() {
+		return startDate;
+	}
+
+	public void setStartDate(String startDate) {
+		this.startDate = startDate;
+	}
+
+	public String getEndDate() {
+		return EndDate;
+	}
+
+	public void setEndDate(String endDate) {
+		EndDate = endDate;
+	}
+	
 
 }

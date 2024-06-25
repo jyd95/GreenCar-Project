@@ -27,5 +27,13 @@ public class ReservationDTO {
 	private Date end_date; // 종료일
 	private int priceperday; // 금액
 	private String licenseGrade;
-	
+
 }
+
+//select r.reservation_id,r.username,ci.carname,cm.carid,ci.cartype,ci.brand,
+//ci.puel,r.start_date,r.end_date,ci.priceperday,u.licenseGrade 
+//from reservation as r 
+//join users as u on r.username= u.username 
+//join carmanagement as cm on cm.carid= r.carid 
+//join carinfo as ci on cm.carname= ci.carname 
+//where carname=? and u.username=?; ";

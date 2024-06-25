@@ -8,13 +8,20 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-public class CarDetail extends JFrame implements ActionListener {
+import DAO.CarDAO;
 
+public class CarDetail extends JFrame implements ActionListener {
+	
+	CarReservationPanel crp;
 	// 배경 패널
 	JPanel backgroundPanel = new JPanel();
-
+	
+	public String carname = null;
+	
+	
 	// 차량 이미지 라벨
 	private JLabel k3;
 	private JLabel k5;
@@ -111,13 +118,16 @@ public class CarDetail extends JFrame implements ActionListener {
 		k3.setBounds(xLabel, yLabel, widthLabel, heightLabel);
 		k3.setLayout(null);
 		backgroundPanel.add(k3);
+		selectedCar();
 		setVisible(true);
 
 		// 차량 설명 이미지
 		scripK3 = new JLabel(new ImageIcon("img/scripK3.png"));
 		scripK3.setBounds(xScript, yScript, wScript, hScript);
 		scripK3.setLayout(null);
+		scripK3.setName("k3");
 		backgroundPanel.add(scripK3);
+		selectedCar();
 		setVisible(true);
 
 	}
@@ -128,6 +138,7 @@ public class CarDetail extends JFrame implements ActionListener {
 		k5.setBounds(xLabel, yLabel, widthLabel, heightLabel);
 		k5.setLayout(null);
 		backgroundPanel.add(k5);
+		selectedCar();
 		setVisible(true);
 
 		scripK5 = new JLabel(new ImageIcon("img/scripK5.png"));
@@ -144,6 +155,7 @@ public class CarDetail extends JFrame implements ActionListener {
 		model3.setBounds(xLabel, yLabel, widthLabel, heightLabel);
 		model3.setLayout(null);
 		backgroundPanel.add(model3);
+		selectedCar();
 		setVisible(true);
 
 		scripModel3 = new JLabel(new ImageIcon("img/scripModel3.png"));
@@ -160,6 +172,7 @@ public class CarDetail extends JFrame implements ActionListener {
 		nexo.setBounds(xLabel, yLabel, widthLabel, heightLabel);
 		nexo.setLayout(null);
 		backgroundPanel.add(nexo);
+		selectedCar();
 		setVisible(true);
 
 		scripNexo = new JLabel(new ImageIcon("img/scripNexo.png"));
@@ -175,6 +188,7 @@ public class CarDetail extends JFrame implements ActionListener {
 		staria.setBounds(xLabel, yLabel, widthLabel, heightLabel);
 		staria.setLayout(null);
 		backgroundPanel.add(staria);
+		selectedCar();
 		setVisible(true);
 
 		scripStaria = new JLabel(new ImageIcon("img/scripStaria.png"));
@@ -190,12 +204,12 @@ public class CarDetail extends JFrame implements ActionListener {
 		sonata.setBounds(xLabel, yLabel, widthLabel, heightLabel);
 		sonata.setLayout(null);
 		backgroundPanel.add(sonata);
+		selectedCar();
 		setVisible(true);
 
 		scripSonata = new JLabel(new ImageIcon("img/scripSonata.png"));
 		scripSonata.setBounds(xScript, yScript, wScript, hScript);
 		scripSonata.setLayout(null);
-		backgroundPanel.add(scripSonata);
 		setVisible(true);
 
 	}
@@ -206,6 +220,7 @@ public class CarDetail extends JFrame implements ActionListener {
 		avante.setBounds(xLabel, yLabel, widthLabel, heightLabel);
 		avante.setLayout(null);
 		backgroundPanel.add(avante);
+		selectedCar();
 		setVisible(true);
 
 		scripAvante = new JLabel(new ImageIcon("img/scripAvante.png"));
@@ -221,6 +236,7 @@ public class CarDetail extends JFrame implements ActionListener {
 		kanibal.setBounds(xLabel, yLabel, widthLabel, heightLabel);
 		kanibal.setLayout(null);
 		backgroundPanel.add(kanibal);
+		selectedCar();
 		setVisible(true);
 
 		scripKanibal = new JLabel(new ImageIcon("img/scripKanibal.png"));
@@ -230,18 +246,46 @@ public class CarDetail extends JFrame implements ActionListener {
 		setVisible(true);
 
 	}
-
+	public void selectedCar() {
+		if (crp.selectCar == 1) {
+			carname = "k3";
+		}else if(crp.selectCar == 2) {
+			carname = "k5";
+		}else if(crp.selectCar == 3) {
+			carname = "model3";
+		}else if(crp.selectCar == 4) {
+			carname = "nexo";
+		}else if(crp.selectCar == 5) {
+			carname = "staria";
+		}else if(crp.selectCar == 6) {
+			carname = "sonata";
+		}else if(crp.selectCar == 7) {
+			carname = "avante";
+		}else if(crp.selectCar == 8) {
+			carname = "karnibal";
+		}
+	}
 	// 버튼 클릭 시 날짜 선택으로 전환
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		
 		if (HomePagePanel.movement == 1) {
-			DiaryReservationPanel drp = new DiaryReservationPanel();
+			System.out.println(carname); 
+			DiaryReservationPanel drp = new DiaryReservationPanel(carname);
 			drp.setVisible(true);
 			setVisible(false);
 		} else {
-			ReservationUpdatePage rup = new ReservationUpdatePage();
-			rup.setVisible(true);
+			if(InsertReservation.role(HomePagePanel.username, carname, CarReservationPanel.receivedStartDate, CarReservationPanel.receivedEndDate) != 0) {
+				JOptionPane.showConfirmDialog(null, "예약되었습니다.", "알림",
+						JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE);
+			}else {
+				JOptionPane.showConfirmDialog(null, "예약에 실패했습니다.", "알림", JOptionPane.DEFAULT_OPTION,
+						JOptionPane.PLAIN_MESSAGE);
+			}
+			System.out.println(carname);
+			
 			setVisible(false);
+			
 		}
 	}
 }

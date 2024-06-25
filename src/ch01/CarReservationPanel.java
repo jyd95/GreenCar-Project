@@ -14,9 +14,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class CarReservationPanel extends JFrame implements ActionListener {
-
+	
 	CarDetail carDetail;
-
+	public static String receivedStartDate;
+	public static String receivedEndDate;
 	public static String carname = null;
 
 	// 배경 패널
@@ -25,7 +26,9 @@ public class CarReservationPanel extends JFrame implements ActionListener {
 	// 로고
 	private JLabel logoLabel;
 	private JLabel headerLabel;
-
+	
+	public static int selectCar = 0;
+	
 	// 차량 버튼
 	private JButton k3;
 	private JButton k5;
@@ -37,6 +40,13 @@ public class CarReservationPanel extends JFrame implements ActionListener {
 	private JButton kanibal;
 
 	public CarReservationPanel() {
+		initData();
+		setInitLayout();
+		addEventListener();
+	}
+	public CarReservationPanel(String receivedStartDate, String receivedEndDate) {
+		this.receivedStartDate = receivedStartDate;
+		this.receivedEndDate = receivedEndDate;
 		initData();
 		setInitLayout();
 		addEventListener();
@@ -188,28 +198,28 @@ public class CarReservationPanel extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 
 		if (e.getSource() == k3) {
-			carname = e.getSource().toString();
+			selectCar = 1;
 			new CarDetail().DetailK3();
 		} else if (e.getSource() == k5) {
-			carname = e.getSource().toString();
+			selectCar = 2;
 			new CarDetail().DetailK5();
 		} else if (e.getSource() == model3) {
-			carname = e.getSource().toString();
+			selectCar = 3;
 			new CarDetail().DetailModel3();
 		} else if (e.getSource() == nexo) {
-			carname = e.getSource().toString();
+			selectCar = 4;
 			new CarDetail().DetailNexo();
 		} else if (e.getSource() == staria) {
-			carname = e.getSource().toString();
+			selectCar = 5;
 			new CarDetail().DetailStaria();
 		} else if (e.getSource() == sonata) {
-			carname = e.getSource().toString();
+			selectCar = 6;
 			new CarDetail().DetailSonata();
 		} else if (e.getSource() == avante) {
-			carname = e.getSource().toString();
+			selectCar = 7;
 			new CarDetail().DetailAvante();
 		} else if (e.getSource() == kanibal) {
-			carname = e.getSource().toString();
+			selectCar = 8;
 			new CarDetail().DetailKanibal();
 		}
 	}

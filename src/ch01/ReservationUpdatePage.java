@@ -6,6 +6,7 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.Date;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -18,9 +19,6 @@ import javax.swing.border.LineBorder;
 
 import DAO.CarDAO;
 import DTO.ReservationDTO;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 
 public class ReservationUpdatePage extends JFrame {
 	private JPanel backgroundPanel;
@@ -46,8 +44,14 @@ public class ReservationUpdatePage extends JFrame {
 	private JTextField reservationCarReturnDate;
 	private Color headerColor = new Color(220, 220, 220);
 
+	// 넘어온 값
 	private static int receivedid;
 	private static String receivedname;
+	private static String receivedCarname;
+	private static String receivedStartDate;
+	private static String receivedEndDate;
+	
+	
 	
 	// 예약자 정보 값
 	private JTextField id;
@@ -97,6 +101,15 @@ public class ReservationUpdatePage extends JFrame {
 		initData();
 		setInitLayout();
 		addEventListener();
+		rvDTO();
+	}
+	public ReservationUpdatePage(String receivedCarname, String receivedStartDate, String receivedEndDate) {
+		this.receivedCarname = receivedCarname;
+		this.receivedStartDate = receivedStartDate;
+		this.receivedEndDate = receivedEndDate;
+		initData();
+		setInitLayout();
+		addEventListener();
 	}
 	
 	
@@ -107,8 +120,31 @@ public class ReservationUpdatePage extends JFrame {
 		addEventListener();
 	}
 
-	public void initData() {
+	
+	
+	public void rvDTO() {
 		ReservationDTO dto = CarDAO.reservationNumSelec(receivedid, receivedname);
+		id.setText(Integer.toString(dto.getReservation_id()));
+		name.setText((dto.getUsername()));
+		phoneNumber.setText((dto.getPhonenum()));
+		carName.setText(dto.getCarname());
+		carNumber.setText(dto.getCarid());
+		cartype.setText((dto.getCartype()));
+		carbrand.setText((dto.getBrand()));
+		carpuel.setText((dto.getPuel()));
+		licenseGrade.setText(dto.getLicenseGrade());
+		rentdate.setText((dto.getStart_date().toString()));
+		returndate.setText((dto.getEnd_date().toString()));
+
+		// 차량 이미지
+		imgLabel = new JLabel(new ImageIcon(setCarPicture(dto.getCarname())));
+		imgLabel.setBounds(40, 330, 350, 200);
+		backgroundPanel.add(imgLabel);
+
+	}
+	
+	
+	public void initData() {
 
 		backgroundPanel = new BackgroundPanel();
 
@@ -154,23 +190,7 @@ public class ReservationUpdatePage extends JFrame {
 		
 		// 1종 2종 값만 받아오기, 출력 x
 		licenseGrade = new JTextField();
-		licenseGrade.setText(dto.getLicenseGrade());
-		//
-
-		id.setText(Integer.toString(dto.getReservation_id()));
-		name.setText((dto.getUsername()));
-		phoneNumber.setText((dto.getPhonenum()));
-		carName.setText(dto.getCarname());
-		carNumber.setText(dto.getCarid());
-		cartype.setText((dto.getCartype()));
-		carbrand.setText((dto.getBrand()));
-		carpuel.setText((dto.getPuel()));
-		rentdate.setText((dto.getStart_date().toString()));
-		returndate.setText((dto.getEnd_date().toString()));
-
-		// 차량 이미지
-		imgLabel = new JLabel(new ImageIcon(setCarPicture(dto.getCarname())));
-
+		
 	}
 
 	public void setInitLayout() {
@@ -263,8 +283,7 @@ public class ReservationUpdatePage extends JFrame {
 		backgroundPanel.add(returndate);
 
 		// 차량 이미지
-		imgLabel.setBounds(40, 330, 350, 200);
-		backgroundPanel.add(imgLabel);
+		
 
 		// 예약자 값
 		id.setBounds(549, 250, 190, 30);

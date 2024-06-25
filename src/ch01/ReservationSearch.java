@@ -120,6 +120,7 @@ public class ReservationSearch {
 					rup.setVisible(true);
 					frame.setVisible(false);
 				} catch (Exception e2) {
+					e2.printStackTrace();
 					JOptionPane.showConfirmDialog(null, "이름과 예약번호가 일치하지 않습니다.", "알림", JOptionPane.DEFAULT_OPTION);
 				}
 			}

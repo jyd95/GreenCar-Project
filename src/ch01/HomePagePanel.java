@@ -198,6 +198,7 @@ public class HomePagePanel extends JFrame {
 		dateReserveBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				movement = 2;
+				System.out.println(movement);
 				new DiaryReservationPanel();
 				setVisible(false);
 			}

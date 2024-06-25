@@ -25,10 +25,6 @@ import ch01.ReservationSearch;
 
 public class Login extends JFrame {
 	
-	public static String fd = "2024-06-03";
-	public static String ed = "2024-06-24";
-	public static String cn = "쏘나타";
-	
 	private static final long serialVersionUID = 1L;
 	private JTextField textField_1;
 	private JPanel contentPane;
@@ -80,12 +76,6 @@ public class Login extends JFrame {
 	 * Create the frame.
 	 */
 	public Login() {
-		try {
-			CarDAO.possibleCarChange(ed, fd, cn);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		final JTextField textField;
 		ImageIcon img1 = new ImageIcon("img/LOGIN.png");
 		ImageIcon img2 = new ImageIcon("img/회원가입.png");

@@ -11,17 +11,17 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import calendar.Diary;
 import calendar.SwingCalendar3;
 
 public class DiaryReservationPanel extends JFrame {
-	
-	private String carname;
-	
+
+	private String receivedCarname;
 	private Diary dr;
-	
+
 	// 패널
 	private JPanel backgroundPanel;
 
@@ -44,6 +44,13 @@ public class DiaryReservationPanel extends JFrame {
 	private ImageIcon rentImg;
 	private ImageIcon returnImg;
 
+	public DiaryReservationPanel(String receivedCarname) {
+		this.receivedCarname = receivedCarname;
+		initData();
+		setInitLayout();
+		addBtnListener();
+	}
+
 	public DiaryReservationPanel() {
 		initData();
 		setInitLayout();
@@ -51,7 +58,7 @@ public class DiaryReservationPanel extends JFrame {
 	}
 
 	public void initData() {
-		
+
 		// 패널
 		backgroundPanel = new JPanel();
 
@@ -77,7 +84,7 @@ public class DiaryReservationPanel extends JFrame {
 	}
 
 	public void setInitLayout() {
-		
+
 		// 프레임 설정
 		setSize(1000, 1000);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -138,15 +145,17 @@ public class DiaryReservationPanel extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+
 				if (HomePagePanel.movement == 2) {
-					CarReservationPanel crp = new CarReservationPanel();
+					CarReservationPanel crp = new CarReservationPanel(SwingCalendar3.startDate, SwingCalendar3.EndDate);
 					crp.setVisible(true);
 					setVisible(false);
 				} else {
-					ReservationUpdatePage rup = new ReservationUpdatePage();
-					rup.setVisible(true);
+					ReservationUpdatePage rup = new ReservationUpdatePage(receivedCarname, SwingCalendar3.startDate, SwingCalendar3.EndDate);
+					rup.setVisible(false);
 					setVisible(false);
+					JOptionPane.showConfirmDialog(null, "예약되었습니다.", "알림",
+							JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE);
 				}
 			}
 		});
