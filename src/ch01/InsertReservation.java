@@ -22,10 +22,8 @@ public class InsertReservation {
 		this.receivedEndDate = receivedEndDate;
 	}
 
-	public static int role(String carname, String username, String rentDate, String endDate) {
-		Date rentDate2 = Date.valueOf(receivedStartDate);
-		Date returnDate2 = Date.valueOf(receivedEndDate);
-		String query2 = " select * from carmanagement where carname = ? ";
+	public static int role(String carname, String username, Date rentDate, Date endDate) {
+		String query2 = " select carid from carmanagement where carname = ? ";
 		String query = " insert reservation(username, carid, start_date, end_date) values ( ?, ? , ? , ? ) ";
 		String carid = null;
 		int rr = 0;
@@ -41,8 +39,8 @@ public class InsertReservation {
 			PreparedStatement pstmt2 = conn.prepareStatement(query);
 			pstmt2.setString(1, username);
 			pstmt2.setString(2, carid);
-			pstmt2.setDate(3, rentDate2);
-			pstmt2.setDate(4, returnDate2);
+			pstmt2.setDate(3, rentDate);
+			pstmt2.setDate(4, endDate);
 			rr = pstmt2.executeUpdate();
 			
 		} catch (SQLException e) {

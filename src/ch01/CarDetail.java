@@ -3,6 +3,7 @@ package ch01;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Date;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -275,14 +276,15 @@ public class CarDetail extends JFrame implements ActionListener {
 			drp.setVisible(true);
 			setVisible(false);
 		} else {
-			if(InsertReservation.role(HomePagePanel.username, carname, CarReservationPanel.receivedStartDate, CarReservationPanel.receivedEndDate) != 0) {
+			Date rentDate = Date.valueOf(CarReservationPanel.receivedStartDate);
+			Date endDate = Date.valueOf(CarReservationPanel.receivedEndDate);
+			if(InsertReservation.role(carname, HomePagePanel.username, rentDate, endDate) != 0) {
 				JOptionPane.showConfirmDialog(null, "예약되었습니다.", "알림",
 						JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE);
 			}else {
 				JOptionPane.showConfirmDialog(null, "예약에 실패했습니다.", "알림", JOptionPane.DEFAULT_OPTION,
 						JOptionPane.PLAIN_MESSAGE);
 			}
-			System.out.println(carname);
 			
 			setVisible(false);
 			

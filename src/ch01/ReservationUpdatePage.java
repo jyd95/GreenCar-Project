@@ -455,8 +455,9 @@ public class ReservationUpdatePage extends JFrame {
 	private void addEventListener() {
 		updateCarBtn.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent e) {
-				dispose();
-				CarChange cc = new CarChange(returndate.getText(), rentdate.getText(), carName.getText());
+				Integer idInt = Integer.valueOf(id.getText());
+				setVisible(false);
+				CarChange cc = new CarChange(idInt, returndate.getText(), rentdate.getText(), carName.getText());
 			}
 		});
 		updateDateBtn.addMouseListener(new MouseAdapter() {

@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.Date;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -151,11 +152,18 @@ public class DiaryReservationPanel extends JFrame {
 					crp.setVisible(true);
 					setVisible(false);
 				} else {
-					ReservationUpdatePage rup = new ReservationUpdatePage(receivedCarname, SwingCalendar3.startDate, SwingCalendar3.EndDate);
-					rup.setVisible(false);
+					Date rentDate = Date.valueOf(SwingCalendar3.startDate);
+					Date endDate = Date.valueOf(SwingCalendar3.EndDate);
+					if (InsertReservation.role(receivedCarname, HomePagePanel.username, rentDate,
+							endDate) != 0) {
+						JOptionPane.showConfirmDialog(null, "예약되었습니다.", "알림", JOptionPane.DEFAULT_OPTION,
+								JOptionPane.PLAIN_MESSAGE);
+					} else {
+						JOptionPane.showConfirmDialog(null, "예약에 실패했습니다.", "알림", JOptionPane.DEFAULT_OPTION,
+								JOptionPane.PLAIN_MESSAGE);
+					}
+
 					setVisible(false);
-					JOptionPane.showConfirmDialog(null, "예약되었습니다.", "알림",
-							JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE);
 				}
 			}
 		});

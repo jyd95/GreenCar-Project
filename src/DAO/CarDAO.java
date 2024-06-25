@@ -209,9 +209,20 @@ public class CarDAO {
 	}
 
 	public static void changeCar(String carid, int id) throws SQLException {
+		String query2 = " select carid from carmanagement where carname = ?; ";
 		String query = " Update reservation set carid = ? where reservation_id = ? ";
 
 		try (Connection conn = DBCarConnectionManager.getConnection()) {
+			
+			PreparedStatement pstmt2 = conn.prepareStatement(query2);
+			pstmt2.setString(1, carid);
+			
+			ResultSet rs = pstmt2.executeQuery();
+			if (rs.next()) {
+				carid = rs.getString("carid");
+			}
+					
+			
 			PreparedStatement pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, carid);
 			pstmt.setInt(2, id);

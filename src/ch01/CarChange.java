@@ -20,10 +20,13 @@ import DAO.CarDAO;
 
 public class CarChange {
 
+	private int sc;
+	private String carname = null;
+	
 	private static String selectedCarname = null;
 	private static String startDate = null;
 	private static String endDate = null;
-
+	private static int id; // 예약조회 창에서 받아온 예약 id
 	private JFrame frame;
 	private JButton btnNewButton;
 	private JButton k3;
@@ -42,7 +45,8 @@ public class CarChange {
 	private JLabel logoLabel;
 	private JLabel headerLabel;
 
-	public CarChange(String endDate, String startDate, String selectedCarname) {
+	public CarChange(int id, String startDate, String endDate, String selectedCarname) {
+		this.id = id;
 		this.startDate = startDate;
 		this.endDate = endDate;
 		this.selectedCarname = selectedCarname;
@@ -66,7 +70,6 @@ public class CarChange {
 	public CarChange() {
 		initialize();
 	}
-
 
 	private void initialize() {
 
@@ -95,14 +98,13 @@ public class CarChange {
 		lblNewLabel.setFont(new Font("CookieRunOTF Black", Font.PLAIN, 20));
 		lblNewLabel.setBounds(308, 67, 172, 199);
 		frame.getContentPane().add(lblNewLabel);
-		
+
 		frame.setVisible(true);
 		try {
 			CarDAO.possibleCarChange(endDate, startDate, selectedCarname);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
 
 		JTextField choiceCar = new JTextField("선택된 차량 : ");
 		choiceCar.setBounds(340, 700, 135, 50);
@@ -126,6 +128,7 @@ public class CarChange {
 		k3.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
+				sc = 1;
 				choiceCarValue.setText("K3");
 				frame.repaint();
 				carid = "47호4827";
@@ -135,6 +138,7 @@ public class CarChange {
 		k5.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
+				sc = 2;
 				choiceCarValue.setText("K5");
 				frame.repaint();
 				carid = "49허3814";
@@ -144,6 +148,7 @@ public class CarChange {
 		model3.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
+				sc = 3;
 				choiceCarValue.setText("모델3");
 				frame.repaint();
 				carid = "52하3362";
@@ -153,6 +158,7 @@ public class CarChange {
 		nexo.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
+				sc = 4;
 				choiceCarValue.setText("넥쏘");
 				frame.repaint();
 				carid = "53호6642";
@@ -162,6 +168,7 @@ public class CarChange {
 		staria.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
+				sc = 5;
 				choiceCarValue.setText("스타렉스");
 				frame.repaint();
 				carid = "51하3942";
@@ -171,6 +178,7 @@ public class CarChange {
 		sonata.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
+				sc = 6;
 				choiceCarValue.setText("소나타");
 				frame.repaint();
 				carid = "46하8247";
@@ -180,6 +188,7 @@ public class CarChange {
 		avante.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
+				sc = 7;
 				choiceCarValue.setText("아반떼");
 				frame.repaint();
 				carid = "48허2748";
@@ -189,6 +198,7 @@ public class CarChange {
 		kanibal.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
+				sc = 8;
 				choiceCarValue.setText("카니발");
 				frame.repaint();
 				carid = "50호3827";
@@ -270,11 +280,9 @@ public class CarChange {
 										JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE);
 								if (result2 == JOptionPane.YES_OPTION) {
 									frame.setVisible(false);
-									new ReservationUpdatePage();
-									CarDAO.reservationNumSelec(ReservationUpdatePage.getReceivedid(),
-											ReservationUpdatePage.getReceivedname());
 								}
 							} catch (SQLException e1) {
+								// todos 예외처리
 								e1.printStackTrace();
 							}
 						}
@@ -285,16 +293,16 @@ public class CarChange {
 					if (result == JOptionPane.YES_OPTION) {
 						try {
 							CarDAO.changeCar(carid, ReservationUpdatePage.getReceivedid());
+							frame.setVisible(false);
 							int result2 = JOptionPane.showConfirmDialog(null, "변경되었습니다.", "알림",
 									JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE);
 							if (result2 == JOptionPane.YES_OPTION) {
 								frame.setVisible(false);
-								new ReservationUpdatePage();
-								CarDAO.reservationNumSelec(ReservationUpdatePage.getReceivedid(),
-										ReservationUpdatePage.getReceivedname());
 							}
 						} catch (SQLException e1) {
+							// todos 예외처리
 							e1.printStackTrace();
+
 						}
 					}
 				}
@@ -319,5 +327,26 @@ public class CarChange {
 //				frame.setVisible(false);
 //			}
 //		});
+	}
+
+	public void selectedCar() {
+		if (sc == 1) {
+			carname = "k3";
+			carid = "47호4827";
+		} else if (sc == 2) {
+			carname = "k5";
+		} else if (sc == 3) {
+			carname = "model3";
+		} else if (sc == 4) {
+			carname = "nexo";
+		} else if (sc == 5) {
+			carname = "staria";
+		} else if (sc == 6) {
+			carname = "sonata";
+		} else if (sc == 7) {
+			carname = "avante";
+		} else if (sc == 8) {
+			carname = "karnibal";
+		}
 	}
 }
