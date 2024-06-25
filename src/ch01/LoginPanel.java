@@ -34,6 +34,9 @@ public class LoginPanel extends JFrame {
 
 	// 이미지
 	private ImageIcon signUpBtnImg;
+	private ImageIcon duplicaioncheckBtnImg1;
+	private ImageIcon duplicaioncheckBtnImg2;
+	private ImageIcon duplicaioncheckBtnImg3;
 
 	// 레이블
 	private JLabel idLabel;
@@ -61,6 +64,7 @@ public class LoginPanel extends JFrame {
 	// 콤보 박수
 	private JComboBox comboBox;
 
+	// 중복 체크 카운트
 	private int duplicationCount = 0;
 
 	public LoginPanel() {
@@ -76,7 +80,6 @@ public class LoginPanel extends JFrame {
 
 		// 로고
 		greeeCarLogo = new JLabel(new ImageIcon("img/logo2.png"));
-		signUpBtnImg = new ImageIcon("img/회원가입.png");
 
 		// id, pwd 라벨
 		idLabel = new JLabel("아이디");
@@ -98,8 +101,12 @@ public class LoginPanel extends JFrame {
 		comboBox = new JComboBox(licenceLevel);
 
 		// 버튼
+		signUpBtnImg = new ImageIcon("img/회원가입.png");
+		duplicaioncheckBtnImg1 = new ImageIcon("buttonImage/duplicationcheckBtn1.png");
+		duplicaioncheckBtnImg2 = new ImageIcon("buttonImage/duplicationcheckBtn2.png");
+		duplicaioncheckBtnImg3 = new ImageIcon("buttonImage/duplicationcheckBtn3.png");
 		signUpBtn = new JButton(signUpBtnImg);
-		duplicateBtn = new JButton("중복체크");
+		duplicateBtn = new JButton(duplicaioncheckBtnImg1);
 	}
 
 	public void setInitLayout() {
@@ -180,7 +187,7 @@ public class LoginPanel extends JFrame {
 		signUpBtn.setBorder(null);
 		signUpBtn.setContentAreaFilled(false);
 
-		duplicateBtn.setBounds(380, 175, 180, 50);
+		duplicateBtn.setBounds(380, 175, 180, 60);
 		duplicateBtn.setBorder(null);
 		duplicateBtn.setContentAreaFilled(false);
 
@@ -189,32 +196,45 @@ public class LoginPanel extends JFrame {
 
 		setVisible(true);
 	}
-	
+
 	// 회원가입 버튼
 	private void addEventListener() {
 		signUpBtn.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent e) {
 
+				// 회원가입 아이디 예외 처리
 				if (idTextField.getText().isEmpty()) {
 					JOptionPane.showConfirmDialog(null, "아이디를 입력해주세요", "알림", JOptionPane.DEFAULT_OPTION,
 							JOptionPane.PLAIN_MESSAGE);
+
+					// 비밀번호 예외 처리
 				} else if (pwdTextField.getText().isEmpty()) {
 					JOptionPane.showConfirmDialog(null, "패스워드를 입력해주세요", "알림", JOptionPane.DEFAULT_OPTION,
 							JOptionPane.PLAIN_MESSAGE);
+
+					// 폰번호 예외처리
 				} else if (phoneNumField.getText().isEmpty()) {
 					JOptionPane.showConfirmDialog(null, "전화번호를 입력해주세요", "알림", JOptionPane.DEFAULT_OPTION,
 							JOptionPane.PLAIN_MESSAGE);
+
+					// 주소 예외 처리
 				} else if (addressField.getText().isEmpty()) {
 					JOptionPane.showConfirmDialog(null, "주소를 입력해주세요", "알림", JOptionPane.DEFAULT_OPTION,
 							JOptionPane.PLAIN_MESSAGE);
+
+					// 이메일 예외 처리
 				} else if (emailField.getText().isEmpty()) {
 					JOptionPane.showConfirmDialog(null, "이메일을 입력해주세요", "알림", JOptionPane.DEFAULT_OPTION,
 							JOptionPane.PLAIN_MESSAGE);
+
+					// 중복버튼 체크
 				} else if (duplicationCount == 0) {
 					JOptionPane.showConfirmDialog(null, "중복체크를 해주세요", "알림", JOptionPane.DEFAULT_OPTION,
 							JOptionPane.PLAIN_MESSAGE);
 				} else
 					try {
+
+						// 유저네임이 같은지 체크하는 DAO
 						if (!CarDAO.isUsernameExists(idTextField.getText())) {
 							try {
 								ReservationPersonInfoDTO dto = CarDAO.insertPerson(idTextField.getText(),
@@ -227,6 +247,7 @@ public class LoginPanel extends JFrame {
 								s.printStackTrace();
 							}
 
+							// 아니면 중복이 뜸
 						} else {
 							JOptionPane.showConfirmDialog(null, "아이디가 중복입니다!", "알림", JOptionPane.DEFAULT_OPTION,
 									JOptionPane.PLAIN_MESSAGE);
@@ -239,24 +260,32 @@ public class LoginPanel extends JFrame {
 			}
 		});
 
+		// 중복체크 버튼
 		duplicateBtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				try {
+					// 중복체크 DAO
 					if (CarDAO.isUsernameExists(idTextField.getText())) {
 						JOptionPane.showConfirmDialog(null, "중복된 아이디 입니다.", "알림", JOptionPane.DEFAULT_OPTION,
 								JOptionPane.PLAIN_MESSAGE);
 						possibleLabel.setVisible(true);
 						possibleLabel.setText("중복된 아이디 입니다");
+						duplicateBtn.setIcon(duplicaioncheckBtnImg3);
 						duplicationCount = 1;
+
+						// 아이디 필드가 비어있을시
 					} else if (idTextField.getText().isEmpty()) {
 						JOptionPane.showConfirmDialog(null, "아이디를 입력해주세요", "알림", JOptionPane.DEFAULT_OPTION,
 								JOptionPane.PLAIN_MESSAGE);
 					} else {
+
+						// 아이디가 중복이 아닐시
 						JOptionPane.showConfirmDialog(null, "사용 가능한 아이디 입니다.", "알림", JOptionPane.DEFAULT_OPTION,
 								JOptionPane.PLAIN_MESSAGE);
 						possibleLabel.setVisible(true);
 						possibleLabel.setText("사용 가능한 아이디 입니다");
+						duplicateBtn.setIcon(duplicaioncheckBtnImg2);
 						duplicationCount = 1;
 					}
 				} catch (SQLException e1) {
@@ -267,7 +296,4 @@ public class LoginPanel extends JFrame {
 
 	}
 
-	public static void main(String[] args) {
-		new LoginPanel();
-	}
 }
