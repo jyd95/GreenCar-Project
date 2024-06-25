@@ -118,6 +118,7 @@ public class ReservationUpdatePage extends JFrame {
 		initData();
 		setInitLayout();
 		addEventListener();
+		// 추가
 	}
 
 	

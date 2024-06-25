@@ -56,6 +56,7 @@ public class DiaryReservationPanel extends JFrame {
 		initData();
 		setInitLayout();
 		addBtnListener();
+		
 	}
 
 	public void initData() {
@@ -162,7 +163,7 @@ public class DiaryReservationPanel extends JFrame {
 						JOptionPane.showConfirmDialog(null, "예약에 실패했습니다.", "알림", JOptionPane.DEFAULT_OPTION,
 								JOptionPane.PLAIN_MESSAGE);
 					}
-
+					
 					setVisible(false);
 				}
 			}

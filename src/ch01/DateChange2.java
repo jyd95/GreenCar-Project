@@ -263,7 +263,7 @@ public class DateChange2 extends JFrame {
 								Date returnDate2 = Date.valueOf(returnDate);
 								try {
 									CarDAO.changeDate(rentDate2, returnDate2, ReservationUpdatePage.getReceivedid());
-									new ReservationUpdatePage();
+									 new ReservationUpdatePage();
 								} catch (SQLException e1) {
 									e1.printStackTrace();
 								}
