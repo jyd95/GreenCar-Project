@@ -18,6 +18,7 @@ import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 
 public class HomePagePanel extends JFrame {
+	
 	public static String username = null;
 	public static int movement = 0;
 	// movement 의 값, 0 = 초기값, 1 = 차량으로 예약하기, 2 = 날짜로 예약하기.
@@ -58,11 +59,12 @@ public class HomePagePanel extends JFrame {
 	}
 
 	public void initData() {
+		
 		// 패널
 		backgroundPanel = new BackgroundPanel();
 		searchPanel = new JPanel();
 
-		// 로고레이블
+		// 로고 라벨
 		logoLabel = new JLabel(new ImageIcon("img/logo2.png"));
 
 		// 상단 메뉴바 버튼
@@ -76,18 +78,14 @@ public class HomePagePanel extends JFrame {
 		dotbogyImg = new ImageIcon("img/zoomin.png");
 		searchBtn = new JButton(dotbogyImg);
 
-		// main 이미지
+		// 배경 이미지
 		greenCarLabel1 = new JLabel(new ImageIcon("img/backgroundImg.jpg"));
 		greenCarLabel2 = new JLabel(new ImageIcon("img/backgroundImg2.jpg"));
-//		usernameLabel = new JLabel(username + "님, 환영합니다.");
-//		usernameLabel.setBounds(750, -80, 105, 200);
-//		usernameLabel.setLayout(null);
-//		backgroundPanel.add(usernameLabel);
 	}
 
 	public void setInitLayout() {
+		
 		// 프레임 설정
-
 		setSize(1000, 1000);
 		setTitle(username + "님, 환영합니다.");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -101,20 +99,20 @@ public class HomePagePanel extends JFrame {
 		backgroundPanel.setLayout(null);
 		add(backgroundPanel);
 
+		// 검색 패널
 		searchPanel.setBounds(200, 200, 600, 45);
 		searchPanel.setBackground(Color.WHITE);
-		// searchPanel.setBorder(BorderFactory.createLineBorder(Color.RED));
 		searchPanel.setBorder(new LineBorder(Color.ORANGE, 5, true));
 		searchPanel.add(writeSearchBox);
 		searchPanel.add(searchBtn);
 		backgroundPanel.add(searchPanel);
 
-		// logo 이미지
+		// 로고 이미지
 		logoLabel.setBounds(30, 0, 105, 200);
 		logoLabel.setLayout(null);
 		backgroundPanel.add(logoLabel);
 
-		// main logo
+		// 배경 라벨
 		greenCarLabel1.setBounds(0, 330, 1001, 668);
 		greenCarLabel2.setBounds(0, 330, 1001, 668);
 
@@ -155,8 +153,8 @@ public class HomePagePanel extends JFrame {
 
 		setVisible(true);
 
+		// 차량으로 예약하기 버튼 누르면 차량 예약 창으로 전환
 		carReserveBtn.addActionListener(new ActionListener() {
-
 			public void actionPerformed(ActionEvent e) {
 				movement = 1;
 				CarReservationPanel crp = new CarReservationPanel();
@@ -165,17 +163,17 @@ public class HomePagePanel extends JFrame {
 			}
 		});
 
+		// 예약 조회 버튼 누르면 새 창 띄우기
 		usedCarBtn.addActionListener(new ActionListener() {
-
 			public void actionPerformed(ActionEvent e) {
 				ReservationSearch rs = new ReservationSearch();
 				rs.main(null);
 			}
 		});
-
 	}
 
 	private void initListener() {
+		// 검색 박스
 		writeSearchBox.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
@@ -196,13 +194,12 @@ public class HomePagePanel extends JFrame {
 	}
 
 	public void addBtnListener() {
+		// 날짜로 예약하기 버튼 누르면 창 전환
 		dateReserveBtn.addActionListener(new ActionListener() {
-
 			public void actionPerformed(ActionEvent e) {
 				movement = 2;
 				new DiaryReservationPanel();
 				setVisible(false);
-
 			}
 		});
 	}
@@ -227,5 +224,4 @@ public class HomePagePanel extends JFrame {
 	public static void main(String[] args) {
 		new HomePagePanel(username);
 	}
-
 }

@@ -71,11 +71,8 @@ public class CarChange {
 	}
 
 	private void initialize() {
-
-		// 차량 변경하기 이미지
 		ImageIcon img = new ImageIcon("img/changeCar.png");
 
-		// 프레임 창
 		frame = new JFrame();
 		frame.setBounds(0, 0, 1000, 1000);
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -83,13 +80,11 @@ public class CarChange {
 		frame.setResizable(false);
 		frame.getContentPane().setLayout(null);
 
-		// 로고 라벨
 		logoLabel = new JLabel(new ImageIcon("img/logo2.png"));
 		logoLabel.setBounds(30, 0, 105, 200);
 		logoLabel.setLayout(null);
 		frame.add(logoLabel);
 
-		// 차량 변경 라벨
 		headerLabel = new JLabel("차량 변경");
 		headerLabel.setBounds(400, 40, 300, 100);
 		headerLabel.setLayout(null);
@@ -101,19 +96,17 @@ public class CarChange {
 		lblNewLabel.setFont(new Font("CookieRunOTF Black", Font.PLAIN, 20));
 		lblNewLabel.setBounds(308, 67, 172, 199);
 		frame.getContentPane().add(lblNewLabel);
-		
+
 		// todos!
-		
+
 		// String query = " select cm.carname from carmanagement as cm join
 		// reservation as re on re.carid = cm.carid where (re.start_date > ? or
 		// re.end_date < ?) and cm.carname != ? ";
-		
-		// 해당 쿼리로 jdbc 작성 후 차량변경 클래스 carchange 에 해당 날짜에
-		// 예약이 가능한 차 carname 값 받아와서 
-		// 불리언 차량res 값을 true로 변경해 주는 기능 구현
-		
 
-<<<<<<< HEAD
+		// 해당 쿼리로 jdbc 작성 후 차량변경 클래스 carchange 에 해당 날짜에
+		// 예약이 가능한 차 carname 값 받아와서
+		// 불리언 차량res 값을 true로 변경해 주는 기능 구현
+
 		JTextField choiceCar = new JTextField("선택된 차량 : ");
 		choiceCar.setBounds(340, 700, 135, 50);
 		choiceCar.setBorder(new LineBorder(new Color(0, 0, 0, 0)));
@@ -122,29 +115,16 @@ public class CarChange {
 		choiceCar.setBackground(new Color(0, 0, 0, 0));
 		choiceCar.setFont(new Font("굴림", Font.BOLD, 20));
 		frame.getContentPane().add(choiceCar);
-		
+
 		JTextField choiceCarValue = new JTextField();
 		choiceCarValue.setBounds(470, 700, 130, 50);
 		choiceCarValue.setBorder(new LineBorder(new Color(0, 0, 0, 0)));
 		choiceCarValue.setEditable(false);
 		choiceCarValue.setForeground(Color.BLACK);
 		choiceCarValue.setOpaque(false); // 배경 투명 설정
-//		choiceCarValue.setBackground(new Color(0, 0, 0, 0));
 		choiceCarValue.setFont(new Font("굴림", Font.BOLD, 20));
 		frame.getContentPane().add(choiceCarValue);
-=======
-		// 차량 버튼
-		k3 = new JButton(new ImageIcon("img/K3.png"));
-		k5 = new JButton(new ImageIcon("img/K5.png"));
-		model3 = new JButton(new ImageIcon("img/MODEL3.png"));
-		nexo = new JButton(new ImageIcon("img/넥쏘.png"));
-		staria = new JButton(new ImageIcon("img/스타리아.png"));
-		sonata = new JButton(new ImageIcon("img/쏘나타2.png"));
-		avante = new JButton(new ImageIcon("img/아반떼.png"));
-		kanibal = new JButton(new ImageIcon("img/카니발2.png"));
->>>>>>> f-uio
 
-		
 		if (k3res == true) {
 			k3 = new JButton(new ImageIcon("img/k3.png"));
 			k3.addMouseListener(new MouseAdapter() {
@@ -299,102 +279,10 @@ public class CarChange {
 		avante.setContentAreaFilled(false);
 		kanibal.setContentAreaFilled(false);
 
-
-<<<<<<< HEAD
-		
-	
-		
-		
-		
-		
-		
-		
-		
-		
-=======
-		// 선택된 차량의 값
-		JTextField choiceCarValue = new JTextField();
-		choiceCarValue.setBounds(470, 700, 130, 50);
-		choiceCarValue.setBorder(new LineBorder(new Color(0, 0, 0, 0)));
-		choiceCarValue.setEditable(false);
-		choiceCarValue.setForeground(Color.BLACK);
-		choiceCarValue.setOpaque(false); // 배경 투명 설정
-		choiceCarValue.setFont(new Font("굴림", Font.BOLD, 20));
-		frame.getContentPane().add(choiceCarValue);
-
-		// 버튼 별 carid
-		k3.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-				choiceCarValue.setText("K3");
-				frame.repaint();
-				carid = "47호4827";
-			}
-		});
-		k5.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-				choiceCarValue.setText("K5");
-				frame.repaint();
-				carid = "49허3814";
-			}
-		});
-		model3.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-				choiceCarValue.setText("모델3");
-				frame.repaint();
-				carid = "52하3362";
-			}
-		});
-		nexo.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-				choiceCarValue.setText("넥쏘");
-				frame.repaint();
-				carid = "53호6642";
-			}
-		});
-		staria.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-				choiceCarValue.setText("스타렉스");
-				frame.repaint();
-				carid = "51하3942";
-			}
-		});
-		sonata.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-				choiceCarValue.setText("소나타");
-				frame.repaint();
-				carid = "46하8247";
-			}
-		});
-		avante.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-				choiceCarValue.setText("아반떼");
-				frame.repaint();
-				carid = "48허2748";
-			}
-		});
-		kanibal.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-				choiceCarValue.setText("카니발");
-				frame.repaint();
-				carid = "50호3827";
-			}
-		});
->>>>>>> f-uio
-
-		// 차량 변경하기 버튼
 		btnNewButton = new JButton(img);
 		btnNewButton.setBorderPainted(false);
 		btnNewButton.setContentAreaFilled(false);
 		btnNewButton.addMouseListener(new MouseAdapter() {
-
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (choiceCarValue.getText().equals(ReservationUpdatePage.carNameTextField().getText())) {
