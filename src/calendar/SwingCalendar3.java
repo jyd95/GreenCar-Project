@@ -28,7 +28,6 @@ public class SwingCalendar3 extends JFrame implements Runnable {
 
 	// 라벨
 	private JLabel yearMonthLabel;
-	private JLabel headerLabel;
 
 	// 달력 버튼
 	private JButton previousBtn;
@@ -57,7 +56,6 @@ public class SwingCalendar3 extends JFrame implements Runnable {
 
 	// 버튼 클릭 횟수
 	private boolean firstClick = true;
-	private boolean secondClick = true;
 	private int firstClickedIndex = -1;
 
 	public SwingCalendar3(DiaryReservationPanel drp) {
@@ -75,7 +73,6 @@ public class SwingCalendar3 extends JFrame implements Runnable {
 		term = new JPanel();
 		// 라벨
 		yearMonthLabel = new JLabel("00년 0월");
-		headerLabel = new JLabel("날짜로 예약");
 		// 버튼
 		prebtnIcon = new ImageIcon("img/left.png");
 		nextbtnIcon = new ImageIcon("img/right.png");
