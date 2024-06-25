@@ -48,6 +48,7 @@ public class DateChange2 extends JFrame {
 	private JTextField usernamevalue[];
 	private JTextField startdatevalue[];
 	private JTextField enddatevalue[];
+
 	private Color headerColor = new Color(220, 220, 220);
 
 	public DateChange2(String rentDate, String returnDate) {
@@ -98,6 +99,7 @@ public class DateChange2 extends JFrame {
 				String returnDate1 = String.valueOf(cardto.get(i).getEnd_date());
 				startdatevalue[i].setText(rentDate1);
 				enddatevalue[i].setText(returnDate1);
+
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -267,9 +269,6 @@ public class DateChange2 extends JFrame {
 								}
 							}
 						} else {
-							System.out.println(ReservationUpdatePage.carNameTextField().getText());
-							System.out.println(rentDate1);
-							System.out.println(returnDate1);
 							JOptionPane.showConfirmDialog(null, "이미 예약한 사람이 있습니다.", "알림", JOptionPane.DEFAULT_OPTION,
 									JOptionPane.PLAIN_MESSAGE);
 						}
@@ -297,6 +296,7 @@ public class DateChange2 extends JFrame {
 			super.paintComponent(g);
 			g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), null);
 		}
+
 	}
 
 	public static void main(String[] args) {

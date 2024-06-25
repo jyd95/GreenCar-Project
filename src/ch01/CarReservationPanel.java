@@ -63,6 +63,7 @@ public class CarReservationPanel extends JFrame implements ActionListener {
 	}
 
 	public void setInitLayout() {
+		
 		// 프레임 설정
 		setSize(1000, 1000);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

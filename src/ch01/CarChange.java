@@ -42,16 +42,6 @@ public class CarChange {
 	private JLabel logoLabel;
 	private JLabel headerLabel;
 
-	// 차 목록 배열
-
-	/**
-	 * Launch the application.
-	 */
-	
-
-	/**
-	 * Create the application.
-	 */
 	public CarChange(String endDate, String startDate, String selectedCarname) {
 		this.startDate = startDate;
 		this.endDate = endDate;
@@ -59,11 +49,25 @@ public class CarChange {
 		initialize();
 	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 * 
-	 * @throws SQLException
-	 */
+	public static void main(String[] args) {
+		new CarChange();
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					CarChange window = new CarChange();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	public CarChange() {
+		initialize();
+	}
+
+
 	private void initialize() {
 
 		ImageIcon img = new ImageIcon("img/changeCar.png");
@@ -98,15 +102,7 @@ public class CarChange {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		// todos!
 
-		// String query = " select cm.carname from carmanagement as cm join
-		// reservation as re on re.carid = cm.carid where (re.start_date > ? or
-		// re.end_date < ?) and cm.carname != ? ";
-
-		// 해당 쿼리로 jdbc 작성 후 차량변경 클래스 carchange 에 해당 날짜에
-		// 예약이 가능한 차 carname 값 받아와서
-		// 불리언 차량res 값을 true로 변경해 주는 기능 구현
 
 		JTextField choiceCar = new JTextField("선택된 차량 : ");
 		choiceCar.setBounds(340, 700, 135, 50);
@@ -123,7 +119,6 @@ public class CarChange {
 		choiceCarValue.setEditable(false);
 		choiceCarValue.setForeground(Color.BLACK);
 		choiceCarValue.setOpaque(false); // 배경 투명 설정
-//		choiceCarValue.setBackground(new Color(0, 0, 0, 0));
 		choiceCarValue.setFont(new Font("굴림", Font.BOLD, 20));
 		frame.getContentPane().add(choiceCarValue);
 
@@ -282,10 +277,8 @@ public class CarChange {
 							} catch (SQLException e1) {
 								e1.printStackTrace();
 							}
-						} else {
 						}
 					}
-//				} else if (ReservationUpdatePage.getLicenseGrade().getText().equals("1종")) {
 				} else {
 					int result = JOptionPane.showConfirmDialog(null, choiceCarValue.getText() + "로 변경하시겠습니까 ?", "알림",
 							JOptionPane.YES_NO_OPTION);
@@ -303,7 +296,6 @@ public class CarChange {
 						} catch (SQLException e1) {
 							e1.printStackTrace();
 						}
-					} else {
 					}
 				}
 			}

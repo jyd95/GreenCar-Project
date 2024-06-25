@@ -21,15 +21,14 @@ public class DiaryReservationPanel extends JFrame {
 	private String carname;
 	
 	private Diary dr;
+	
 	// 패널
 	private JPanel backgroundPanel;
 
-	// 상하 레이블
+	// 라벨
 	private JLabel logoLabel;
 	private JLabel dateLabel;
 	private JLabel returnLabel;
-
-	// 로고
 	private JLabel headerLabel;
 	private JLabel midLabel;
 	private JLabel calendarLabel;
@@ -52,10 +51,11 @@ public class DiaryReservationPanel extends JFrame {
 	}
 
 	public void initData() {
+		
 		// 패널
 		backgroundPanel = new JPanel();
 
-		// 로고
+		// 라벨 이미지
 		headerLabel = new JLabel("날짜 선택하기");
 		logoLabel = new JLabel(new ImageIcon("img/logo2.png"));
 		midLabel = new JLabel(new ImageIcon("img/reserveLogo3.png"));
@@ -77,18 +77,20 @@ public class DiaryReservationPanel extends JFrame {
 	}
 
 	public void setInitLayout() {
+		
+		// 프레임 설정
 		setSize(1000, 1000);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
 		setLayout(null);
 
-		// 패널
+		// 배경 패널
 		backgroundPanel.setSize(getWidth(), getHeight());
 		backgroundPanel.setBackground(Color.WHITE);
 		backgroundPanel.setLayout(null);
 		add(backgroundPanel);
 
-		// logo 이미지
+		// 라벨 이미지
 		logoLabel.setBounds(30, 0, 105, 200);
 		oneLineLabel.setBounds(0, 170, 1000, 20);
 		headerLabel.setBounds(200, 50, 300, 100);
@@ -110,7 +112,7 @@ public class DiaryReservationPanel extends JFrame {
 		backgroundPanel.add(headerLabel);
 		backgroundPanel.add(oneLineLabel);
 
-		// 미드 로고
+		// 중간 로고
 		midLabel.setBounds(250, 150, 500, 700);
 		calendarLabel.setBounds(250, 100, 500, 700);
 
@@ -136,8 +138,8 @@ public class DiaryReservationPanel extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				
 				if (HomePagePanel.movement == 2) {
-					
 					CarReservationPanel crp = new CarReservationPanel();
 					crp.setVisible(true);
 					setVisible(false);
@@ -146,7 +148,6 @@ public class DiaryReservationPanel extends JFrame {
 					rup.setVisible(true);
 					setVisible(false);
 				}
-
 			}
 		});
 
@@ -181,5 +182,4 @@ public class DiaryReservationPanel extends JFrame {
 			}
 		});
 	}
-
 }

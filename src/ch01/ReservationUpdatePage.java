@@ -48,11 +48,11 @@ public class ReservationUpdatePage extends JFrame {
 
 	private static int receivedid;
 	private static String receivedname;
+	
 	// 예약자 정보 값
 	private JTextField id;
 	private JTextField name;
 	private JTextField phoneNumber;
-	
 	private static JTextField licenseGrade;
 	
 	// 차량 정보 값
@@ -443,7 +443,6 @@ public class ReservationUpdatePage extends JFrame {
 		updateDateBtn.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent e) {
 				new DateChange2(null,null);
-//				dc.setVisible(true);
 				setVisible(false);
 			}
 		});
