@@ -281,8 +281,7 @@ public class CarChange {
 								int result2 = JOptionPane.showConfirmDialog(null, "변경되었습니다.", "알림",
 										JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE);
 								if (result2 == JOptionPane.YES_OPTION) {
-									crp.setVisible(false);
-									drp.setVisible(false);
+									frame.setVisible(false);
 								}
 							} catch (SQLException e1) {
 								// todos 예외처리
