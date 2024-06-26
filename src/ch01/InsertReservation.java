@@ -6,6 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.swing.JOptionPane;
+
 import DAO.CarDAO;
 import DAO.DBCarConnectionManager;
 
@@ -25,7 +27,9 @@ public class InsertReservation {
 	public static int role(String carname, String username, Date rentDate, Date endDate) {
 		String query2 = " select carid from carmanagement where carname = ? ";
 		String query = " insert reservation(username, carid, start_date, end_date) values ( ?, ? , ? , ? ) ";
+		String query3 = "select * from reservation where username = ? and carid = ? and start_date = ? and end_date = ?";
 		String carid = null;
+		int reservationNum = 0;
 		int rr = 0;
 		try (Connection conn = DBCarConnectionManager.getConnection()) {
 			PreparedStatement pstmt = conn.prepareStatement(query2);
@@ -42,6 +46,22 @@ public class InsertReservation {
 			pstmt2.setDate(3, rentDate);
 			pstmt2.setDate(4, endDate);
 			rr = pstmt2.executeUpdate();
+			
+			PreparedStatement pstmt3 = conn.prepareStatement(query3);
+			pstmt3.setString(1, username);
+			pstmt3.setString(2, carid);
+			pstmt3.setDate(3, rentDate);
+			pstmt3.setDate(4, endDate);
+			ResultSet rs2 = pstmt3.executeQuery();
+			while(rs2.next()) {
+				reservationNum = rs2.getInt("reservation_id");
+			}
+			
+			JOptionPane.showConfirmDialog(null, "예약 완료\n" + "예약번호 : " + reservationNum, "알림", JOptionPane.DEFAULT_OPTION);
+			
+			
+			
+
 			
 		} catch (SQLException e) {
 			e.printStackTrace();

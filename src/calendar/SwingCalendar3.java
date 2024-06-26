@@ -3,11 +3,8 @@ package calendar;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.sql.Date;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -18,9 +15,6 @@ import javax.swing.JPanel;
 
 import ch01.DiaryReservationPanel;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
-
 
 @Data
 
@@ -67,6 +61,8 @@ public class SwingCalendar3 extends JFrame implements Runnable {
 	// 버튼 클릭 횟수
 	private boolean firstClick = true;
 	private int firstClickedIndex = -1;
+	private int firstClickMonth;
+	private int secondClickMonth;
 
 	public SwingCalendar3(DiaryReservationPanel drp) {
 		this.drp = drp;
@@ -76,19 +72,19 @@ public class SwingCalendar3 extends JFrame implements Runnable {
 
 		new Thread(this).start();
 	}
-	
-	public void alertDateover(String date1, String date2, int date3, int date4) {
-        int a = Integer.valueOf(date1);
-        int b = Integer.valueOf(date2);
-        if ((date3 == date4 && a > b) || date3 > date4) {
-            JOptionPane.showConfirmDialog(null, "날짜를 다시 입력해주세요", "알림", JOptionPane.DEFAULT_OPTION,
-                    JOptionPane.PLAIN_MESSAGE);
-        } else {
 
-            drp.updateReturnLabelText("반납일 : " + dr.getAllCal(secondButtonText));
-            dispose();
-        }
-    }
+	public void alertDateover(String date1, String date2, int date3, int date4) {
+		int a = Integer.valueOf(date1);
+		int b = Integer.valueOf(date2);
+		if ((date3 == date4 && a > b) || date3 > date4) {
+			JOptionPane.showConfirmDialog(null, "날짜를 다시 입력해주세요", "알림", JOptionPane.DEFAULT_OPTION,
+					JOptionPane.PLAIN_MESSAGE);
+		} else {
+
+			drp.updateReturnLabelText("반납일 : " + dr.getAllCal(secondButtonText));
+			dispose();
+		}
+	}
 
 	public void initData() {
 		// 패널
@@ -177,27 +173,28 @@ public class SwingCalendar3 extends JFrame implements Runnable {
 
 					// 클릭이 1번이면
 					if (clickCount % 2 == 1) {
-						buttons[index].setEnabled(false);
+						// buttons[index].setEnabled(false);
 						firstButtonText = buttons[index].getText();
 
 						////////////////// !!!!!!!!!!!!!!!!!///////////////////////////
-
+						firstClickMonth = dr.getMonth();
 						System.out.println(dr.getAllCal(firstButtonText));
 						startDate = dr.getAllCal(firstButtonText);
 						drp.updatedateLabelText("대여일 : " + dr.getAllCal(firstButtonText));
-
 						////////////////// !!!!!!!!!!!!!!!!!///////////////////////////
 
 						// 클릭이 2번이면
 					} else if (clickCount % 2 == 0) {
 						secondButtonText = buttons[index].getText();
 						System.out.println(dr.getAllCal(secondButtonText));
-						buttons[index].setEnabled(true);
+						// buttons[index].setEnabled(true);
+						secondClickMonth = dr.getMonth();
 
 						// 대여일 , 반납일 출력하기!!!!!!!!!!!
 						//////////////// !!!!!!!!!!!!!!!!!!!!!!////////////////////////////
+						alertDateover(firstButtonText, secondButtonText, firstClickMonth, secondClickMonth);
 						EndDate = dr.getAllCal(secondButtonText);
-						drp.updateReturnLabelText("반납일 : " + dr.getAllCal(secondButtonText));
+						// drp.updateReturnLabelText("반납일 : " + dr.getAllCal(secondButtonText));
 
 						//////////////// !!!!!!!!!!!!!!!!!!!!!!////////////////////////////
 					}
@@ -215,18 +212,18 @@ public class SwingCalendar3 extends JFrame implements Runnable {
 						int end = Math.max(firstClickedIndex, secondClickedIndex);
 						System.out.println("반납일 : " + dr.getAllCal(secondButtonText));
 
-						for (int j = start + 1; j < end + 1; j++) {
-							buttons[j].setEnabled(false);
-							if (j >= start && j <= end) {
-								buttons[j].setEnabled(false);
-							}
+//						for (int j = start + 1; j < end + 1; j++) {
+//							buttons[j].setEnabled(false);
+//							if (j >= start && j <= end) {
+//								buttons[j].setEnabled(false);
+//							}
+//
+//						}
 
-						}
-						
 						firstClickedIndex = -1;
 						firstClick = true;
 
-						dispose();
+						// dispose();
 					}
 				}
 			});
@@ -288,6 +285,5 @@ public class SwingCalendar3 extends JFrame implements Runnable {
 	public void setEndDate(String endDate) {
 		EndDate = endDate;
 	}
-	
 
 }

@@ -4,6 +4,8 @@ import java.util.Calendar;
 
 import javax.swing.JButton;
 
+import lombok.Data;
+@Data
 public class Diary {
 	// 버튼 배치
 	JButton[] buttons;

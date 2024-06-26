@@ -6,10 +6,10 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="lib" path="C:/Users/KDP/Desktop/group4_june_team_pjt2/lib/HikariCP-5.1.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/KDP/Desktop/group4_june_team_pjt2/lib/lombok.jar"/>
-	<classpathentry kind="lib" path="C:/Users/KDP/Desktop/group4_june_team_pjt2/lib/mysql-connector-java-8.0.21.jar"/>
-	<classpathentry kind="lib" path="C:/Users/KDP/Desktop/group4_june_team_pjt2/lib/slf4j-api-2.0.0-alpha5.jar"/>
-	<classpathentry kind="lib" path="C:/Users/KDP/Desktop/group4_june_team_pjt2/lib/slf4j-simple-2.0.0.jar"/>
+	<classpathentry kind="lib" path="lid/HikariCP-5.1.0.jar"/>
+	<classpathentry kind="lib" path="lid/lombok.jar"/>
+	<classpathentry kind="lib" path="lid/mysql-connector-java-8.0.21.jar"/>
+	<classpathentry kind="lib" path="lid/slf4j-api-2.0.0-alpha5.jar"/>
+	<classpathentry kind="lib" path="lid/slf4j-simple-2.0.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

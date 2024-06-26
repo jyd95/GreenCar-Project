@@ -199,26 +199,34 @@ public class CarReservationPanel extends JFrame implements ActionListener {
 
 		if (e.getSource() == k3) {
 			selectCar = 1;
+			carname = "K3";
 			new CarDetail().DetailK3();
 		} else if (e.getSource() == k5) {
+			carname = "K5";
 			selectCar = 2;
 			new CarDetail().DetailK5();
 		} else if (e.getSource() == model3) {
+			carname = "모델3";
 			selectCar = 3;
 			new CarDetail().DetailModel3();
 		} else if (e.getSource() == nexo) {
+			carname = "넥쏘";
 			selectCar = 4;
 			new CarDetail().DetailNexo();
 		} else if (e.getSource() == staria) {
+			carname = "스타렉스";
 			selectCar = 5;
 			new CarDetail().DetailStaria();
 		} else if (e.getSource() == sonata) {
+			carname = "쏘나타";
 			selectCar = 6;
 			new CarDetail().DetailSonata();
 		} else if (e.getSource() == avante) {
+			carname = "아반떼";
 			selectCar = 7;
 			new CarDetail().DetailAvante();
 		} else if (e.getSource() == kanibal) {
+			carname = "카니발";
 			selectCar = 8;
 			new CarDetail().DetailKanibal();
 		}

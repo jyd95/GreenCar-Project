@@ -23,6 +23,7 @@ import DTO.ReservationDTO;
 public class ReservationUpdatePage extends JFrame {
 	private JPanel backgroundPanel;
 	
+	
 	// 버튼
 	private JButton updateCarBtn;
 	private JButton updateDateBtn;
@@ -125,6 +126,7 @@ public class ReservationUpdatePage extends JFrame {
 	
 	public void rvDTO() {
 		ReservationDTO dto = CarDAO.reservationNumSelec(receivedid, receivedname);
+		
 		id.setText(Integer.toString(dto.getReservation_id()));
 		name.setText((dto.getUsername()));
 		phoneNumber.setText((dto.getPhonenum()));
@@ -406,7 +408,6 @@ public class ReservationUpdatePage extends JFrame {
 		reservationCarReturnDate.setHorizontalAlignment(JTextField.CENTER);
 		backgroundPanel.add(reservationCarReturnDate);
 
-		setVisible(true);
 
 	}
 
@@ -476,6 +477,7 @@ public class ReservationUpdatePage extends JFrame {
 					if (result2 == JOptionPane.YES_OPTION) {
 						CarDAO.DeleteReservation(receivedid);
 						setVisible(false);
+						
 					} else {
 					}
 				} else {
@@ -483,6 +485,9 @@ public class ReservationUpdatePage extends JFrame {
 			}
 		});
 	}
+	
+	
+
 
 	public static void main(String[] args) {
 		new ReservationUpdatePage();

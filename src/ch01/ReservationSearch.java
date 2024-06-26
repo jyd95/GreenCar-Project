@@ -15,6 +15,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
+import DAO.CarDAO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -113,14 +114,12 @@ public class ReservationSearch {
 				String text = idTextField.getText();
 				int id = Integer.parseInt(text); // id = 예약번호
 				String name = nameTextField.getText();
-
 				// 예약정보 창 띄우기
 				try {
 					ReservationUpdatePage rup = new ReservationUpdatePage(id, name);
 					rup.setVisible(true);
 					frame.setVisible(false);
 				} catch (Exception e2) {
-					e2.printStackTrace();
 					JOptionPane.showConfirmDialog(null, "이름과 예약번호가 일치하지 않습니다.", "알림", JOptionPane.DEFAULT_OPTION);
 				}
 			}

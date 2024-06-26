@@ -15,14 +15,13 @@ import javax.swing.JPanel;
 import DAO.CarDAO;
 
 public class CarDetail extends JFrame implements ActionListener {
-	
+
 	CarReservationPanel crp;
 	// 배경 패널
 	JPanel backgroundPanel = new JPanel();
-	
+
 	public String carname = null;
-	
-	
+
 	// 차량 이미지 라벨
 	private JLabel k3;
 	private JLabel k5;
@@ -211,6 +210,7 @@ public class CarDetail extends JFrame implements ActionListener {
 		scripSonata = new JLabel(new ImageIcon("img/scripSonata.png"));
 		scripSonata.setBounds(xScript, yScript, wScript, hScript);
 		scripSonata.setLayout(null);
+		backgroundPanel.add(scripSonata);
 		setVisible(true);
 
 	}
@@ -247,47 +247,58 @@ public class CarDetail extends JFrame implements ActionListener {
 		setVisible(true);
 
 	}
+
 	public void selectedCar() {
 		if (crp.selectCar == 1) {
-			carname = "k3";
-		}else if(crp.selectCar == 2) {
-			carname = "k5";
-		}else if(crp.selectCar == 3) {
-			carname = "model3";
-		}else if(crp.selectCar == 4) {
-			carname = "nexo";
-		}else if(crp.selectCar == 5) {
-			carname = "staria";
-		}else if(crp.selectCar == 6) {
-			carname = "sonata";
-		}else if(crp.selectCar == 7) {
-			carname = "avante";
-		}else if(crp.selectCar == 8) {
-			carname = "karnibal";
+			
+			carname = "K3";
+		} else if (crp.selectCar == 2) {
+			carname = "K5";
+		} else if (crp.selectCar == 3) {
+			carname = "모델3";
+		} else if (crp.selectCar == 4) {
+			carname = "넥쏘";
+		} else if (crp.selectCar == 5) {
+			carname = "스타렉스";
+		} else if (crp.selectCar == 6) {
+			carname = "쏘나타";
+		} else if (crp.selectCar == 7) {
+			carname = "아반떼";
+		} else if (crp.selectCar == 8) {
+			carname = "카니발";
 		}
 	}
+
 	// 버튼 클릭 시 날짜 선택으로 전환
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		
+
 		if (HomePagePanel.movement == 1) {
-			System.out.println(carname); 
+			System.out.println(carname);
 			DiaryReservationPanel drp = new DiaryReservationPanel(carname);
 			drp.setVisible(true);
 			setVisible(false);
 		} else {
+			System.out.println("22222");
 			Date rentDate = Date.valueOf(CarReservationPanel.receivedStartDate);
 			Date endDate = Date.valueOf(CarReservationPanel.receivedEndDate);
-			if(InsertReservation.role(carname, HomePagePanel.username, rentDate, endDate) != 0) {
-				JOptionPane.showConfirmDialog(null, "예약되었습니다.", "알림",
-						JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE);
-			}else {
-				JOptionPane.showConfirmDialog(null, "예약에 실패했습니다.", "알림", JOptionPane.DEFAULT_OPTION,
-						JOptionPane.PLAIN_MESSAGE);
+			if (endDate.after(rentDate)) {
+				
+					if (InsertReservation.role(carname, HomePagePanel.username, rentDate, endDate) != 0) {
+						
+					} else {
+						JOptionPane.showConfirmDialog(null, "예약에 실패했습니다2.", "알림", JOptionPane.DEFAULT_OPTION,
+								JOptionPane.PLAIN_MESSAGE);
+					}
+				} else {
+					JOptionPane.showConfirmDialog(null, "날자 제데로 하셈 ", "알림", JOptionPane.DEFAULT_OPTION,
+							JOptionPane.PLAIN_MESSAGE);
+				}
+
 			}
-			
+
 			setVisible(false);
-			
+
 		}
 	}
-}
+

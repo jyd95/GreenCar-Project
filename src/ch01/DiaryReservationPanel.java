@@ -153,14 +153,14 @@ public class DiaryReservationPanel extends JFrame {
 					crp.setVisible(true);
 					setVisible(false);
 				} else {
+					System.out.println(receivedCarname);
 					Date rentDate = Date.valueOf(SwingCalendar3.startDate);
 					Date endDate = Date.valueOf(SwingCalendar3.EndDate);
 					if (InsertReservation.role(receivedCarname, HomePagePanel.username, rentDate,
 							endDate) != 0) {
-						JOptionPane.showConfirmDialog(null, "예약되었습니다.", "알림", JOptionPane.DEFAULT_OPTION,
-								JOptionPane.PLAIN_MESSAGE);
+						
 					} else {
-						JOptionPane.showConfirmDialog(null, "예약에 실패했습니다.", "알림", JOptionPane.DEFAULT_OPTION,
+						JOptionPane.showConfirmDialog(null, "예약에 실패했습니다.1", "알림", JOptionPane.DEFAULT_OPTION,
 								JOptionPane.PLAIN_MESSAGE);
 					}
 					

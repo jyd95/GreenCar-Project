@@ -56,22 +56,21 @@ public class CarDAO {
 		}
 
 	}
-	
+
 	public static void check(String username, String carid, Date rentDate, Date endDate) {
 		String query = " insert reservation(username, carid, start_date, end_date) values ( ?, ? , ? , ? ) ";
-        try (Connection conn = DBCarConnectionManager.getConnection()) {
-            PreparedStatement pstmt = conn.prepareStatement(query);
-            pstmt.setString(1, username);
-            pstmt.setString(2, carid);
-            pstmt.setDate(3, rentDate);
-            pstmt.setDate(4, endDate);
-            
+		try (Connection conn = DBCarConnectionManager.getConnection()) {
+			PreparedStatement pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, username);
+			pstmt.setString(2, carid);
+			pstmt.setDate(3, rentDate);
+			pstmt.setDate(4, endDate);
 
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
-	
+
 	// select u.username, r.start_date, r.end_date from carinfo as ci join
 	// carmanagement as cm on ci.carname = cm.carname join reservation as r on
 	// r.carid = cm.carid join users as u on u.username = r.username where
@@ -110,6 +109,7 @@ public class CarDAO {
 
 		try (Connection conn = DBCarConnectionManager.getConnection()) {
 			PreparedStatement pstmt = conn.prepareStatement(query);
+
 			pstmt.setInt(1, id);
 			pstmt.setString(2, name);
 			ResultSet rs = pstmt.executeQuery();
@@ -130,6 +130,7 @@ public class CarDAO {
 
 				reservationDTO = new ReservationDTO(reservation_id, username, carname, carid, cartype, brand, puel,
 						phonenum, start_date, end_date, priceperday, licenseGrade);
+
 			}
 
 		} catch (SQLException e) {
@@ -137,53 +138,53 @@ public class CarDAO {
 		}
 		return reservationDTO;
 	}
-	
-	public static void datselect(String carname,String username, Date rentDate,Date endDate) {
-        String query2  = " select * from carmanagement where carname = ? ";
-        String query = " insert reservation(username, carid, start_date, end_date) values ( ?, ? , ? , ? ) ";
-        String carid = null;
-        try (Connection conn = DBCarConnectionManager.getConnection()) {
-            PreparedStatement pstmt = conn.prepareStatement(query2);
-            pstmt.setString(1, carname);
 
-            ResultSet rs = pstmt.executeQuery();
-            if (rs.next()) {
-                 carid = rs.getString("carid");
-            }
+	public static void datselect(String carname, String username, Date rentDate, Date endDate) {
+		String query2 = " select * from carmanagement where carname = ? ";
+		String query = " insert reservation(username, carid, start_date, end_date) values ( ?, ? , ? , ? ) ";
+		String carid = null;
+		try (Connection conn = DBCarConnectionManager.getConnection()) {
+			PreparedStatement pstmt = conn.prepareStatement(query2);
+			pstmt.setString(1, carname);
 
-            PreparedStatement pstmt2 = conn.prepareStatement(query);
-            pstmt2.setString(1, username);
-            pstmt2.setString(2, carid);
-            pstmt2.setDate(3, rentDate);
-            pstmt2.setDate(4, endDate);
-            pstmt2.executeUpdate();
+			ResultSet rs = pstmt.executeQuery();
+			if (rs.next()) {
+				carid = rs.getString("carid");
+			}
 
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+			PreparedStatement pstmt2 = conn.prepareStatement(query);
+			pstmt2.setString(1, username);
+			pstmt2.setString(2, carid);
+			pstmt2.setDate(3, rentDate);
+			pstmt2.setDate(4, endDate);
+			pstmt2.executeUpdate();
 
-    }
-	
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+	}
+
 	public static ReservationDTO reservationToCarAndDate(String carName, String userName) {
-		
+
 		ReservationDTO reservationDTO = null;
-		
+
 		String query = " select r.reservation_id,r.username,ci.carname,cm.carid,ci.cartype,ci.brand,ci.puel,r.start_date,r.end_date,ci.priceperday,u.licenseGrade from reservation as r join users as u on r.username= u.username join carmanagement as cm on cm.carid= r.carid join carinfo as ci on cm.carname= ci.carname where carid=? and u.username=?; ";
 		try (Connection conn = DBCarConnectionManager.getConnection()) {
 			String query2 = " select carid from carmanagement where carname =?; ";
 			PreparedStatement pstmt2 = conn.prepareStatement(query2);
 			pstmt2.setString(1, carName);
 			String carid = null;
-			
+
 			ResultSet rs = pstmt2.executeQuery();
-			if(rs.next()) {
+			if (rs.next()) {
 				carid = rs.getString("carid");
 			}
 			PreparedStatement pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, carid);
 			pstmt.setString(2, userName);
 			ResultSet rs1 = pstmt.executeQuery();
-			
+
 			if (rs1.next()) {
 				int reservation_id = rs1.getInt("reservation_id");
 				String username = rs1.getString("username");
@@ -197,11 +198,11 @@ public class CarDAO {
 				Date end_date = rs1.getDate("end_date");
 				int priceperday = rs1.getInt("priceperday");
 				String licenseGrade = rs1.getString("licenseGrade");
-				
+
 				reservationDTO = new ReservationDTO(reservation_id, username, carname, carid2, cartype, brand, puel,
 						phonenum, start_date, end_date, priceperday, licenseGrade);
 			}
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -213,16 +214,15 @@ public class CarDAO {
 		String query = " Update reservation set carid = ? where reservation_id = ? ";
 
 		try (Connection conn = DBCarConnectionManager.getConnection()) {
-			
+
 			PreparedStatement pstmt2 = conn.prepareStatement(query2);
 			pstmt2.setString(1, carid);
-			
+
 			ResultSet rs = pstmt2.executeQuery();
 			if (rs.next()) {
 				carid = rs.getString("carid");
 			}
-					
-			
+
 			PreparedStatement pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, carid);
 			pstmt.setInt(2, id);

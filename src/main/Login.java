@@ -128,7 +128,8 @@ public class Login extends JFrame {
 				String id = textField.getText();
 				String pw = textField_1.getText();
 				if (rcs.checkLogin(id, pw)) {
-					System.out.println("로그인 성공");
+					JOptionPane.showConfirmDialog(null, "Green CAR에 오신걸 환영 합니다", "알림", JOptionPane.DEFAULT_OPTION,
+							JOptionPane.PLAIN_MESSAGE);
 					hpp = new HomePagePanel(id);
 					hpp.setVisible(true);
 					setVisible(false);
