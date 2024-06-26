@@ -258,12 +258,11 @@ public class DateChange2 extends JFrame {
 							int result2 = JOptionPane.showConfirmDialog(null, "변경되었습니다.", "알림",
 									JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE);
 							if (result2 == JOptionPane.YES_OPTION) {
-								setVisible(false); // < 안꺼짐..
+								setVisible(false);
 								Date rentDate2 = Date.valueOf(rentDate);
 								Date returnDate2 = Date.valueOf(returnDate);
 								try {
 									CarDAO.changeDate(rentDate2, returnDate2, ReservationUpdatePage.getReceivedid());
-									 new ReservationUpdatePage();
 								} catch (SQLException e1) {
 									e1.printStackTrace();
 								}
