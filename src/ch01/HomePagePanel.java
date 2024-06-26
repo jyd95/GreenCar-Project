@@ -18,7 +18,7 @@ import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 
 public class HomePagePanel extends JFrame {
-	
+
 	public static String username = null;
 	public static int movement = 0;
 	// movement 의 값, 0 = 초기값, 1 = 차량으로 예약하기, 2 = 날짜로 예약하기.
@@ -50,6 +50,13 @@ public class HomePagePanel extends JFrame {
 	private Timer timer;
 	private int currentImageIndex = 0;
 
+	public HomePagePanel() {
+		initData();
+		setInitLayout();
+		initListener();
+		addBtnListener();
+	}
+
 	public HomePagePanel(String username) {
 		this.username = username;
 		initData();
@@ -59,7 +66,7 @@ public class HomePagePanel extends JFrame {
 	}
 
 	public void initData() {
-		
+
 		// 패널
 		backgroundPanel = new BackgroundPanel();
 		searchPanel = new JPanel();
@@ -84,7 +91,7 @@ public class HomePagePanel extends JFrame {
 	}
 
 	public void setInitLayout() {
-		
+
 		// 프레임 설정
 		setSize(1000, 1000);
 		setTitle(username + "님, 환영합니다.");

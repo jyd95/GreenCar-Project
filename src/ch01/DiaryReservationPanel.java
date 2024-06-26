@@ -56,7 +56,7 @@ public class DiaryReservationPanel extends JFrame {
 		initData();
 		setInitLayout();
 		addBtnListener();
-		
+
 	}
 
 	public void initData() {
@@ -152,18 +152,20 @@ public class DiaryReservationPanel extends JFrame {
 					CarReservationPanel crp = new CarReservationPanel(SwingCalendar3.startDate, SwingCalendar3.EndDate);
 					crp.setVisible(true);
 					setVisible(false);
+
 				} else {
 					System.out.println(receivedCarname);
+					setVisible(false);
+					new HomePagePanel();
 					Date rentDate = Date.valueOf(SwingCalendar3.startDate);
 					Date endDate = Date.valueOf(SwingCalendar3.EndDate);
-					if (InsertReservation.role(receivedCarname, HomePagePanel.username, rentDate,
-							endDate) != 0) {
-						
+					if (InsertReservation.role(receivedCarname, HomePagePanel.username, rentDate, endDate) != 0) {
+
 					} else {
 						JOptionPane.showConfirmDialog(null, "예약에 실패했습니다.1", "알림", JOptionPane.DEFAULT_OPTION,
 								JOptionPane.PLAIN_MESSAGE);
 					}
-					
+
 					setVisible(false);
 				}
 			}

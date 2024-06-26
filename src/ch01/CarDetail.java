@@ -279,7 +279,9 @@ public class CarDetail extends JFrame implements ActionListener {
 			drp.setVisible(true);
 			setVisible(false);
 		} else {
-			System.out.println("22222");
+			System.out.println("예약 완료됨");
+			setVisible(false);
+			new HomePagePanel();
 			Date rentDate = Date.valueOf(CarReservationPanel.receivedStartDate);
 			Date endDate = Date.valueOf(CarReservationPanel.receivedEndDate);
 			if (endDate.after(rentDate)) {
@@ -287,11 +289,11 @@ public class CarDetail extends JFrame implements ActionListener {
 					if (InsertReservation.role(carname, HomePagePanel.username, rentDate, endDate) != 0) {
 						
 					} else {
-						JOptionPane.showConfirmDialog(null, "예약에 실패했습니다2.", "알림", JOptionPane.DEFAULT_OPTION,
+						JOptionPane.showConfirmDialog(null, "예약에 실패했습니다.", "알림", JOptionPane.DEFAULT_OPTION,
 								JOptionPane.PLAIN_MESSAGE);
 					}
 				} else {
-					JOptionPane.showConfirmDialog(null, "날자 제데로 하셈 ", "알림", JOptionPane.DEFAULT_OPTION,
+					JOptionPane.showConfirmDialog(null, "날짜를 다시 선택해주세요. ", "알림", JOptionPane.DEFAULT_OPTION,
 							JOptionPane.PLAIN_MESSAGE);
 				}
 
