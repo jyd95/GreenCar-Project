@@ -13,13 +13,16 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import ch01.DiaryReservationPanel;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
 
+@Data
 
 public class SwingCalendar3 extends JFrame implements Runnable {
 
@@ -73,6 +76,19 @@ public class SwingCalendar3 extends JFrame implements Runnable {
 
 		new Thread(this).start();
 	}
+	
+	public void alertDateover(String date1, String date2, int date3, int date4) {
+        int a = Integer.valueOf(date1);
+        int b = Integer.valueOf(date2);
+        if ((date3 == date4 && a > b) || date3 > date4) {
+            JOptionPane.showConfirmDialog(null, "날짜를 다시 입력해주세요", "알림", JOptionPane.DEFAULT_OPTION,
+                    JOptionPane.PLAIN_MESSAGE);
+        } else {
+
+            drp.updateReturnLabelText("반납일 : " + dr.getAllCal(secondButtonText));
+            dispose();
+        }
+    }
 
 	public void initData() {
 		// 패널
