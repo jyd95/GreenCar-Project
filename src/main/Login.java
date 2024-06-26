@@ -24,7 +24,7 @@ import ch01.LoginPanel;
 import ch01.ReservationSearch;
 
 public class Login extends JFrame {
-	
+
 	private static final long serialVersionUID = 1L;
 	private JTextField textField_1;
 	private JPanel contentPane;
@@ -36,13 +36,11 @@ public class Login extends JFrame {
 	private String address;
 	private String email;
 	private String licenseGrade;
-	
+
 	private String username;
-	
+
 	HomePagePanel hpp = null;
-	/**
-	 * Launch the application.
-	 */
+
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -72,9 +70,6 @@ public class Login extends JFrame {
 		System.out.println(licenseGrade);
 	}
 
-	/**
-	 * Create the frame.
-	 */
 	public Login() {
 		final JTextField textField;
 		ImageIcon img1 = new ImageIcon("img/LOGIN.png");

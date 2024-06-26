@@ -153,13 +153,12 @@ public class DiaryReservationPanel extends JFrame {
 					CarReservationPanel crp = new CarReservationPanel(SwingCalendar3.startDate, SwingCalendar3.EndDate);
 					crp.setVisible(true);
 					setVisible(false);
-					
 
 				} else {
 					System.out.println(receivedCarname);
 					setVisible(false);
 					new HomePagePanel();
-					
+
 					Date rentDate = Date.valueOf(SwingCalendar3.startDate);
 					Date endDate = Date.valueOf(SwingCalendar3.EndDate);
 					if (InsertReservation.role(receivedCarname, HomePagePanel.username, rentDate, endDate) != 0) {

@@ -20,11 +20,8 @@ import DAO.CarDAO;
 
 public class CarChange {
 
-	CarReservationPanel crp;
-	DiaryReservationPanel drp;
-	private int sc;
 	private String carname = null;
-	
+
 	private static String selectedCarname = null;
 	private static String startDate = null;
 	private static String endDate = null;
@@ -130,7 +127,6 @@ public class CarChange {
 		k3.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
-				sc = 1;
 				choiceCarValue.setText("K3");
 				frame.repaint();
 				carid = "47호4827";
@@ -140,7 +136,6 @@ public class CarChange {
 		k5.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
-				sc = 2;
 				choiceCarValue.setText("K5");
 				frame.repaint();
 				carid = "49허3814";
@@ -150,7 +145,6 @@ public class CarChange {
 		model3.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
-				sc = 3;
 				choiceCarValue.setText("모델3");
 				frame.repaint();
 				carid = "52하3362";
@@ -160,7 +154,6 @@ public class CarChange {
 		nexo.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
-				sc = 4;
 				choiceCarValue.setText("넥쏘");
 				frame.repaint();
 				carid = "53호6642";
@@ -170,7 +163,6 @@ public class CarChange {
 		staria.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
-				sc = 5;
 				choiceCarValue.setText("스타렉스");
 				frame.repaint();
 				carid = "51하3942";
@@ -180,7 +172,6 @@ public class CarChange {
 		sonata.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
-				sc = 6;
 				choiceCarValue.setText("소나타");
 				frame.repaint();
 				carid = "46하8247";
@@ -190,7 +181,6 @@ public class CarChange {
 		avante.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
-				sc = 7;
 				choiceCarValue.setText("아반떼");
 				frame.repaint();
 				carid = "48허2748";
@@ -200,7 +190,6 @@ public class CarChange {
 		kanibal.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
-				sc = 8;
 				choiceCarValue.setText("카니발");
 				frame.repaint();
 				carid = "50호3827";
@@ -319,36 +308,5 @@ public class CarChange {
 		JList list = new JList();
 		list.setBounds(259, 290, 257, 215);
 		frame.getContentPane().add(list);
-
-//		btnNewButton.addActionListener(new ActionListener() {
-//			
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-//				ReservationUpdatePage rup = new ReservationUpdatePage();
-//				rup.setVisible(true);
-//				frame.setVisible(false);
-//			}
-//		});
-	}
-
-	public void selectedCar() {
-		if (sc == 1) {
-			carname = "k3";
-			carid = "47호4827";
-		} else if (sc == 2) {
-			carname = "k5";
-		} else if (sc == 3) {
-			carname = "model3";
-		} else if (sc == 4) {
-			carname = "nexo";
-		} else if (sc == 5) {
-			carname = "staria";
-		} else if (sc == 6) {
-			carname = "sonata";
-		} else if (sc == 7) {
-			carname = "avante";
-		} else if (sc == 8) {
-			carname = "karnibal";
-		}
 	}
 }

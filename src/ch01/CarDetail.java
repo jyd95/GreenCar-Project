@@ -270,10 +270,10 @@ public class CarDetail extends JFrame implements ActionListener {
 		}
 	}
 
-	// 버튼 클릭 시 날짜 선택으로 전환
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
+		// 버튼 클릭 시 날짜 선택으로 전환
 		if (HomePagePanel.movement == 1) {
 			System.out.println(carname);
 			this.setVisible(false);
@@ -287,7 +287,7 @@ public class CarDetail extends JFrame implements ActionListener {
 			new HomePagePanel();
 			Date rentDate = Date.valueOf(CarReservationPanel.receivedStartDate);
 			Date endDate = Date.valueOf(CarReservationPanel.receivedEndDate);
-			crp.setVisible(rootPaneCheckingEnabled);
+			crp.setVisible(false);
 			if (endDate.after(rentDate)) {
 
 				if (InsertReservation.role(carname, HomePagePanel.username, rentDate, endDate) != 0) {
@@ -300,10 +300,7 @@ public class CarDetail extends JFrame implements ActionListener {
 				JOptionPane.showConfirmDialog(null, "날짜를 다시 선택해주세요. ", "알림", JOptionPane.DEFAULT_OPTION,
 						JOptionPane.PLAIN_MESSAGE);
 			}
-
 		}
-
 		setVisible(false);
-
 	}
 }
