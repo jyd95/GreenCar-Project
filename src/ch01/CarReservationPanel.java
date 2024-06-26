@@ -14,7 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class CarReservationPanel extends JFrame implements ActionListener {
-	
+
 	CarDetail carDetail;
 	public static String receivedStartDate;
 	public static String receivedEndDate;
@@ -26,9 +26,9 @@ public class CarReservationPanel extends JFrame implements ActionListener {
 	// 로고
 	private JLabel logoLabel;
 	private JLabel headerLabel;
-	
+
 	public static int selectCar = 0;
-	
+
 	// 차량 버튼
 	private JButton k3;
 	private JButton k5;
@@ -44,6 +44,7 @@ public class CarReservationPanel extends JFrame implements ActionListener {
 		setInitLayout();
 		addEventListener();
 	}
+
 	public CarReservationPanel(String receivedStartDate, String receivedEndDate) {
 		this.receivedStartDate = receivedStartDate;
 		this.receivedEndDate = receivedEndDate;
@@ -73,7 +74,7 @@ public class CarReservationPanel extends JFrame implements ActionListener {
 	}
 
 	public void setInitLayout() {
-		
+
 		// 프레임 설정
 		setSize(1000, 1000);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -182,7 +183,7 @@ public class CarReservationPanel extends JFrame implements ActionListener {
 	}
 
 	private class BackgroundPanel extends JPanel {
-		
+
 		private JPanel backgroundPanel;
 
 		// 백그라운드 패널
@@ -200,35 +201,35 @@ public class CarReservationPanel extends JFrame implements ActionListener {
 		if (e.getSource() == k3) {
 			selectCar = 1;
 			carname = "K3";
-			new CarDetail().DetailK3();
+			new CarDetail(this).DetailK3();
 		} else if (e.getSource() == k5) {
 			carname = "K5";
 			selectCar = 2;
-			new CarDetail().DetailK5();
+			new CarDetail(this).DetailK5();
 		} else if (e.getSource() == model3) {
 			carname = "모델3";
 			selectCar = 3;
-			new CarDetail().DetailModel3();
+			new CarDetail(this).DetailModel3();
 		} else if (e.getSource() == nexo) {
 			carname = "넥쏘";
 			selectCar = 4;
-			new CarDetail().DetailNexo();
+			new CarDetail(this).DetailNexo();
 		} else if (e.getSource() == staria) {
 			carname = "스타렉스";
 			selectCar = 5;
-			new CarDetail().DetailStaria();
+			new CarDetail(this).DetailStaria();
 		} else if (e.getSource() == sonata) {
 			carname = "쏘나타";
 			selectCar = 6;
-			new CarDetail().DetailSonata();
+			new CarDetail(this).DetailSonata();
 		} else if (e.getSource() == avante) {
 			carname = "아반떼";
 			selectCar = 7;
-			new CarDetail().DetailAvante();
+			new CarDetail(this).DetailAvante();
 		} else if (e.getSource() == kanibal) {
 			carname = "카니발";
 			selectCar = 8;
-			new CarDetail().DetailKanibal();
+			new CarDetail(this).DetailKanibal();
 		}
 	}
 }

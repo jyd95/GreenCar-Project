@@ -13,6 +13,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import DAO.CarDAO;
+import calendar.SwingCalendar3;
 
 public class CarDetail extends JFrame implements ActionListener {
 
@@ -73,7 +74,8 @@ public class CarDetail extends JFrame implements ActionListener {
 	private int heightLabel = 200;
 
 	// 새 창 프레임
-	public CarDetail() {
+	public CarDetail(CarReservationPanel crp) {
+		this.crp = crp;
 		setBounds(0, 0, 800, 800);
 		setVisible(true);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -250,7 +252,6 @@ public class CarDetail extends JFrame implements ActionListener {
 
 	public void selectedCar() {
 		if (crp.selectCar == 1) {
-			
 			carname = "K3";
 		} else if (crp.selectCar == 2) {
 			carname = "K5";
@@ -275,32 +276,34 @@ public class CarDetail extends JFrame implements ActionListener {
 
 		if (HomePagePanel.movement == 1) {
 			System.out.println(carname);
+			this.setVisible(false);
 			DiaryReservationPanel drp = new DiaryReservationPanel(carname);
 			drp.setVisible(true);
-			setVisible(false);
+			crp.setVisible(false);
+
 		} else {
 			System.out.println("예약 완료됨");
-			setVisible(false);
+			this.setVisible(false);
 			new HomePagePanel();
 			Date rentDate = Date.valueOf(CarReservationPanel.receivedStartDate);
 			Date endDate = Date.valueOf(CarReservationPanel.receivedEndDate);
+			crp.setVisible(rootPaneCheckingEnabled);
 			if (endDate.after(rentDate)) {
-				
-					if (InsertReservation.role(carname, HomePagePanel.username, rentDate, endDate) != 0) {
-						
-					} else {
-						JOptionPane.showConfirmDialog(null, "예약에 실패했습니다.", "알림", JOptionPane.DEFAULT_OPTION,
-								JOptionPane.PLAIN_MESSAGE);
-					}
+
+				if (InsertReservation.role(carname, HomePagePanel.username, rentDate, endDate) != 0) {
+
 				} else {
-					JOptionPane.showConfirmDialog(null, "날짜를 다시 선택해주세요. ", "알림", JOptionPane.DEFAULT_OPTION,
+					JOptionPane.showConfirmDialog(null, "예약에 실패했습니다.", "알림", JOptionPane.DEFAULT_OPTION,
 							JOptionPane.PLAIN_MESSAGE);
 				}
-
+			} else {
+				JOptionPane.showConfirmDialog(null, "날짜를 다시 선택해주세요. ", "알림", JOptionPane.DEFAULT_OPTION,
+						JOptionPane.PLAIN_MESSAGE);
 			}
 
-			setVisible(false);
-
 		}
-	}
 
+		setVisible(false);
+
+	}
+}
